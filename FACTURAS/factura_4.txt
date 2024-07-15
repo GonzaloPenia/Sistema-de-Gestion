@@ -1,0 +1,26 @@
+Factura Nro.: 4			Fecha: 04/07/2024
+
+	DATOS DEL CLIENTE:
+Nro. ID: 1 - Nombre: JUAN RAMIREZ - CUIT: 20-44444444-6
+Tipo de Cliente: 1 - Responsable Inscripto.
+Domicilio: Av. Caz¢n 500, Tigre (CP: 1648), Buenos Aires
+
+	DATOS DEL VENDEDOR:
+Nro. ID: 1 - Nombre: THOMAS OLAS
+
+	DATOS DE LA VENTA:
+Tipo de Venta: 1 - Contado Directo.
+Condicion de Pago: 1
+
+	DETALLE DE VENTA:
+----------------------------------------------------------------------------------------------------------
+Item  Cantidad  Cod.Art. Descripcion                                            P.Unitario        Importe
+----------------------------------------------------------------------------------------------------------
+  1      50.00        2  TORNILLO C/FRESADA 3/16 X 1-1/2                            187.00       11313.50
+  2      50.00        4  ARANDELA PLANA INOX 3/16                                    58.00        3509.00
+
+Subtotal:     12250.00
+Neto IVA:      2572.50
+-------------------------------
+T O T A L:    14822.50
+-------------------------------

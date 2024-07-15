@@ -1,0 +1,26 @@
+Factura Nro.: 8			Fecha: 04/07/2024
+
+	DATOS DEL CLIENTE:
+Nro. ID: 1 - Nombre: JUAN PABLO RODRIGUEZ - CUIT: 30-26541332-6
+Tipo de Cliente: 1 - Responsable Inscripto.
+Domicilio: Arenales 2315, San Fernando (CP: 1646), Buenos Aires
+
+	DATOS DEL VENDEDOR:
+Nro. ID: 1 - Nombre: THOMAS OLAS
+
+	DATOS DE LA VENTA:
+Tipo de Venta: 1 - Contado Directo.
+Condicion de Pago: 1
+
+	DETALLE DE VENTA:
+----------------------------------------------------------------------------------------------------------
+Item  Cantidad  Cod.Art. Descripcion                                            P.Unitario        Importe
+----------------------------------------------------------------------------------------------------------
+  1       1.00        5  DESTORNILLADOR PLANO 6mm STANLEY                          8350.00       10103.50
+  2    1000.00        3  TUERCA INOX 3/16                                            96.00      116160.00
+
+Subtotal:    104350.00
+Neto IVA:     21913.50
+-------------------------------
+T O T A L:   126263.50
+-------------------------------

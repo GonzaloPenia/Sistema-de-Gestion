@@ -1,0 +1,25 @@
+Factura Nro.: 2			Fecha: 03/07/2024
+
+	DATOS DEL CLIENTE:
+Nro. ID: 4 - Nombre: NAOMI IVON CASTILLO - CUIT: 27-49804425-0
+Tipo de Cliente: 4 - Cons.Final.
+Domicilio: Uruguay 1515, Beccar (CP: 1642), Buenos Aires
+
+	DATOS DEL VENDEDOR:
+Nro. ID: 1 - Nombre: SANTIAGO GIUSSANI
+
+	DATOS DE LA VENTA:
+Tipo de Venta: 1 - Contado Directo.
+Condicion de Pago: Contado
+
+	DETALLE DE VENTA:
+----------------------------------------------------------------------------------------------------------
+Item  Cantidad  Cod.Art. Descripcion                                            P.Unitario        Importe
+----------------------------------------------------------------------------------------------------------
+  1       1.00        1  TORNILLO C/REDONDA INOX 3/16 X 1-1/2                       187.00         226.27
+
+Subtotal:       187.00
+Neto IVA:        39.27
+-------------------------------
+T O T A L:      226.27
+-------------------------------

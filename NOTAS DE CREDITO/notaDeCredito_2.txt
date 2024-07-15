@@ -1,0 +1,26 @@
+Nota De Credito Nro.: 2	Fecha: 04/07/2024
+
+	DATOS DEL CLIENTE:
+Nro. ID: 1 - Nombre: JUAN PABLO RODRIGUEZ - CUIT: 30-26541332-6
+Tipo de Cliente: 1 - Responsable Inscripto.
+Domicilio: Arenales 2315, San Fernando (CP: 1646), Buenos Aires
+
+	DATOS DEL VENDEDOR:
+Nro. ID: 1 - Nombre: THOMAS OLAS
+
+	DATOS DE LA VENTA:
+Tipo de Venta: 1 - Contado Directo.
+Condicion de Pago: 1
+
+	DETALLE DE VENTA:
+----------------------------------------------------------------------------------------------------------
+Item  Cantidad  Cod.Art. Descripcion                                            P.Unitario        Importe
+----------------------------------------------------------------------------------------------------------
+  1       1.00        1  TORNILLO C/REDONDA INOX 3/16 X 1-1/2                       187.00         226.27
+  2     500.00        1  TORNILLO C/REDONDA INOX 3/16 X 1-1/2                       187.00      113135.00
+
+Subtotal:     93687.00
+Neto IVA:     19674.27
+-------------------------------
+T O T A L:   113361.27
+-------------------------------

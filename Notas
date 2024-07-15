@@ -1,0 +1,66 @@
+FACTURA
+
+main
+- Funcion Global --> emisionFactura
+    Factura registro
+    Pide datos y valida
+    registro.Cargar()
+    altaFactura()
+
+- CAMBIAR STOCK DE LOS PRODUCTOS
+
+ARTICULO
+
+- LISTADO DE VENTAS A CLIENTE
+- LISTADO DE VENTAS EN TOTAL
+- CONSULTAR STOCK POR ID DE ARTICULO
+- CONSULTAR VENTAS POR ID DE ARTICULO E ID DE CLIENTE
+
+HISTORIAL DE VENTAS (N°FACTURA, FECHA, IMPORTE)
+
+BALANCE GENERAL (Ingresos y Egresos)
+
+EMISION FACTURA
+    1) Ingrese ID Cliente --> Trae todos los datos del cliente + Genera ID Factura
+    2) Ingrese ID Vendedor --> Trae el nombre
+    3) Ingrese Tipo de Compra (1-Contado Directo, 2-Cuenta Corriente)
+    3) Ingrese Condición de Pago
+    4) Ingrese Id Articulo y cantidad --> Muestra Articulo: ID - Descripción - Cantidad - Precio Unitario - Total
+    5) Desea modificar algun valor? (1-Codigo, 2-Descripción, 3-Cantidad, 4-Precio Unitario, 0-No)
+        5a) Ingrese el nuevo valor --> Muestra Articulo Modificado:
+        5b) Desea modificar algun valor? (1-Codigo, 2-Descripción, 3-Cantidad, 4-Precio Unitario)
+    6) Desea ingresar otro articulo? (1-Si, 2-No)
+    ......Sigue hasta finalizar ingreso.
+    7) Finalizar compra (1-Si, 2-No)
+    8) Mostrar Detalle Venta
+
+
+int main(){
+	#pragma region "Configuración ventana."
+	// Mostrar caracteres correctamente en pantalla y título de la ventana.
+	SetConsoleOutputCP(65001);
+	wchar_t titulo[128];
+	MultiByteToWideChar(CP_UTF8, 0, "Título de la ventana", -1, titulo, 128);
+	SetConsoleTitleW(titulo);
+
+	// Tamaño de la pantalla. Se cambia en los dos últimos dígitos.
+	SMALL_RECT r = { 0, 0, 80, 20 }; // X = 49, Y = 9.
+	SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &r);
+
+	// Cambio color de 6 (amarillo / naranja), color letras 0 (negro).
+	system("color 60");
+
+	// Ocultar cursor.
+	CONSOLE_CURSOR_INFO cci;
+	GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cci);
+	cci.bVisible = 0; // 0 oculta. 1 muestra cursor.
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cci);
+	#pragma endregion
+
+	gotoxy(20, 8);
+	cout << "Estás leyendo este texto en pantalla. C++ nativo";
+
+	cout << endl; // Nueva línea.
+	system("pause");
+	return 0;
+}
