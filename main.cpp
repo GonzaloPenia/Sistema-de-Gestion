@@ -110,7 +110,7 @@ int main(){
                         cout << "ERROR" << endl << endl;
                         cout << "Algo salio mal, intente nuevamente" << endl << endl;
                         system ("pause");
-                        return -3;
+                        break;
                 }
             }
             break;
@@ -326,7 +326,7 @@ int main(){
                         cout << "ERROR" << endl << endl;
                         cout << "Algo salio mal, intente nuevamente" << endl << endl;
                         system ("pause");
-                        return -3;
+                        break;
                     }
                 }
                 cout << endl << "Fin Switch Clientes" << endl << endl;
@@ -494,7 +494,7 @@ int main(){
                         cout << "ERROR" << endl << endl;
                         cout << "Algo salio mal, intente nuevamente" << endl << endl;
                         system ("pause");
-                        return -3;
+                        break;
                 }
                 cout << endl << "Fin Switch Articulos" << endl << endl;
             }
@@ -632,7 +632,7 @@ int main(){
                         cout << "ERROR" << endl << endl;
                         cout << "Algo salio mal, intente nuevamente" << endl << endl;
                         system ("pause");
-                        return -3;
+                        break;
                 }
                 cout << endl << "Fin Switch Proveedores" << endl << endl;
             }
@@ -831,7 +831,7 @@ int main(){
                         cout << "ERROR" << endl << endl;
                         cout << "Algo salio mal, intente nuevamente" << endl << endl;
                         system ("pause");
-                        return -3;
+                        break;
                 }
                 cout << endl << "Fin Switch Configuraciones" << endl << endl;
             }
