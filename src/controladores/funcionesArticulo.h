@@ -123,7 +123,7 @@ void buscarArticulo(){
 }
 
 void listaDeArticulos(){
-    ArchivoArticulo Archivo("articulos.dat");
+    ArchivoArticulo Archivo("data/articulos.dat");
     Archivo.leerArchivo();
     cout<<"-------------------------"<<endl;
 }

@@ -171,7 +171,7 @@ void mostrarSubMenuListarArticulos(){
     cout<<"----------------------------"<<endl;
     cout<<"1 - LISTAR DE MAYOR A MENOR PRECIO."<<endl;
     cout<<"2 - LISTAR DE MENOR A MAYOR PRECIO."<<endl;
-    cout<<"3 - ORDENAR POR ID DE MENOR A MAYOR."<<endl;
+    cout<<"3 - ORDENAR POR ID DE MAYOR A MAYOR."<<endl;
     cout<<"4 - ORDENAR POR ID DE MENOR A MAYOR."<<endl;
     cout<<"5 - LISTAR POR ORDEN EN EL QUE FUERON AGREGADOS."<<endl;
     cout<<"----------------------------"<<endl;

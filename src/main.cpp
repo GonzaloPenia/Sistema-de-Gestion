@@ -37,14 +37,8 @@ using namespace std;
 #include "clases/Emision.h"
 #include "clases/Factura.h"
 #include "clsArchivo/ArchivoFactura.h"
-#include "clases/NotaDeCredito.h"
-#include "clsArchivo/ArchivoNotaDeCredito.h"
-#include "clases/Presupuesto.h"
-#include "clsArchivo/ArchivoPresupuesto.h"
 #include "controladores/funcionesEmision.h"
 #include "controladores/funcionesFactura.h"
-#include "controladores/funcionesNotaDeCredito.h"
-#include "controladores/funcionesPresupuesto.h"
 
 int main(){
     int menu=1;
