@@ -26,7 +26,7 @@ void listarEmisiones();
 
 ///MENUS DE EMISION
 
-//MENU SECUNDARIO EMISION (UNIVERSAL: FACTURA, NOTA DE CRÉDITO, PRESUPUESTO)
+//MENU SECUNDARIO EMISION (UNIVERSAL: FACTURA, NOTA DE CRï¿½DITO, PRESUPUESTO)
 void mostrarMenuSecundarioEmision(){
     cout<<"QUE DESEA HACER A CONTINUACION?"<<endl;
     cout<<"---------------------------------"<<endl;
@@ -40,7 +40,7 @@ void mostrarMenuSecundarioEmision(){
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
 }
 
-//SUBMENU DE EMISION: MODIFICAR DATOS (UNIVERSAL: FACTURA, NOTA DE CRÉDITO, PRESUPUESTO)
+//SUBMENU DE EMISION: MODIFICAR DATOS (UNIVERSAL: FACTURA, NOTA DE CRï¿½DITO, PRESUPUESTO)
 void mostrarSubmenuEmisionModificar(){
     cout<<"MODIFICAR DATOS"<<endl;
     cout<<"---------------------------"<<endl;
@@ -53,7 +53,7 @@ void mostrarSubmenuEmisionModificar(){
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
 }
 
-//MENU DE DECISION PARA CONTINUAR O TERMINAR LA CARGA DE LOS ARTICULOS EN UN DETALLE (UNIVERSAL: FACTURA, NOTA DE CRÉDITO, PRESUPUESTO)
+//MENU DE DECISION PARA CONTINUAR O TERMINAR LA CARGA DE LOS ARTICULOS EN UN DETALLE (UNIVERSAL: FACTURA, NOTA DE CRï¿½DITO, PRESUPUESTO)
 void mostrarMenuContinuarCargaDetalle(){
     cout<<"CONTINUAR LA CARGA DE ARTICULOS?"<<endl;
     cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
@@ -64,7 +64,7 @@ void mostrarMenuContinuarCargaDetalle(){
 
 ///FORMATO DETALLE
 
-//ENCABEZADO PARA TODOS LOS DETALLES DE VENTA (UNIVERSAL: FACTURA, NOTA DE CRÉDITO, PRESUPUESTO)
+//ENCABEZADO PARA TODOS LOS DETALLES DE VENTA (UNIVERSAL: FACTURA, NOTA DE CRï¿½DITO, PRESUPUESTO)
 void mostrarEncabezadoDetalle(){
     cout << endl;
     cout << left << setw(5) << "Item";
@@ -255,11 +255,9 @@ void listarEmisiones(){
     int opcion=1;
     while (opcion!=0){
         system ("cls");
-        mostrarSubMenuListarEmisiones();
-        cin >> opcion;
-        switch (opcion){
+        //mostrarSubMenuListarEmisiones();       
 
-            case 1: {
+            
                 system("cls");
                 mostrarSubMenuListarFacturas();
                 int opcion2;
@@ -325,6 +323,7 @@ void listarEmisiones(){
                     case 0:
                         cout << endl << "0 - VOLVER ATRAS" << endl << endl;
                         cout << "Usted ha decidido salir del Listado de Facturas." << endl << endl;
+                        opcion = 0;
                         system ("pause");
                         break;
 
@@ -333,99 +332,7 @@ void listarEmisiones(){
                         cout << "Algo salio mal, intente nuevamente" << endl << endl;
                         system ("pause");
                         break;
-                }
-                break;
-            }
-
-            case 2: {
-                system("cls");
-                mostrarSubMenuListarNotasDeCredito();
-                int opcion2;
-                cin >> opcion2;
-                switch (opcion2){
-
-                    case 1: {   ///LISTADO POR RANGO DE FECHA
-                        systemClsListadoNotaDeCredito();
-                        Fecha fechaInicial, fechaFinal;
-                        fechaFinal = rangoFecha(fechaInicial);
-                        systemClsListadoNotaDeCredito();
-                        cout << endl << "FECHA INICIAL: " << fechaInicial.toString() << " - FECHA FINAL: " << fechaFinal.toString() << endl;
-                        listarNotasDeCreditoRangoFecha(fechaInicial, fechaFinal);
-                        system ("pause");
-                        break;
-                    }
-
-                    case 2: {   ///LISTADO POR CLIENTE Y RANGO DE FECHA
-                        systemClsListadoNotaDeCredito();
-                        Fecha fechaInicial, fechaFinal;
-                        fechaFinal = rangoFecha(fechaInicial);
-                        systemClsListadoNotaDeCredito();
-                        cout << endl << "FECHA INICIAL: " << fechaInicial.toString() << " - FECHA FINAL: " << fechaFinal.toString() << endl;
-                        cout << endl << "Ingrese el Id del Cliente: ";
-                        int idCliente;
-                        cin >> idCliente;
-
-                        ArchivoCliente regArchivoCliente;
-
-                        while (!regArchivoCliente.buscarRegistro(idCliente)){
-                            cout << endl << "No se ha encontrado un cliente con ese id." << endl;
-                            cout << endl << "Ingrese el Id del Cliente: ";
-                            cin >> idCliente;
-                        }
-                        listarNotasDeCreditoCliente(fechaInicial, fechaFinal, idCliente);
-                        system ("pause");
-                        break;
-                    }
-
-                    case 3: {   ///LISTADO POR ARTICULO Y RANGO DE FECHA
-                        systemClsListadoNotaDeCredito();
-                        Fecha fechaInicial, fechaFinal;
-                        fechaFinal = rangoFecha(fechaInicial);
-                        systemClsListadoNotaDeCredito();
-                        cout << endl << "FECHA INICIAL: " << fechaInicial.toString() << " - FECHA FINAL: " << fechaFinal.toString() << endl;
-                        cout << endl << "Ingrese el Id del Articulo: ";
-                        int idArticulo;
-                        cin >> idArticulo;
-
-                        ArchivoArticulo regArchivoArticulo;
-
-                        while (!regArchivoArticulo.buscarRegistro(idArticulo)){
-                            cout << endl << "No se ha encontrado un cliente con ese id." << endl;
-                            cout << endl << "Ingrese el Id del Articulo: ";
-                            cin >> idArticulo;
-                        }
-
-                        listarNotasDeCreditoArticulo(fechaInicial, fechaFinal, idArticulo);
-                        system ("pause");
-                        break;
-                    }
-
-                    case 0:
-                        cout << endl << "0 - VOLVER ATRAS" << endl << endl;
-                        cout << "Usted ha decidido salir del Listado de Notas de Credito." << endl << endl;
-                        system ("pause");
-                        break;
-
-                    default:
-                        cout << endl << "ERROR" << endl << endl;
-                        cout << "Algo salio mal, intente nuevamente" << endl << endl;
-                        system ("pause");
-                        break;
-                }
-                break;
-            }
-
-            case 0:
-                cout << endl << "0 - VOLVER ATRAS" << endl << endl;
-                cout << "Usted ha decidido salir del Listado de Emisiones." << endl << endl;
-                break;
-
-            default:
-                cout << "ERROR" << endl << endl;
-                cout << "Algo salio mal, intente nuevamente" << endl << endl;
-                system ("pause");
-                break;
-        }
+                }        
     }
 }
 

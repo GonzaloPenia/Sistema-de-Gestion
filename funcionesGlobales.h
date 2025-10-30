@@ -75,9 +75,7 @@ void mostrarMenuPrincipalEmision(){
     cout<<"MENU EMISION"<<endl<<endl;
 
     cout<<"1 - EMITIR FACTURA."<<endl;
-    cout<<"2 - EMITIR NOTA DE CREDITO."<<endl;
-    cout<<"3 - LISTAR FACTURAS Y NOTAS DE CREDITO."<<endl;
-    cout<<"4 - PRESUPUESTOS."<<endl;
+    cout<<"2 - LISTAR FACTURAS."<<endl;
     cout<<"-----------------------------"<<endl;
     cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
@@ -238,7 +236,7 @@ void mostrarSubMenuListarEmisiones(){
     cout<<"LISTA DE EMISIONES"<<endl<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"1 - LISTAR FACTURAS"<<endl;
-    cout<<"2 - LISTAR NOTAS DE CREDITO"<<endl;
+   cout<<"2 - LISTAR NOTAS DE CREDITO"<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"0 - VOLVER ATRAS"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";

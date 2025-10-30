@@ -75,30 +75,30 @@ int main(){
                     }
 
                     //EMISION DE NOTAS DE CREDITO
-                    case 2: {
+                   /* case 2: {
                         cout<<"2-EMISION DE NOTA DE CREDITO."<<endl;
                         NotaDeCredito regNotaDeCredito;
                         emisionMain(regNotaDeCredito);
                         system ("pause");
                         break;
-                    }
+                    }*/
 
                     //LISTADO DE FACTURAS Y NOTAS DE CREDITO
-                    case 3: {
-                        cout<<"3-LISTADO DE FACTURAS Y NOTAS DE CREDITO."<<endl;
+                    case 2: {
+                        cout<<"2-LISTADO DE FACTURAS"<<endl; /// SOLO NOTA DE CREDITO
                         listarEmisiones();
                         system ("pause");
                         break;
                     }
 
                     //PRESUPUESTOS
-                    case 4: {
+                    /* 4: {
                         cout<<"4-PRESUPUESTOS."<<endl;
                         Presupuesto regPresupuesto;
                         seccionPresupuesto(regPresupuesto);
                         system ("pause");
                         break;
-                    }
+                    }*/
 
                     case 0:
                         cout << "0 - VOLVER AL MENU PRINCIPAL" << endl << endl;
