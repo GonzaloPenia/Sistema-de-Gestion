@@ -7,7 +7,7 @@ private:
     char nombre[30];
 
 public:
-    ArchivoProveedor(const char *n="proveedores.dat"){ //CONSTRUCTOR
+    ArchivoProveedor(const char *n="../data/proveedores.dat"){ //CONSTRUCTOR
         strcpy(nombre, n); //COPIA EL CONTENIDO DE N EN NOMBRE
         //estado=true;
     }
@@ -111,7 +111,7 @@ bool ArchivoProveedor::modificarArchivo(int pos, Proveedor Proveedor){
 
 int ArchivoProveedor::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO DEL ARCHIVO
     Proveedor regProveedor;
-    FILE *p=fopen("proveedores.dat","rb");
+    FILE *p=fopen("../data/proveedores.dat","rb");
     if(p==NULL)
     {
     cout<<"FALLO EN EL ACCESO AL ARCHIVO(contarArchivo)";
@@ -126,7 +126,7 @@ int ArchivoProveedor::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTR
 void ArchivoProveedor::vectorizarArchivo(Proveedor registros[],int cantidad){
     FILE *p;
 
-    p = fopen("proveedores.dat", "rb");
+    p = fopen("../data/proveedores.dat", "rb");
 
     if(p == nullptr){
         return;

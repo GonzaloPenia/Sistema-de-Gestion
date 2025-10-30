@@ -1,14 +1,14 @@
-#ifndef NOTADECREDITO_H_INCLUDED
-#define NOTADECREDITO_H_INCLUDED
+#ifndef PRESUPUESTO_H_INCLUDED
+#define PRESUPUESTO_H_INCLUDED
 
-///CLASE DERIVADA DE EMISION: NOTA DE CRÉDITO
-class NotaDeCredito : public Emision{
+///CLASE PRESUPUESTO
+class Presupuesto : public Emision{
 
 private:
     int _id;
 
 public:
-    NotaDeCredito(){
+    Presupuesto(){
         _id = 0;
     }
 
@@ -20,46 +20,44 @@ public:
         return true; //TRUE CONFIRMA QUE SE CARGO LA FACTURA
     }
 
-    void Mostrar(){ Emision::Mostrar();}
+    void Mostrar(){ Emision::Mostrar(); }
 
-    void MostrarNotaDeCreditoEmitida();
-    void MostrarNotaDeCreditoResumen();
-    void MostrarNotaDeCreditoArticulo(int posArticulo);
-
+    void MostrarPresupuestoEmitido();
+    void MostrarPresupuestoResumen();
+    void MostrarPresupuestoArticulo(int posArticulo);
     void escribirEnArchivoTexto();
+
 };
 
-void NotaDeCredito::MostrarNotaDeCreditoEmitida(){
-    cout << "Nota de Credito Nro.: " << _id << endl << endl;
+void Presupuesto::MostrarPresupuestoEmitido(){
+    cout << "Presupuesto Nro.: " << _id << endl << endl;
     Emision::Mostrar();
 }
 
-void NotaDeCredito::MostrarNotaDeCreditoResumen(){
-    cout << fixed << setprecision(2);
-    cout << left << setw(14) << getFecha().toString();
-    cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
-    cout << left << setw(55) << getNombreCliente();
-    cout << right << setw(11) << getImporteTotal() << endl;
-}
-
-void NotaDeCredito::MostrarNotaDeCreditoArticulo(int posArticulo){
+void Presupuesto::MostrarPresupuestoResumen(){
     cout << fixed << setprecision(2);
     cout << left << setw(14) << getFecha().toString();
     cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
     cout << left << setw(55) << getNombreCliente() << setw(9) << getIdVendedor();
-    cout << right << setw(9) << getDetalleVenta().getItem(posArticulo).getCantidad()
-                  << setw(11) << getDetalleVenta().getItem(posArticulo).getImporte() << endl;
+    cout << right << setw(11) << getImporteTotal() << endl;
 }
 
-void NotaDeCredito::escribirEnArchivoTexto() {
-    const char* carpeta = "NOTAS DE CREDITO";
+void Presupuesto::escribirEnArchivoTexto() {
+    const char* carpeta = "../output/PRESUPUESTOS";
 
     if (_mkdir(carpeta) != 0) {
         // La carpeta ya existe o hay un error
     }
 
     char nombre_ArchTxt[100];
-    snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/notaDeCredito_%d.txt", carpeta, getId());
+    snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/presupuesto_%d.txt", carpeta, getId());
+
+
+    FILE* archivoExistente = fopen(nombre_ArchTxt, "r");
+    if (archivoExistente) {
+        fclose(archivoExistente);
+        snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/presupuesto_%d(Rev.).txt", carpeta, getId());
+    }
 
     FILE* p = fopen(nombre_ArchTxt, "w");
     if (p==NULL){
@@ -68,7 +66,7 @@ void NotaDeCredito::escribirEnArchivoTexto() {
     }
 
     ///DATOS GENERALES --> Faltan datos de empresa
-    fprintf(p, "Nota De Credito Nro.: %d\t", getId());
+    fprintf(p, "Presupuesto Nro.: %d\t\t\t", getId());
     fprintf(p, "Fecha: %s\n\n", getFecha().toString().c_str());
 
     ///DATOS DEL CLIENTE
@@ -134,4 +132,13 @@ void NotaDeCredito::escribirEnArchivoTexto() {
     fclose(p);
 }
 
-#endif // NOTADECREDITO_H_INCLUDED
+void Presupuesto::MostrarPresupuestoArticulo(int posArticulo){
+    cout << fixed << setprecision(2);
+    cout << left << setw(14) << getFecha().toString();
+    cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
+    cout << left << setw(55) << getNombreCliente() << setw(9) << getIdVendedor();
+    cout << right << setw(9) << getDetalleVenta().getItem(posArticulo).getCantidad()
+                  << setw(11) << getDetalleVenta().getItem(posArticulo).getImporte() << endl;
+}
+
+#endif // PRESUPUESTO_H_INCLUDED

@@ -10,10 +10,10 @@ private:
 public:
 
     ///CONSTRUCTOR
-    ArchivoPresupuesto(){strcpy(_nombre,"presupuestos.dat");}
+    ArchivoPresupuesto(){strcpy(_nombre,"../data/presupuestos.dat");}
     //ArchivoPresupuesto(const char* nombre){ strcpy(_nombre, nombre); }
 
-    ///MÉTODOS
+    ///Mï¿½TODOS
     int AgregarRegistro();
     int AgregarRegistro(Presupuesto regPresupuesto);
     void crearArchivoVacio();
@@ -85,7 +85,7 @@ public:
 
     ///LECTURA Y LISTADO
 
-    //LECTURA DE REGISTROS EN UNA POSICIÓN
+    //LECTURA DE REGISTROS EN UNA POSICIï¿½N
     Presupuesto ArchivoPresupuesto::leerRegistro(int pos){
         Presupuesto regPresupuesto;
         FILE *p;
@@ -134,7 +134,7 @@ public:
 
     ///BUSQUEDA
 
-    //BUSCAR UN REGISTRO EN BASE A UN CODIGO/ATRIBUTO - DEVUELVE LA POSICIÓN
+    //BUSCAR UN REGISTRO EN BASE A UN CODIGO/ATRIBUTO - DEVUELVE LA POSICIï¿½N
     int ArchivoPresupuesto::buscarRegistro(int codigo){
         Factura regPresupuesto;
         FILE *p=fopen(_nombre,"rb");
@@ -193,7 +193,7 @@ public:
 
     int ArchivoPresupuesto::verificarArchivoExistente() {
         DWORD atributos = GetFileAttributesA(_nombre); //obtiene los atributos del archivo especificado
-        return (atributos != INVALID_FILE_ATTRIBUTES && //Si GetFileAttributesA retorna INVALID_FILE_ATTRIBUTES, significa que el archivo no existe o hay un error al intentar acceder a él.
+        return (atributos != INVALID_FILE_ATTRIBUTES && //Si GetFileAttributesA retorna INVALID_FILE_ATTRIBUTES, significa que el archivo no existe o hay un error al intentar acceder a ï¿½l.
                 !(atributos & FILE_ATTRIBUTE_DIRECTORY)); //Operacion "AND bit a bit" para verifica que el archivo no sea un directorio. V si lo es, F si no lo es.
     }
 

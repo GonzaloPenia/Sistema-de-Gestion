@@ -701,7 +701,7 @@ void imprimirFactura(Factura& regFactura){              //OK
 
 void imprimirFacturaDesdeArchivo(Factura& regFactura){
     ArchivoFactura regArchivoFactura;
-    regArchivoFactura.leerArchBin_escribirArchTxt("facturas.dat");
+    regArchivoFactura.leerArchBin_escribirArchTxt("../data/facturas.dat");
 }
 
 void actualizarStock(Factura& regFactura){

@@ -7,7 +7,7 @@ private:
     char nombre[30];
 
 public:
-    ArchivoArticulo(const char *n="articulos.dat"){ //CONSTRUCTOR
+    ArchivoArticulo(const char *n="../data/articulos.dat"){ //CONSTRUCTOR
         strcpy(nombre, n); //COPIA EL CONTENIDO DE N EN NOMBRE
         //estado=true;
     }
@@ -178,7 +178,7 @@ int ArchivoArticulo::modificarArchivo(Proveedor regProveedor){
 
 int ArchivoArticulo::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO DEL ARCHIVO
     Articulo regArticulo;
-    FILE *p=fopen("articulos.dat","rb");
+    FILE *p=fopen("../data/articulos.dat","rb");
     if(p==NULL)
     {
     cout<<"FALLO EN EL ACCESO AL ARCHIVO";
@@ -230,7 +230,7 @@ vector<Articulo> ArchivoArticulo::VectorArticulos(){ //MUESTRA EL ARTICULO QUE C
 void ArchivoArticulo::vectorizarArchivo(Articulo registros[],int cantidad){
     FILE *p;
 
-   p = fopen("articulos.dat", "rb");
+   p = fopen("../data/articulos.dat", "rb");
 
    if(p == nullptr){
       return;

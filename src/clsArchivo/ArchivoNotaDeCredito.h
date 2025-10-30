@@ -9,9 +9,9 @@ private:
 
 public:
 
-    ArchivoNotaDeCredito(){strcpy(_nombre,"notasDeCredito.dat");}
+    ArchivoNotaDeCredito(){strcpy(_nombre,"../data/notasDeCredito.dat");}
 
-///MÉTODOS
+///Mï¿½TODOS
 
     ///ESCRITURA
 
@@ -70,7 +70,7 @@ public:
 
     ///LECTURA Y LISTADO
 
-    //LECTURA DE REGISTROS EN UNA POSICIÓN
+    //LECTURA DE REGISTROS EN UNA POSICIï¿½N
     NotaDeCredito leerRegistro(int pos){
         NotaDeCredito regNotaDeCredito;
         //regNotaDeCredito.setCodigoClase(-1);
@@ -115,7 +115,7 @@ public:
 
     ///BUSQUEDA
 
-    //BUSCAR UN REGISTRO EN BASE A UN CODIGO/ATRIBUTO - DEVUELVE LA POSICIÓN
+    //BUSCAR UN REGISTRO EN BASE A UN CODIGO/ATRIBUTO - DEVUELVE LA POSICIï¿½N
     int buscarRegistro(int codigo){
         NotaDeCredito regNotaDeCredito;
         FILE *p=fopen(_nombre,"rb");
@@ -174,7 +174,7 @@ public:
 
     int verificarArchivoExistente() {
         DWORD atributos = GetFileAttributesA(_nombre); //obtiene los atributos del archivo especificado
-        return (atributos != INVALID_FILE_ATTRIBUTES && //Si GetFileAttributesA retorna INVALID_FILE_ATTRIBUTES, significa que el archivo no existe o hay un error al intentar acceder a él.
+        return (atributos != INVALID_FILE_ATTRIBUTES && //Si GetFileAttributesA retorna INVALID_FILE_ATTRIBUTES, significa que el archivo no existe o hay un error al intentar acceder a ï¿½l.
                 !(atributos & FILE_ATTRIBUTE_DIRECTORY)); //Operacion "AND bit a bit" para verifica que el archivo no sea un directorio. V si lo es, F si no lo es.
     }
 
@@ -193,7 +193,7 @@ public:
         while (fread(&regNotaDeCredito, sizeof(NotaDeCredito), 1, p)) {
             // Crear nombre de archivo de texto
             char path_ArchTxt[50];
-            snprintf(path_ArchTxt, sizeof(path_ArchTxt), "factura_%d.txt", contador);    //snprintf --> Genera una cadena formateada en un búfer, asegurando que no se sobrepase el tamaño del búfer.
+            snprintf(path_ArchTxt, sizeof(path_ArchTxt), "factura_%d.txt", contador);    //snprintf --> Genera una cadena formateada en un bï¿½fer, asegurando que no se sobrepase el tamaï¿½o del bï¿½fer.
 
             // Abrir archivo de texto para escritura
             FILE* q = fopen(path_ArchTxt, "w");

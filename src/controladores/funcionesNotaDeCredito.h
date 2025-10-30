@@ -696,7 +696,7 @@ void altaNotaDeCredito(NotaDeCredito& regNotaDeCredito){
 
 void imprimirNotaDeCreditoDesdeArchivo(NotaDeCredito& regNotaDeCredito){
     ArchivoNotaDeCredito regArchivoNotaDeCredito;
-    regArchivoNotaDeCredito.leerArchBin_escribirArchTxt("notasDeCredito.dat");
+    regArchivoNotaDeCredito.leerArchBin_escribirArchTxt("../data/notasDeCredito.dat");
 }
 
 void imprimirNotaDeCredito(NotaDeCredito& regNotaDeCredito){

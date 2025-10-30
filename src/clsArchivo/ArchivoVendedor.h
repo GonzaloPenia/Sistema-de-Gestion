@@ -6,7 +6,7 @@ private:
     char nombre[30];
 
 public:
-    ArchivoVendedor(const char *n="vendedores.dat"){ //CONSTRUCTOR
+    ArchivoVendedor(const char *n="../data/vendedores.dat"){ //CONSTRUCTOR
         strcpy(nombre, n); //COPIA EL CONTENIDO DE N EN NOMBRE
         //estado=true;
     }
@@ -104,7 +104,7 @@ Vendedor ArchivoVendedor::leerArchivo(int pos){
 
 void ArchivoVendedor::leerArchivo(){
     Vendedor regVendedor;
-    FILE *p=fopen("vendedores.dat","rb");
+    FILE *p=fopen("../data/vendedores.dat","rb");
     if(p==NULL){
         cout<<"FALLO EN EL ACCESO AL ARCHIVO";
         return ;
@@ -179,7 +179,7 @@ void ArchivoVendedor::encontrarVendedor(int id){
 
 int ArchivoVendedor::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO DEL ARCHIVO
     Vendedor regVendedor;
-    FILE *p=fopen("vendedores.dat","rb");
+    FILE *p=fopen("../data/vendedores.dat","rb");
     if(p==NULL)
     {
     cout<<"FALLO EN EL ACCESO AL ARCHIVO";
@@ -194,7 +194,7 @@ int ArchivoVendedor::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO
 void ArchivoVendedor::vectorizarArchivo(Vendedor registros[],int cantidad){
     FILE *p;
 
-   p = fopen("vendedores.dat", "rb");
+   p = fopen("../data/vendedores.dat", "rb");
 
    if(p == nullptr){
       return;

@@ -1,14 +1,14 @@
-#ifndef FACTURA_H_INCLUDED
-#define FACTURA_H_INCLUDED
+#ifndef NOTADECREDITO_H_INCLUDED
+#define NOTADECREDITO_H_INCLUDED
 
-///CLASE DERIVADA DE EMISION: FACTURA
-class Factura : public Emision{
+///CLASE DERIVADA DE EMISION: NOTA DE CR�DITO
+class NotaDeCredito : public Emision{
 
 private:
     int _id;
 
 public:
-    Factura(){
+    NotaDeCredito(){
         _id = 0;
     }
 
@@ -20,21 +20,21 @@ public:
         return true; //TRUE CONFIRMA QUE SE CARGO LA FACTURA
     }
 
-    void Mostrar(){ Emision::Mostrar(); }
+    void Mostrar(){ Emision::Mostrar();}
 
-    void MostrarFacturaEmitida();
-    void MostrarFacturaResumen();
-    void MostrarFacturaArticulo(int posArticulo);
+    void MostrarNotaDeCreditoEmitida();
+    void MostrarNotaDeCreditoResumen();
+    void MostrarNotaDeCreditoArticulo(int posArticulo);
 
     void escribirEnArchivoTexto();
 };
 
-void Factura::MostrarFacturaEmitida(){
-    cout << "Factura Nro.: " << _id << endl << endl;
+void NotaDeCredito::MostrarNotaDeCreditoEmitida(){
+    cout << "Nota de Credito Nro.: " << _id << endl << endl;
     Emision::Mostrar();
 }
 
-void Factura::MostrarFacturaResumen(){
+void NotaDeCredito::MostrarNotaDeCreditoResumen(){
     cout << fixed << setprecision(2);
     cout << left << setw(14) << getFecha().toString();
     cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
@@ -42,7 +42,7 @@ void Factura::MostrarFacturaResumen(){
     cout << right << setw(11) << getImporteTotal() << endl;
 }
 
-void Factura::MostrarFacturaArticulo(int posArticulo){
+void NotaDeCredito::MostrarNotaDeCreditoArticulo(int posArticulo){
     cout << fixed << setprecision(2);
     cout << left << setw(14) << getFecha().toString();
     cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
@@ -51,15 +51,15 @@ void Factura::MostrarFacturaArticulo(int posArticulo){
                   << setw(11) << getDetalleVenta().getItem(posArticulo).getImporte() << endl;
 }
 
-void Factura::escribirEnArchivoTexto() {
-    const char* carpeta = "FACTURAS";
+void NotaDeCredito::escribirEnArchivoTexto() {
+    const char* carpeta = "../output/NOTAS DE CREDITO";
 
     if (_mkdir(carpeta) != 0) {
         // La carpeta ya existe o hay un error
     }
 
     char nombre_ArchTxt[100];
-    snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/factura_%d.txt", carpeta, getId());
+    snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/notaDeCredito_%d.txt", carpeta, getId());
 
     FILE* p = fopen(nombre_ArchTxt, "w");
     if (p==NULL){
@@ -68,7 +68,7 @@ void Factura::escribirEnArchivoTexto() {
     }
 
     ///DATOS GENERALES --> Faltan datos de empresa
-    fprintf(p, "Factura Nro.: %d\t\t\t", getId());
+    fprintf(p, "Nota De Credito Nro.: %d\t", getId());
     fprintf(p, "Fecha: %s\n\n", getFecha().toString().c_str());
 
     ///DATOS DEL CLIENTE
@@ -134,4 +134,4 @@ void Factura::escribirEnArchivoTexto() {
     fclose(p);
 }
 
-#endif // FACTURA_H_INCLUDED
+#endif // NOTADECREDITO_H_INCLUDED

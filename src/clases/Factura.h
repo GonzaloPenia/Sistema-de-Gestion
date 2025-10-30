@@ -1,14 +1,14 @@
-#ifndef PRESUPUESTO_H_INCLUDED
-#define PRESUPUESTO_H_INCLUDED
+#ifndef FACTURA_H_INCLUDED
+#define FACTURA_H_INCLUDED
 
-///CLASE PRESUPUESTO
-class Presupuesto : public Emision{
+///CLASE DERIVADA DE EMISION: FACTURA
+class Factura : public Emision{
 
 private:
     int _id;
 
 public:
-    Presupuesto(){
+    Factura(){
         _id = 0;
     }
 
@@ -22,42 +22,44 @@ public:
 
     void Mostrar(){ Emision::Mostrar(); }
 
-    void MostrarPresupuestoEmitido();
-    void MostrarPresupuestoResumen();
-    void MostrarPresupuestoArticulo(int posArticulo);
-    void escribirEnArchivoTexto();
+    void MostrarFacturaEmitida();
+    void MostrarFacturaResumen();
+    void MostrarFacturaArticulo(int posArticulo);
 
+    void escribirEnArchivoTexto();
 };
 
-void Presupuesto::MostrarPresupuestoEmitido(){
-    cout << "Presupuesto Nro.: " << _id << endl << endl;
+void Factura::MostrarFacturaEmitida(){
+    cout << "Factura Nro.: " << _id << endl << endl;
     Emision::Mostrar();
 }
 
-void Presupuesto::MostrarPresupuestoResumen(){
+void Factura::MostrarFacturaResumen(){
+    cout << fixed << setprecision(2);
+    cout << left << setw(14) << getFecha().toString();
+    cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
+    cout << left << setw(55) << getNombreCliente();
+    cout << right << setw(11) << getImporteTotal() << endl;
+}
+
+void Factura::MostrarFacturaArticulo(int posArticulo){
     cout << fixed << setprecision(2);
     cout << left << setw(14) << getFecha().toString();
     cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
     cout << left << setw(55) << getNombreCliente() << setw(9) << getIdVendedor();
-    cout << right << setw(11) << getImporteTotal() << endl;
+    cout << right << setw(9) << getDetalleVenta().getItem(posArticulo).getCantidad()
+                  << setw(11) << getDetalleVenta().getItem(posArticulo).getImporte() << endl;
 }
 
-void Presupuesto::escribirEnArchivoTexto() {
-    const char* carpeta = "PRESUPUESTOS";
+void Factura::escribirEnArchivoTexto() {
+    const char* carpeta = "../output/FACTURAS";
 
     if (_mkdir(carpeta) != 0) {
         // La carpeta ya existe o hay un error
     }
 
     char nombre_ArchTxt[100];
-    snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/presupuesto_%d.txt", carpeta, getId());
-
-
-    FILE* archivoExistente = fopen(nombre_ArchTxt, "r");
-    if (archivoExistente) {
-        fclose(archivoExistente);
-        snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/presupuesto_%d(Rev.).txt", carpeta, getId());
-    }
+    snprintf(nombre_ArchTxt, sizeof(nombre_ArchTxt), "%s/factura_%d.txt", carpeta, getId());
 
     FILE* p = fopen(nombre_ArchTxt, "w");
     if (p==NULL){
@@ -66,7 +68,7 @@ void Presupuesto::escribirEnArchivoTexto() {
     }
 
     ///DATOS GENERALES --> Faltan datos de empresa
-    fprintf(p, "Presupuesto Nro.: %d\t\t\t", getId());
+    fprintf(p, "Factura Nro.: %d\t\t\t", getId());
     fprintf(p, "Fecha: %s\n\n", getFecha().toString().c_str());
 
     ///DATOS DEL CLIENTE
@@ -132,13 +134,4 @@ void Presupuesto::escribirEnArchivoTexto() {
     fclose(p);
 }
 
-void Presupuesto::MostrarPresupuestoArticulo(int posArticulo){
-    cout << fixed << setprecision(2);
-    cout << left << setw(14) << getFecha().toString();
-    cout << right << setw(6) << getId() << setw(4) << " " << setw(10) << getIdCliente() << setw(2) << " ";
-    cout << left << setw(55) << getNombreCliente() << setw(9) << getIdVendedor();
-    cout << right << setw(9) << getDetalleVenta().getItem(posArticulo).getCantidad()
-                  << setw(11) << getDetalleVenta().getItem(posArticulo).getImporte() << endl;
-}
-
-#endif // PRESUPUESTO_H_INCLUDED
+#endif // FACTURA_H_INCLUDED
