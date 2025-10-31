@@ -1,1 +1,22 @@
+# Ejecutables
+*.exe
 main.exe
+
+# Archivos de compilación
+*.o
+*.obj
+*.out
+
+# Archivos de datos
+data/articulos.dat
+data/proveedores.dat
+
+# Configuración local de Claude
+.claude/
+
+# Configuración local de VSCode
+.vscode/
+
+# No ignorar carpetas output (ejecutables se compilan aquí)
+# output/
+# src/output/

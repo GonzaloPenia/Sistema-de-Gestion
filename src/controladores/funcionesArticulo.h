@@ -1,3 +1,9 @@
+#include "../clases/Articulo.h"
+#include "../clases/Proveedor.h"
+#include "../clsArchivo/ArchivoArticulo.h"
+#include "../clsArchivo/ArchivoProveedor.h"
+
+
 void cargarArticulo();
 void buscarArticulo();
 void listaDeArticulos();
@@ -10,18 +16,12 @@ void listarArticuloPorPrecioDeMayorAMenor();
 void listarArticuloPorPrecioDeMenorAMayor();
 void listaArticuloPorIdDeMayorAMenor();
 void listaArticuloPorIdDeMenorAMayor();
-void modificarNombreProveedor();
-void modificarDireccionProveedor();
-void modificarContactoEmailProveedor();
-void modificarEmailProveedor();
-void modificarTelefonoFijoProveedor();
-void modificarTelefonoMovilProveedor();
 
 void cargarArticulo(){
     Articulo regArticulo;
     Proveedor regProveedor;
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
-    ArchivoProveedor regArchivoProveedor("proveedores.dat");
+    ArchivoArticulo regArchivoArticulo("../../data/articulos.dat");
+    ArchivoProveedor regArchivoProveedor("../../data/proveedores.dat");
     int id,id_proveedor;
 
     cout<<"CARGA DE NUEVO ARTICULO."<<endl<<endl;
@@ -102,7 +102,7 @@ void cargarArticulo(){
 }
 
 void buscarArticulo(){
-    ArchivoArticulo Archivo("articulos.dat");
+    ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"BUSCAR UN ARTICULO POR ID."<<endl;
     cout<<"INGRESE EL ID DEL ARTICULO QUE DESEA BUSCAR EN NUESTRA BdD:"<<endl;
@@ -123,13 +123,13 @@ void buscarArticulo(){
 }
 
 void listaDeArticulos(){
-    ArchivoArticulo Archivo("data/articulos.dat");
+    ArchivoArticulo Archivo("../../data/articulos.dat");
     Archivo.leerArchivo();
     cout<<"-------------------------"<<endl;
 }
 
 void modificarDescripcion(){
-    ArchivoArticulo Archivo("articulos.dat");
+    ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"MODIFICACION DE DESCRIPCION"<<endl;
     cout<<"------------------------------------"<<endl;
@@ -173,7 +173,7 @@ void modificarDescripcion(){
 }
 
 void modificarProveedor(){
-    ArchivoArticulo Archivo("articulos.dat");
+    ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"MODIFICACION DE PROVEEDOR"<<endl;
     cout<<"------------------------------------"<<endl;
@@ -222,7 +222,7 @@ void modificarProveedor(){
 }
 
 void modificarPrecio(){
-    ArchivoArticulo Archivo("articulos.dat");
+    ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"INGRESE EL ID DEL ARTICULO CUYO PRECIO DESEA MODIFICAR"<<endl;
     cin>>id;
@@ -261,7 +261,7 @@ void modificarPrecio(){
 }
 
 void borrarLogico(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL ARTICULO
-    ArchivoArticulo Archivo("articulos.dat");
+    ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"ELIMINAR UN ARTICULO."<<endl;
     cout<<"---------------------"<<endl;
@@ -297,7 +297,7 @@ void borrarLogico(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL ARTICULO
 }
 
 void borrarFisico(){ //ESTA FUNCION ADEMAS DE DAR DE BAJA, SOBREESCRIBIRÁ LOS DATOS
-    ArchivoArticulo Archivo("articulos.dat");
+    ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"ELIMINAR FISICO UN ARTICULO."<<endl;
     cout<<"---------------------"<<endl;
@@ -351,7 +351,7 @@ void borrarFisico(){ //ESTA FUNCION ADEMAS DE DAR DE BAJA, SOBREESCRIBIRÁ LOS D
 }
 
 void listarArticuloPorPrecioDeMayorAMenor(){
-    ArchivoArticulo regArchivo("articulos.dat");
+    ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -399,7 +399,7 @@ void listarArticuloPorPrecioDeMayorAMenor(){
 }
 
 void listarArticuloPorPrecioDeMenorAMayor(){
-    ArchivoArticulo regArchivo("articulos.dat");
+    ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -447,7 +447,7 @@ void listarArticuloPorPrecioDeMenorAMayor(){
 }
 
 void listaArticuloPorIdDeMayorAMenor(){
-        ArchivoArticulo regArchivo("articulos.dat");
+        ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -495,7 +495,7 @@ void listaArticuloPorIdDeMayorAMenor(){
 }
 
 void listaArticuloPorIdDeMenorAMayor(){
-    ArchivoArticulo regArchivo("articulos.dat");
+    ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -540,460 +540,4 @@ void listaArticuloPorIdDeMenorAMayor(){
     }
 
     delete [] vArticulos;
-}
-
-/*
-
-EXTENSION DE FUNCIONES DE PROVEEDOR
-
-*/
-void modificarNombreProveedor()
-
-{
-    ArchivoProveedor Archivo("proveedores.dat");
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
-    int id,pos;
-    cout<<"MODIFICACION DE NOMBRE DEL PROVEEDOR"<<endl;
-    cout<<"------------------------------------"<<endl;
-    cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA MODIFICAR"<<endl;
-    cin>>id;
-    pos= Archivo.buscarEnArchivo(id);
-    if(pos==-1)
-    {
-        cout<<"NO HAY NINGUN PROVEEDOR REGISTRADO CON ESE ID."<<endl;
-        return;
-    }
-    else{
-        if(pos==-2)
-        {
-            cout<<"FALLO EN EL ACCESO AL ARCHIVO"<<endl;
-            return;
-        }
-        else
-        {
-            cout<<"ENCONTRAMOS UN PROVEEDOR"<<endl;
-            cout<<"-----------------------"<<endl;
-
-        }
-    }
-    Proveedor regProveedor= Archivo.leerArchivo(pos);
-    //regProveedor.Mostrar();
-    cout<<"INGRESE EL NUEVO NOMBRE QUE SE LE ASIGNARA AL PROVEEDOR: "<<endl;
-    char x[30];
-    cargarCadena(x,30);
-    regProveedor.setNombre(x);
-    bool flag= Archivo.modificarArchivo(pos, regProveedor);
-
-    int contador;
-    contador=regArchivoArticulo.modificarArchivo(regProveedor);
-
-    if(flag)
-        {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;
-        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
-
-        return;
-        }
-
-    else
-        {
-        cout<<"FALLO AL MOMENTO DE MODIFICAR EL ARCHIVO";
-        return;
-        }
-
-
-}
-
-void modificarContactoEmailProveedor()
-{
-    ArchivoProveedor Archivo("proveedores.dat");
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
-
-    int id,pos,confirmacion;
-    cout<<"MODIFICACION DE CONTACTO-EMAIL DEL PROVEEDOR"<<endl;
-    cout<<"------------------------------------"<<endl;
-    cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA MODIFICAR"<<endl;
-    cin>>id;
-    pos= Archivo.buscarEnArchivo(id);
-    if(pos==-1)
-    {
-        cout<<"NO HAY NINGUN PROVEEDOR REGISTRADO CON ESE ID."<<endl;
-        return;
-    }
-    else{
-        if(pos==-2)
-        {
-            cout<<"FALLO EN EL ACCESO AL ARCHIVO"<<endl;
-            return;
-        }
-        else
-        {
-            cout<<"ENCONTRAMOS UN PROVEEDOR"<<endl;
-            cout<<"-----------------------"<<endl;
-
-        }
-    }
-    Proveedor regProveedor= Archivo.leerArchivo(pos);
-    cout<<"ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
-    regProveedor.Mostrar();
-
-    cin>>confirmacion;
-
-    if(confirmacion==1)
-    {
-    Contacto regContacto = regProveedor.getContacto();
-
-    cout<<"INGRESE EL NUEVO CONTACTO-EMAIL 1: "<<endl;
-    char contacto_email1[30];
-    cargarCadena(contacto_email1,30);
-    regContacto.setContactoEmailNro1(contacto_email1);
-
-    cout<<"INGRESE EL NUEVO CONTACTO-EMAIL 2: "<<endl;
-    char contacto_email2[30];
-    cargarCadena(contacto_email2,30);
-    regContacto.setContactoEmailNro2(contacto_email2);
-
-    cout<<"INGRESE EL NUEVO CONTACTO-EMAIL 3: "<<endl;
-    char contacto_email3[30];
-    cargarCadena(contacto_email3,30);
-    regContacto.setContactoEmailNro3(contacto_email3);
-
-
-    regProveedor.setContacto(regContacto);
-    bool flag = Archivo.modificarArchivo(pos,regProveedor);
-    int contador;
-    contador=regArchivoArticulo.modificarArchivo(regProveedor);
-    if(flag)
-        {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
-        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
-        return;
-        }
-
-    else
-        {
-        cout<<"FALLO AL MOMENTO DE MODIFICAR EL ARCHIVO";
-        return;
-        }
-    }
-}
-
-void modificarEmailProveedor()
-{
-    ArchivoProveedor Archivo("proveedores.dat");
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
-
-    int id,pos,confirmacion;
-    cout<<"MODIFICACION DE EMAIL DEL PROVEEDOR"<<endl;
-    cout<<"------------------------------------"<<endl;
-    cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA MODIFICAR"<<endl;
-    cin>>id;
-    pos= Archivo.buscarEnArchivo(id);
-    if(pos==-1)
-    {
-        cout<<"NO HAY NINGUN PROVEEDOR REGISTRADO CON ESE ID."<<endl;
-        return;
-    }
-    else{
-        if(pos==-2)
-        {
-            cout<<"FALLO EN EL ACCESO AL ARCHIVO"<<endl;
-            return;
-        }
-        else
-        {
-            cout<<"ENCONTRAMOS UN PROVEEDOR"<<endl;
-            cout<<"-----------------------"<<endl;
-
-        }
-    }
-    Proveedor regProveedor= Archivo.leerArchivo(pos);
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
-    regProveedor.Mostrar();
-
-    cin>>confirmacion;
-
-    if(confirmacion==1)
-    {
-
-    Contacto regContacto = regProveedor.getContacto();
-
-
-    cout<<"INGRESE EL NUEVO EMAIL 1: "<<endl;
-    char email1[30];
-    cargarCadena(email1,30);
-
-    regContacto.setEmailNro1(email1);
-    cout<<"INGRESE EL NUEVO EMAIL 2: "<<endl;
-    char email2[30];
-    cargarCadena(email2,30);
-    regContacto.setEmailNro2(email2);
-
-    cout<<"INGRESE EL NUEVO EMAIL 3: "<<endl;
-    char email3[30];
-    cargarCadena(email3,30);
-    regContacto.setEmailNro3(email3);
-
-
-    regProveedor.setContacto(regContacto);
-
-    bool flag = Archivo.modificarArchivo(pos,regProveedor);
-    int contador;
-    contador=regArchivoArticulo.modificarArchivo(regProveedor);
-
-    if(flag)
-        {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
-        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
-        return;
-        }
-
-    else
-        {
-        cout<<"FALLO AL MOMENTO DE MODIFICAR EL ARCHIVO";
-        return;
-        }
-    }
-}
-
-void modificarTelefonoMovilProveedor()
-{
-    ArchivoProveedor Archivo("proveedores.dat");
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
-    int id,pos,confirmacion;
-    cout<<"MODIFICACION DE TELEFONO MOVIL DEL PROVEEDOR"<<endl;
-    cout<<"------------------------------------"<<endl;
-    cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA MODIFICAR"<<endl;
-    cin>>id;
-    pos= Archivo.buscarEnArchivo(id);
-    if(pos==-1)
-    {
-        cout<<"NO HAY NINGUN PROVEEDOR REGISTRADO CON ESE ID."<<endl;
-        return;
-    }
-    else{
-        if(pos==-2)
-        {
-            cout<<"FALLO EN EL ACCESO AL ARCHIVO"<<endl;
-            return;
-        }
-        else
-        {
-            cout<<"ENCONTRAMOS UN PROVEEDOR"<<endl;
-            cout<<"-----------------------"<<endl;
-
-        }
-    }
-    Proveedor regProveedor= Archivo.leerArchivo(pos);
-
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
-    regProveedor.Mostrar();
-
-    cin>>confirmacion;
-
-    if(confirmacion==1)
-    {
-
-    Contacto regContacto = regProveedor.getContacto();
-
-    cout<<"INGRESE EL NUEVO TELEFONO MOVIL 1: "<<endl;
-    char movil1[30];
-    cargarCadena(movil1,30);
-    regContacto.setContactoMovilNro1(movil1);
-
-    cout<<"INGRESE EL NUEVO TELEFONO MOVIL 2: "<<endl;
-    char movil2[30];
-    cargarCadena(movil2,30);
-    regContacto.setContactoMovilNro2(movil2);
-
-    cout<<"INGRESE EL NUEVO TELEFONO MOVIL 3: "<<endl;
-    char movil3[30];
-    cargarCadena(movil3,30);
-    regContacto.setContactoMovilNro3(movil3);
-
-
-    regProveedor.setContacto(regContacto);
-    bool flag = Archivo.modificarArchivo(pos,regProveedor);
-
-    int contador;
-    contador=regArchivoArticulo.modificarArchivo(regProveedor);
-
-    if(flag)
-        {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
-        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
-        return;
-        }
-
-    else
-        {
-        cout<<"FALLO AL MOMENTO DE MODIFICAR EL ARCHIVO";
-        return;
-        }
-    }
-}
-
-void modificarTelefonoFijoProveedor()
-{
-    ArchivoProveedor Archivo("proveedores.dat");
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
-    int id,pos,confirmacion;
-    cout<<"MODIFICACION DE TELEFONO FIJO DEL PROVEEDOR"<<endl;
-    cout<<"------------------------------------"<<endl;
-    cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA MODIFICAR"<<endl;
-    cin>>id;
-    pos= Archivo.buscarEnArchivo(id);
-    if(pos==-1)
-    {
-        cout<<"NO HAY NINGUN PROVEEDOR REGISTRADO CON ESE ID."<<endl;
-        return;
-    }
-    else{
-        if(pos==-2)
-        {
-            cout<<"FALLO EN EL ACCESO AL ARCHIVO"<<endl;
-            return;
-        }
-        else
-        {
-            cout<<"ENCONTRAMOS UN PROVEEDOR"<<endl;
-            cout<<"-----------------------"<<endl;
-
-        }
-    }
-    Proveedor regProveedor= Archivo.leerArchivo(pos);
-
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
-    regProveedor.Mostrar();
-
-    cin>>confirmacion;
-
-    if(confirmacion==1)
-    {
-
-    Contacto regContacto = regProveedor.getContacto();
-
-    cout<<"INGRESE EL NUEVO TELEFONO FIJO 1: "<<endl;
-    char tel_fijo1[30];
-    cargarCadena(tel_fijo1,30);
-    regContacto.setTelFijoNro1(tel_fijo1);
-
-    cout<<"INGRESE EL NUEVO TELEFONO FIJO 2: "<<endl;
-    char tel_fijo2[30];
-    cargarCadena(tel_fijo2,30);
-    regContacto.setTelFijoNro2(tel_fijo2);
-
-    cout<<"INGRESE EL NUEVO TELEFONO FIJO 3: "<<endl;
-    char tel_fijo3[30];
-    cargarCadena(tel_fijo3,30);
-    regContacto.setTelFijoNro3(tel_fijo3);
-
-
-    regProveedor.setContacto(regContacto);
-    bool flag = Archivo.modificarArchivo(pos,regProveedor);
-
-    int contador;
-    contador=regArchivoArticulo.modificarArchivo(regProveedor);
-
-    if(flag)
-        {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
-        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
-        return;
-        }
-
-    else
-        {
-        cout<<"FALLO AL MOMENTO DE MODIFICAR EL ARCHIVO";
-        return;
-        }
-    }
-
-}
-
-void modificarDireccionProveedor()
-    {
-    ArchivoProveedor Archivo("proveedores.dat");
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
-    int id,pos,confirmacion;
-    cout<<"MODIFICACION DE LA DIRECCION DEL PROVEEDOR"<<endl;
-    cout<<"------------------------------------"<<endl;
-    cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA MODIFICAR"<<endl;
-    cin>>id;
-    pos= Archivo.buscarEnArchivo(id);
-    if(pos==-1)
-    {
-        cout<<"NO HAY NINGUN PROVEEDOR REGISTRADO CON ESE ID."<<endl;
-        return;
-    }
-    else{
-        if(pos==-2)
-        {
-            cout<<"FALLO EN EL ACCESO AL ARCHIVO"<<endl;
-            return;
-        }
-        else
-        {
-            cout<<"ENCONTRAMOS UN PROVEEDOR"<<endl;
-            cout<<"-----------------------"<<endl;
-
-        }
-    }
-    Proveedor regProveedor= Archivo.leerArchivo(pos);
-
-    cout<<"ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
-    regProveedor.Mostrar();
-
-    cin>>confirmacion;
-
-    if(confirmacion==1)
-    {
-
-    Direccion regDireccion = regProveedor.getDireccion();
-
-    cout<<"INGRESE CALLE: "<<endl;
-    char calle[20];
-    cargarCadena(calle,20);
-    regDireccion.setCalle(calle);
-
-    cout<<"INGRESE ALTURA: "<<endl;
-    int altura;
-    cin>>altura;
-    regDireccion.setNumero(altura);
-
-    cout<<"INGRESE EL CODIGO POSTAL: "<<endl;
-    int codigo_postal;
-    cin>>codigo_postal;
-    regDireccion.setCodigoPostal(codigo_postal);
-
-    cout<<"INGRESE LA LOCALIDAD: "<<endl;
-    char localidad[20];
-    cargarCadena(localidad,20);
-    regDireccion.setLocalidad(localidad);
-
-    cout<<"INGRESE LA PROVINCIA: "<<endl;
-    char provincia[20];
-    cargarCadena(provincia,20);
-    regDireccion.setProvincia(provincia);
-
-    regProveedor.setDireccion(regDireccion);
-
-    bool flag = Archivo.modificarArchivo(pos,regProveedor);
-
-    int contador;
-    contador=regArchivoArticulo.modificarArchivo(regProveedor);
-
-    if(flag)
-        {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
-        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
-        return;
-        }
-
-    else
-        {
-        cout<<"FALLO AL MOMENTO DE MODIFICAR EL ARCHIVO";
-        return;
-        }
-    }
 }

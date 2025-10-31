@@ -9,7 +9,7 @@ private:
 
 public:
 
-    ArchivoFactura(){strcpy(_nombre,"../data/facturas.dat");}
+    ArchivoFactura(){strcpy(_nombre,"../../data/facturas.dat");}
 
 ///M�TODOS
 

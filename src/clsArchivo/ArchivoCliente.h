@@ -9,7 +9,7 @@ private:
     char nombre[30];
 
 public:
-    ArchivoCliente(const char *n="../data/clientes.dat"){ //CONSTRUCTOR
+    ArchivoCliente(const char *n="../../data/clientes.dat"){ //CONSTRUCTOR
         strcpy(nombre, n); //COPIA EL CONTENIDO DE N EN NOMBRE
         //estado=true;
     }
@@ -50,7 +50,7 @@ bool ArchivoCliente::verificarRepetido(int id){
 int ArchivoCliente::buscarEnArchivo(int id){
 
     Cliente regCliente;
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL){
         //cout<<"FALLO EN EL ACCESO AL ARCHIVO";
         return -2;
@@ -74,7 +74,7 @@ int ArchivoCliente::buscarEnArchivo(int id){
 int ArchivoCliente::buscarRegistro(int id){
 
     Cliente regCliente;
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL){
         //cout<<"FALLO EN EL ACCESO AL ARCHIVO";
         return -2;
@@ -133,7 +133,7 @@ bool ArchivoCliente::escribirArchivo(Cliente regCliente){
 Cliente ArchivoCliente::leerArchivo(int pos){
     Cliente regCliente;
     //Entidad.setEstado(false);
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL){
         cout<<"FALLO EN EL ACCESO AL ARCHIVO";
         return regCliente;
@@ -146,7 +146,7 @@ Cliente ArchivoCliente::leerArchivo(int pos){
 
 void ArchivoCliente::leerArchivo(){
     Cliente regCliente;
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL){
         cout<<"FALLO EN EL ACCESO AL ARCHIVO";
         return ;
@@ -211,7 +211,7 @@ vector<Cliente> ArchivoCliente::buscarPorNombreParcial(const char* subcadena) {
 
 int ArchivoCliente::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO DEL ARCHIVO
     Cliente regCliente;
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL)
     {
     cout<<"FALLO EN EL ACCESO AL ARCHIVO";
@@ -226,7 +226,7 @@ int ArchivoCliente::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO 
 void ArchivoCliente::vectorizarArchivo(Cliente registros[],int cantidad){
     FILE *p;
 
-   p = fopen("clientes.dat", "rb");
+   p = fopen("../../data/clientes.dat", "rb");
 
    if(p == nullptr){
       return;
@@ -262,7 +262,7 @@ void ArchivoCliente::encontrarCliente(int id){
 
 void ArchivoCliente::encontrarClienteNombre(const char* nombre){
     Cliente regCliente;
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL){
         cout<<"ERROR DE ARCHIVO"<<endl;
         return;
@@ -287,7 +287,7 @@ void ArchivoCliente::encontrarClienteNombre(const char* nombre){
 
 void ArchivoCliente::encontrarClienteCuit(const char* cuit){
     Cliente regCliente;
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL){
         cout<<"ERROR DE ARCHIVO"<<endl;
         return;
@@ -313,7 +313,7 @@ void ArchivoCliente::encontrarClienteCuit(const char* cuit){
 int ArchivoCliente::buscarSinMostrar(int id){
 
     Cliente regCliente;
-    FILE *p=fopen("../data/clientes.dat","rb");
+    FILE *p=fopen("../../data/clientes.dat","rb");
     if(p==NULL){
         //cout<<"FALLO EN EL ACCESO AL ARCHIVO";
         return -2;

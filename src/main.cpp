@@ -25,12 +25,12 @@ using namespace std;
 #include "controladores/funcionesCliente.h"
 #include "clases/Proveedor.h"
 #include "clsArchivo/ArchivoProveedor.h"
-#include "controladores/funcionesProveedor.h"
-#include "controladores/funcionesEntidad.h"
 
 #include "clases/Articulo.h"
 #include "clsArchivo/ArchivoArticulo.h"
 #include "controladores/funcionesArticulo.h"
+#include "controladores/funcionesProveedor.h"
+#include "controladores/funcionesEntidad.h"
 
 #include "clases/Item.h"
 #include "clases/Detalle.h"

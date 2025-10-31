@@ -62,13 +62,13 @@ void cargarCliente(){
 }
 
 void listarClientes(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     regCliente.leerArchivo();
     cout<<"-------------------------"<<endl;
 }
 
 void buscarCliente(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id;
     cout<<"BUSCAR UN CLIENTE."<<endl<<endl;
 
@@ -110,7 +110,7 @@ void buscarCliente(){
 }
 
 void modificarTipo(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     system("cls");
     cout<<"MODIFICACION DE TIPO"<<endl;
@@ -158,7 +158,7 @@ void modificarTipo(){
 }
 
 void modificarDireccionYContacto(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     Direccion regDireccion;
     Contacto regContacto;
     int id,pos;
@@ -222,7 +222,7 @@ void modificarDireccionYContacto(){
 }
 
 void modificarCantidadVentas(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     system("cls");
     cout<<"MODIFICACION DE CANTIDAD DE VENTAS"<<endl;
@@ -264,7 +264,7 @@ void modificarCantidadVentas(){
 }
 
 void modificarNombreCliente(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     cout<<"MODIFICACION DE NOMBRE"<<endl;
     cout<<"------------------------------------"<<endl;
@@ -301,7 +301,7 @@ void modificarNombreCliente(){
 }
 
 void listarDeMayorAMenorVentas(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -352,7 +352,7 @@ void listarDeMayorAMenorVentas(){
 }
 
 void listarDeMenorAMayorVentas(){
-    ArchivoCliente regClientes("clientes.dat");
+    ArchivoCliente regClientes("../../data/clientes.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -403,7 +403,7 @@ void listarDeMenorAMayorVentas(){
 }
 
 void listaIdMenorAMayorCliente(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -454,7 +454,7 @@ void listaIdMenorAMayorCliente(){
 }
 
 void listaIdMayorAMenorCliente(){
-        ArchivoCliente regCliente("clientes.dat");
+        ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -505,7 +505,7 @@ void listaIdMayorAMenorCliente(){
 }
 
 void borrarLogicoCliente(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIENTE
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     int eliminar;
     cout<<"ELIMINAR UN CLIENTE."<<endl;
@@ -553,7 +553,7 @@ void borrarLogicoCliente(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIEN
 }
 
 void borrarFisicoCliente(){ //ESTA FUNCION PONDRA TODOS LOS VALORES EN 0 DEL CLIENTE
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     int a;
     int eliminar;
@@ -610,7 +610,7 @@ void borrarFisicoCliente(){ //ESTA FUNCION PONDRA TODOS LOS VALORES EN 0 DEL CLI
 }
 
 void aumentarVentas(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     cout<<"AUMENTAR VENTAS DE UN CLIENTE."<<endl;
     cout<<"---------------------"<<endl;
@@ -648,7 +648,7 @@ void aumentarVentas(){
 }
 
 void listaCuitMenorAMayorCliente(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -703,7 +703,7 @@ void listaCuitMenorAMayorCliente(){
 }
 
 void listaCuitMayorAMenorCliente(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -757,7 +757,7 @@ void listaCuitMayorAMenorCliente(){
 }
 
 void listaAlfabeticamenteCliente(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -811,7 +811,7 @@ void listaAlfabeticamenteCliente(){
 }
 
 void recaudacionFactura(float recaudacion, int idCliente){
-    ArchivoCliente regArchivoCliente("clientes.dat");
+    ArchivoCliente regArchivoCliente("../../data/clientes.dat");
     Cliente Cliente;
 
     int pos;
@@ -831,7 +831,7 @@ void recaudacionFactura(float recaudacion, int idCliente){
 }
 
 void recaudacionCredito(float recaudacion, int idCliente){
-    ArchivoCliente regArchivoCliente("clientes.dat");
+    ArchivoCliente regArchivoCliente("../../data/clientes.dat");
     Cliente Cliente;
 
     int pos;
@@ -850,7 +850,7 @@ void recaudacionCredito(float recaudacion, int idCliente){
 }
 
 void listarRecaudacion(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
 
     int opcion;
     cout<<"CONSULTAS DE RECAUDACION"<<endl;
@@ -873,7 +873,7 @@ void listarRecaudacion(){
 }
 
 void listarRecaudacionPorCliente(){
-    ArchivoCliente regClientes("clientes.dat");
+    ArchivoCliente regClientes("../../data/clientes.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -925,7 +925,7 @@ void listarRecaudacionPorCliente(){
 }
 
 void elegirClienteRecaudacion(){
-    ArchivoCliente regCliente("clientes.dat");
+    ArchivoCliente regCliente("../../data/clientes.dat");
     int id;
     cout<<"INGRESE EL ID DEL CLIENTE A BUSCAR: ";
     cin>>id;

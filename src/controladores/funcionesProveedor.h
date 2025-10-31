@@ -1,14 +1,12 @@
 void cargarProveedor();
 void buscarProveedor();
 void seleccionarProveedorExistente();
-/*
 void modificarNombreProveedor();
 void modificarDireccionProveedor();
 void modificarContactoEmailProveedor();
 void modificarEmailProveedor();
 void modificarTelefonoFijoProveedor();
 void modificarTelefonoMovilProveedor();
-*/
 void borrarProveedorLogico();
 void borrarProveedorFisico();
 
@@ -54,7 +52,7 @@ void cargarProveedor(){
 
 void buscarProveedor()
 {
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
     int id,pos;
     cout<<"BUSCAR UN PROVEEDOR POR ID."<<endl;
     cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA BUSCAR EN NUESTRA BdD:"<<endl;
@@ -76,7 +74,7 @@ void buscarProveedor()
 
 void listaDeProveedores()
 {
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
     Archivo.leerArchivo();
 }
 
@@ -84,11 +82,12 @@ void seleccionarProveedorExistente()
 {
 
 }
-/*
+
 void modificarNombreProveedor()
+
 {
-    ArchivoProveedor Archivo("proveedores.dat");
-    ArchivoArticulo regArchivoArticulo("articulos.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
+    ArchivoArticulo regArchivoArticulo("../../data/articulos.dat");
     int id,pos;
     cout<<"MODIFICACION DE NOMBRE DEL PROVEEDOR"<<endl;
     cout<<"------------------------------------"<<endl;
@@ -114,7 +113,7 @@ void modificarNombreProveedor()
         }
     }
     Proveedor regProveedor= Archivo.leerArchivo(pos);
-    regProveedor.Mostrar();
+    //regProveedor.Mostrar();
     cout<<"INGRESE EL NUEVO NOMBRE QUE SE LE ASIGNARA AL PROVEEDOR: "<<endl;
     char x[30];
     cargarCadena(x,30);
@@ -127,7 +126,7 @@ void modificarNombreProveedor()
     if(flag)
         {
         cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;
-        cout<<contador<<"ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
+        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
 
         return;
         }
@@ -138,13 +137,13 @@ void modificarNombreProveedor()
         return;
         }
 
+
 }
-
-
 
 void modificarContactoEmailProveedor()
 {
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
+    ArchivoArticulo regArchivoArticulo("../../data/articulos.dat");
 
     int id,pos,confirmacion;
     cout<<"MODIFICACION DE CONTACTO-EMAIL DEL PROVEEDOR"<<endl;
@@ -171,7 +170,7 @@ void modificarContactoEmailProveedor()
         }
     }
     Proveedor regProveedor= Archivo.leerArchivo(pos);
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
+    cout<<"ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
     regProveedor.Mostrar();
 
     cin>>confirmacion;
@@ -198,9 +197,12 @@ void modificarContactoEmailProveedor()
 
     regProveedor.setContacto(regContacto);
     bool flag = Archivo.modificarArchivo(pos,regProveedor);
+    int contador;
+    contador=regArchivoArticulo.modificarArchivo(regProveedor);
     if(flag)
         {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA";
+        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
+        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
         return;
         }
 
@@ -214,7 +216,8 @@ void modificarContactoEmailProveedor()
 
 void modificarEmailProveedor()
 {
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
+    ArchivoArticulo regArchivoArticulo("../../data/articulos.dat");
 
     int id,pos,confirmacion;
     cout<<"MODIFICACION DE EMAIL DEL PROVEEDOR"<<endl;
@@ -241,7 +244,7 @@ void modificarEmailProveedor()
         }
     }
     Proveedor regProveedor= Archivo.leerArchivo(pos);
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
+    cout<<"¿ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
     regProveedor.Mostrar();
 
     cin>>confirmacion;
@@ -271,9 +274,13 @@ void modificarEmailProveedor()
     regProveedor.setContacto(regContacto);
 
     bool flag = Archivo.modificarArchivo(pos,regProveedor);
+    int contador;
+    contador=regArchivoArticulo.modificarArchivo(regProveedor);
+
     if(flag)
         {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA";
+        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
+        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
         return;
         }
 
@@ -287,7 +294,8 @@ void modificarEmailProveedor()
 
 void modificarTelefonoMovilProveedor()
 {
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
+    ArchivoArticulo regArchivoArticulo("../../data/articulos.dat");
     int id,pos,confirmacion;
     cout<<"MODIFICACION DE TELEFONO MOVIL DEL PROVEEDOR"<<endl;
     cout<<"------------------------------------"<<endl;
@@ -314,7 +322,7 @@ void modificarTelefonoMovilProveedor()
     }
     Proveedor regProveedor= Archivo.leerArchivo(pos);
 
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
+    cout<<"¿ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
     regProveedor.Mostrar();
 
     cin>>confirmacion;
@@ -342,9 +350,14 @@ void modificarTelefonoMovilProveedor()
 
     regProveedor.setContacto(regContacto);
     bool flag = Archivo.modificarArchivo(pos,regProveedor);
+
+    int contador;
+    contador=regArchivoArticulo.modificarArchivo(regProveedor);
+
     if(flag)
         {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA";
+        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
+        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
         return;
         }
 
@@ -358,7 +371,8 @@ void modificarTelefonoMovilProveedor()
 
 void modificarTelefonoFijoProveedor()
 {
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
+    ArchivoArticulo regArchivoArticulo("../../data/articulos.dat");
     int id,pos,confirmacion;
     cout<<"MODIFICACION DE TELEFONO FIJO DEL PROVEEDOR"<<endl;
     cout<<"------------------------------------"<<endl;
@@ -385,7 +399,7 @@ void modificarTelefonoFijoProveedor()
     }
     Proveedor regProveedor= Archivo.leerArchivo(pos);
 
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
+    cout<<"¿ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
     regProveedor.Mostrar();
 
     cin>>confirmacion;
@@ -413,9 +427,14 @@ void modificarTelefonoFijoProveedor()
 
     regProveedor.setContacto(regContacto);
     bool flag = Archivo.modificarArchivo(pos,regProveedor);
+
+    int contador;
+    contador=regArchivoArticulo.modificarArchivo(regProveedor);
+
     if(flag)
         {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA";
+        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
+        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
         return;
         }
 
@@ -430,9 +449,10 @@ void modificarTelefonoFijoProveedor()
 
 void modificarDireccionProveedor()
     {
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
+    ArchivoArticulo regArchivoArticulo("../../data/articulos.dat");
     int id,pos,confirmacion;
-    cout<<"MODIFICACION DE TELEFONO FIJO DEL PROVEEDOR"<<endl;
+    cout<<"MODIFICACION DE LA DIRECCION DEL PROVEEDOR"<<endl;
     cout<<"------------------------------------"<<endl;
     cout<<"INGRESE EL ID DEL PROVEEDOR QUE DESEA MODIFICAR"<<endl;
     cin>>id;
@@ -457,7 +477,7 @@ void modificarDireccionProveedor()
     }
     Proveedor regProveedor= Archivo.leerArchivo(pos);
 
-    cout<<"�ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
+    cout<<"ESTE ES EL PROVEEDOR QUE DESEA MODIFICAR? CONFIRME CON 1, CANCELE CON 0";
     regProveedor.Mostrar();
 
     cin>>confirmacion;
@@ -474,6 +494,7 @@ void modificarDireccionProveedor()
 
     cout<<"INGRESE ALTURA: "<<endl;
     int altura;
+    cin>>altura;
     regDireccion.setNumero(altura);
 
     cout<<"INGRESE EL CODIGO POSTAL: "<<endl;
@@ -494,9 +515,14 @@ void modificarDireccionProveedor()
     regProveedor.setDireccion(regDireccion);
 
     bool flag = Archivo.modificarArchivo(pos,regProveedor);
+
+    int contador;
+    contador=regArchivoArticulo.modificarArchivo(regProveedor);
+
     if(flag)
         {
-        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA";
+        cout<<"EL PROVEEDOR HA SIDO MODIFICADO DE FORMA CORRECTA"<<endl;;
+        cout<<contador<<" ARTICULOS FUERON AFECTADOS POR ESTE CAMBIO"<<endl;
         return;
         }
 
@@ -507,10 +533,9 @@ void modificarDireccionProveedor()
         }
     }
 }
-*/
 void borrarProveedorLogico()
 { //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL ARTICULO
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
     int id,pos;
     cout<<"ELIMINAR UN ARTICULO."<<endl;
     cout<<"---------------------"<<endl;
@@ -546,7 +571,7 @@ void borrarProveedorLogico()
 }
 
 void borrarProveedorFisico(){ //ESTA FUNCION ADEMAS DE DAR DE BAJA, SOBREESCRIBIR� LOS DATOS
-    ArchivoProveedor Archivo("proveedores.dat");
+    ArchivoProveedor Archivo("../../data/proveedores.dat");
     int id,pos;
     cout<<"BORRAR FISICO PROVEEDOR."<<endl;
     cout<<"---------------------"<<endl;
@@ -591,7 +616,7 @@ void borrarProveedorFisico(){ //ESTA FUNCION ADEMAS DE DAR DE BAJA, SOBREESCRIBI
 }
 
 void listarProveedoresPorIdMayorAMenor(){
-    ArchivoProveedor regArchivo("proveedores.dat");
+    ArchivoProveedor regArchivo("../../data/proveedores.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -639,7 +664,7 @@ void listarProveedoresPorIdMayorAMenor(){
 }
 
 void listarProveedoresPorIdMenorAMayor(){
-    ArchivoProveedor regArchivo("proveedores.dat");
+    ArchivoProveedor regArchivo("../../data/proveedores.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -687,7 +712,7 @@ void listarProveedoresPorIdMenorAMayor(){
 }
 
 void listarProveedoresPorMayorCantidadDeCompras(){
-    ArchivoProveedor regArchivo("proveedores.dat");
+    ArchivoProveedor regArchivo("../../data/proveedores.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -735,7 +760,7 @@ void listarProveedoresPorMayorCantidadDeCompras(){
 }
 
 void listarProveedoresPorMenorCantidadDeCompras(){
-    ArchivoProveedor regArchivo("proveedores.dat");
+    ArchivoProveedor regArchivo("../../data/proveedores.dat");
 
     int i, j,cantidad,posMinimo;
 

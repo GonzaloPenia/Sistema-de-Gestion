@@ -62,7 +62,7 @@ void mostrarVendedor(){
 }
 
 void buscarVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     cout<<"BUSCAR UN VENDEDOR POR ID."<<endl;
     cout<<"INGRESE EL ID DEL VENDEDOR QUE DESEA BUSCAR EN NUESTRA BdD:"<<endl;
@@ -72,7 +72,7 @@ void buscarVendedor(){
 }
 
 void listarDeMayorAMenorVentasVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -130,7 +130,7 @@ void listarDeMayorAMenorVentasVendedor(){
 }
 
 void listarDeMenorAMayorVentasVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -181,7 +181,7 @@ void listarDeMenorAMayorVentasVendedor(){
 }
 
 void listaAntiguedadMenorAMayorVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMinimo;
 
@@ -232,7 +232,7 @@ void listaAntiguedadMenorAMayorVendedor(){
 }
 
 void listaAntiguedadMayorAMenorVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -283,13 +283,13 @@ void listaAntiguedadMayorAMenorVendedor(){
 }
 
 void listarVendedores(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     regVendedor.leerArchivo();
     cout<<"-------------------------"<<endl;
 }
 
 void borrarLogicoVendedor(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIENTE
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     cout<<"ELIMINAR UN VENDEDOR."<<endl;
     cout<<"---------------------"<<endl;
@@ -335,7 +335,7 @@ void borrarLogicoVendedor(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIE
 }
 
 void borrarFisicoVendedor(){ //ESTA FUNCION PONDRA TODOS LOS VALORES EN 0 DEL CLIENTE
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     int a;
     a=rand();    
@@ -394,7 +394,7 @@ void borrarFisicoVendedor(){ //ESTA FUNCION PONDRA TODOS LOS VALORES EN 0 DEL CL
 }
 
 void modificarNombreVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     system("cls");
     cout<<"MODIFICACION DE NOMBRE"<<endl;
@@ -439,7 +439,7 @@ void modificarNombreVendedor(){
 }
 
 void modificarVentasVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     system("cls");
     cout<<"MODIFICACION DE VENTAS REALIZADAS"<<endl;
@@ -481,7 +481,7 @@ void modificarVentasVendedor(){
 }
 
 void modificarSueldoVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     system("cls");
     cout<<"MODIFICACION DE SUELDO DE VENDEDOR"<<endl;
@@ -523,7 +523,7 @@ void modificarSueldoVendedor(){
 }
 
 void modificarAntiguedadVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     system("cls");
     cout<<"MODIFICACION ANTIGUEDAD DE VENDEDOR"<<endl;
@@ -565,7 +565,7 @@ void modificarAntiguedadVendedor(){
 }
 
 void modificarEdadVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     system("cls");
     cout<<"MODIFICACION EDAD DE VENDEDOR"<<endl;
@@ -607,7 +607,7 @@ void modificarEdadVendedor(){
 }
 
 void modificarDomicilioVendedor(){
-    ArchivoVendedor regVendedor("vendedores.dat");
+    ArchivoVendedor regVendedor("../../data/vendedores.dat");
     Direccion regDireccion;    ;
     int id,pos;
     system("cls");

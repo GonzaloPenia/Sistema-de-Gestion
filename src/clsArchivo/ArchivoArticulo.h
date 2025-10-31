@@ -7,7 +7,7 @@ private:
     char nombre[30];
 
 public:
-    ArchivoArticulo(const char *n="../data/articulos.dat"){ //CONSTRUCTOR
+    ArchivoArticulo(const char *n="../../data/articulos.dat"){ //CONSTRUCTOR
         strcpy(nombre, n); //COPIA EL CONTENIDO DE N EN NOMBRE
         //estado=true;
     }
@@ -178,11 +178,11 @@ int ArchivoArticulo::modificarArchivo(Proveedor regProveedor){
 
 int ArchivoArticulo::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO DEL ARCHIVO
     Articulo regArticulo;
-    FILE *p=fopen("../data/articulos.dat","rb");
+    FILE *p=fopen(nombre,"rb");
     if(p==NULL)
     {
     cout<<"FALLO EN EL ACCESO AL ARCHIVO";
-    return false;
+    return 0;
     }
     int contador = 0;
     while(fread(&regArticulo,sizeof regArticulo,1,p)==1){contador++;}
@@ -212,7 +212,7 @@ vector<Articulo> ArchivoArticulo::buscarPorNombreParcial(const char* subcadena) 
                 (indicadorBusqEspecial && strstr(descripcion, subMinusc) != nullptr)) {
                 resultados.push_back(regArticulo);
             }
-            //strstr --> Busca subcadena en nombre. Devuelve ptr a 1�aparici�n de subcadena en cadena. nullptr si no se encuentra.
+            //strstr --> Busca subcadena en nombre. Devuelve ptr a 1�apariciOn de subcadena en cadena. nullptr si no se encuentra.
             //Coincidencia parcial --> registro se agrega a vector mediante push_back.
         }
         fclose(p);
@@ -230,7 +230,7 @@ vector<Articulo> ArchivoArticulo::VectorArticulos(){ //MUESTRA EL ARTICULO QUE C
 void ArchivoArticulo::vectorizarArchivo(Articulo registros[],int cantidad){
     FILE *p;
 
-   p = fopen("../data/articulos.dat", "rb");
+   p = fopen(nombre, "rb");
 
    if(p == nullptr){
       return;
