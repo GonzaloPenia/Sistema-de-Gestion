@@ -5,7 +5,7 @@ class Proveedor: public Entidad{
     private:
         int _id;
         int _cantidad_compras;
-        bool _estado;
+        //bool _estado;
     public:
 
     Proveedor(){}
@@ -18,7 +18,7 @@ class Proveedor: public Entidad{
         _estado=true;
         _nombre[50]=nombre;
         _direccion=direccion;
-        _contacto=contacto;
+        // _contacto=contacto; // OBSOLETO - contactos ahora son independientes
         _estado=true;
     }
 
@@ -54,7 +54,7 @@ void Proveedor::Mostrar(){
     cout<<"NOMBRE PROVEEDOR: "<<_nombre<<endl;
     cout<<"CANTIDAD DE COMPRAS REALIZADAS: "<<_cantidad_compras<<endl;
     _direccion.Mostrar();
-    _contacto.Mostrar();
+    // _contacto.Mostrar(); // OBSOLETO - contactos ahora son independientes
     cout<<endl;
 }
 

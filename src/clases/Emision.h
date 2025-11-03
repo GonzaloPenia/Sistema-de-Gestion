@@ -196,7 +196,7 @@ void Emision::calcularImportes(){
 
 }
 
-    //MUESTRA EL DETALLE COMPLETO (UNIVERSAL: FACTURA, NOTA DE CRÉDITO, PRESUPUESTO)
+    //MUESTRA EL DETALLE COMPLETO (UNIVERSAL: FACTURA, NOTA DE CRï¿½DITO, PRESUPUESTO)
 void Emision::mostrarDetalleCompleto(){
     cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
     cout << "DETALLE DE VENTA" << endl;

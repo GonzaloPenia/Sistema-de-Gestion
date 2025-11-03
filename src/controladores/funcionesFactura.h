@@ -498,7 +498,13 @@ void cargarDetalleVenta(Factura& regFactura){           //OK
             for (Articulo& regArticulo : resultados) {
                 cout << fixed << setprecision(2);
                 cout << left << setw(10) << regArticulo.getId() << setw(55) << regArticulo.getDescripcion();
-                cout << right << setw(10) << float(regArticulo.getPrecioVenta()) << setw(4) << " " << setw(10) << regArticulo.getUnidades() << endl;
+                
+                
+                int costo = regArticulo.getCosto();
+                int ganancia = regArticulo.getGanancia();
+                float precioVenta = costo + (costo * ganancia / 100.0f);
+
+                cout << right << setw(10) << float(precioVenta) << setw(4) << " " << setw(10) << regArticulo.getUnidades() << endl;
             }
             cout << endl << "Ingrese el codigo del articulo deseado o 0 si no se encuentra: ";
             int idArticulo;

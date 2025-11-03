@@ -9,7 +9,7 @@ private:
     char descripcion[50];
     float costo;
     int ganancia;
-    float precio_venta;
+    //float precio_venta;
     Fecha ultima_actualizacion_precio;
     Proveedor proveedor;
     bool estado;
@@ -37,7 +37,7 @@ public:
     const char* getDescripcion(){return descripcion;}
     int getCosto(){return costo;}
     int getGanancia(){return ganancia;}
-    int getPrecioVenta(){return precio_venta;}
+    //int getPrecioVenta(){return precio_venta;}
     Fecha getUltimaActualizacionPrecio(){return ultima_actualizacion_precio;}
     Proveedor getProveedor(){return proveedor;}
     bool getEstado(){return estado;}
@@ -48,7 +48,7 @@ public:
     void setDescripcion(const char *d){strcpy(descripcion, d);}
     void setCosto(const int c){costo=c;}
     void setGananacia(const int g){ganancia=g;}
-    void setPrecioVenta(const int pv){precio_venta=pv;}
+    //void setPrecioVenta(const int pv){precio_venta=pv;}
     void setUltimaActualizacionPrecio(Fecha fa){ultima_actualizacion_precio=fa;}
     void setProveedor(Proveedor p){proveedor=p;}
     void setEstado(bool est){estado=est;}
@@ -61,7 +61,7 @@ public:
 };
 
 bool Articulo::Cargar(int identificador){
-
+    int precio_venta;
     setId(identificador);
     cout<<"DESCRIPCION DEL ARTICULO: ";
     cargarCadena(descripcion,49);
@@ -102,6 +102,7 @@ bool Articulo::Cargar(int identificador){
 }
 
 bool Articulo::Cargar(int identificador, Proveedor auxProveedor){
+    int precio_venta;
     setId(identificador);
     cout<<"DESCRIPCION DEL ARTICULO: ";
     cargarCadena(descripcion,49);
@@ -139,7 +140,7 @@ void Articulo::Mostrar(){
         cout<<"GANANCIA (%): "; //PORCENTAJE
         cout<<ganancia<<endl;
         cout<<"PRECIO VENTA: ";
-        cout<<precio_venta<<endl;
+        cout<<costo * (1+ganancia/100.0)<<endl;
         cout<<"ULTIMA FECHA ACTUALIZACION DE PRECIO: ";
         ultima_actualizacion_precio.Mostrar();
         proveedor.Mostrar();

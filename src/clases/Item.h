@@ -54,11 +54,14 @@ void Item::Cargar (Articulo regArticulo, int cantidad, int tipoCliente){
     strcpy(_descripcion,regArticulo.getDescripcion());
     _cantidad=cantidad;
 
-    if (tipoCliente == 1 || tipoCliente == 2){
-        _precioUnitario=regArticulo.getPrecioVenta();
+    int costo = regArticulo.getCosto();
+    int ganancia = regArticulo.getGanancia();
+    
+    if (tipoCliente == 1 || tipoCliente == 2){    
+        _precioUnitario= costo * ( 1 + ganancia/100.0 );
         _importe=_precioUnitario*cantidad*valorIVA;
     } else {
-        _precioUnitario=regArticulo.getPrecioVenta()*valorIVA;
+        _precioUnitario=(costo * ( 1 + ganancia/100.0 ) )* valorIVA;
         _importe=_precioUnitario*cantidad;
     }
 

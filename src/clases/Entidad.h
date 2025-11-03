@@ -1,11 +1,21 @@
 #pragma once
+#include <cstring>
+#include <iostream>
+using namespace std;
+
+#ifndef CLSGLOBALES_H_INCLUDED
+    #include "../globales/clsGlobales.h"
+#endif
+
+#ifndef FUNCIONESGLOBALES_H_INCLUDED
+    #include "../globales/funcionesGlobales.h"
+#endif
 
 class Entidad{
 
 protected:
     char _nombre [50];
     Direccion _direccion;
-    Contacto _contacto;
     bool _estado;
 
 public:
@@ -19,12 +29,10 @@ public:
 
     void setNombre(const char *n){strcpy(_nombre, n);}
     void setDireccion(Direccion direccion) { _direccion = direccion; }
-    void setContacto(Contacto contacto) { _contacto = contacto; }
     void setEstado(bool estado){_estado = estado;}
 
     const char* getNombre(){return _nombre;}
     Direccion getDireccion(){ return _direccion; }
-    Contacto getContacto(){ return _contacto; }
     bool getEstado(){return _estado;}
 
 };
@@ -33,14 +41,11 @@ void Entidad::Cargar(){
     cout<<"NOMBRE: ";
     cargarCadena(_nombre,50);
     _direccion.Cargar();
-    _contacto.Cargar();
     _estado=true;
-   //return true; //TRUE CONFIRMA QUE SE CARGO EL USUARIO
 }
 
 void Entidad::Mostrar(){
     cout<<"NOMBRE: "<<_nombre<<endl;
     _direccion.Mostrar();
-    _contacto.Mostrar();
     cout << endl;
 }

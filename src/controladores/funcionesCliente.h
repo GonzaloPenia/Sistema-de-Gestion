@@ -1,3 +1,7 @@
+#ifndef FUNCIONESCONTACTO_H_INCLUDED
+    #include "funcionesContacto.h"
+#endif
+
 void cargarCliente();
 void listarClientes();
 void buscarCliente();
@@ -52,6 +56,18 @@ void cargarCliente(){
         if(regArchivoCliente.escribirArchivo(regCliente)==true){
             if(repetido2!=true){
             cout<<"CLIENTE AGREGADO EXITOSAMENTE"<<endl;
+
+            // Preguntar si desea agregar contactos
+            int agregarContactos;
+            cout << endl;
+            cout << "DESEA AGREGAR CONTACTOS PARA ESTE CLIENTE? (1-SI, 0-NO): ";
+            cin >> agregarContactos;
+
+            if(agregarContactos == 1){
+                system("cls");
+                menuContactos(id, regCliente.getNombre());
+            }
+
             aux = false;
             }
         }else{
@@ -200,9 +216,9 @@ void modificarDireccionYContacto(){
 
 
         case 2:
-        cout<<"INGRESE NUEVO CONTACTO"<<endl;
-        regContacto.Cargar();
-        Cliente.setContacto(regContacto);
+        // FUNCION OBSOLETA - Los contactos ahora se gestionan desde el menu principal
+        cout<<"ESTA FUNCION FUE REEMPLAZADA"<<endl;
+        cout<<"USE LA OPCION 6 'GESTIONAR CONTACTOS' DEL MENU PRINCIPAL"<<endl;
         break;
 
 
@@ -540,7 +556,11 @@ void borrarLogicoCliente(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIEN
     bool flag=regCliente.modificarArchivo(pos,Cliente);
     if(flag==true)
     {
+        // Eliminar todos los contactos asociados al cliente
+        eliminarContactosDeEntidad(id);
+
         cout<<"REGISTRO BORRADO DE FORMA CORRECTA"<<endl;
+        cout<<"CONTACTOS ASOCIADOS ELIMINADOS"<<endl;
     }
     else{
         cout<<"NO SE PUDO BORRAR EL REGISTRO";
@@ -592,7 +612,7 @@ void borrarFisicoCliente(){ //ESTA FUNCION PONDRA TODOS LOS VALORES EN 0 DEL CLI
         Cliente.setCuit(0);
         Cliente.setcantidadVentas(0);
         Cliente.setTipo(0);
-        Cliente.setContacto(Contacto);
+        // Cliente.setContacto(Contacto); // OBSOLETO - contactos ahora son independientes
         Cliente.setDireccion(Direccion);
         Cliente.setEstado(false);
         bool flag=regCliente.modificarArchivo(pos,Cliente);

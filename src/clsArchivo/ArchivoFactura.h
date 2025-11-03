@@ -139,23 +139,28 @@ public:
     }
 
     //BUSCAR UN REGISTRO EN BASE A UN CODIGO/ATRIBUTO - DEVUELVE EL OBJETO
+    
+    /*
     Factura buscarObjeto (int atributo){
         Factura obj;
         FILE *p=fopen(_nombre,"rb");
-        //obj.setAtributo(-1);
+        obj.setAtributo(-1);
         if(p==NULL){
             return obj;
         }
         while(fread(&obj, sizeof (Factura), 1,p) ==1){
-            /*if(obj.getAtributo() == atributo){
+
+            if(obj.getAtributo() == atributo){
                 fclose(p);
                 return obj;
-            }*/
+            }
         }
+
         fclose(p);
-        //obj.setAtributo(-1);
+        obj.setAtributo(-1);
         return obj;
-    }
+
+    */
 
     ///MODIFICACION
 

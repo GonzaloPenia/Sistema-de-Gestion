@@ -89,6 +89,7 @@ void mostrarMenuPrincipalClientes(){
     cout<<"3 - MODIFICAR CLIENTE."<<endl;
     cout<<"4 - LISTAR CLIENTES."<<endl;
     cout<<"5 - ELIMINAR CLIENTE."<<endl;
+    cout<<"6 - GESTIONAR CONTACTOS."<<endl;
     cout<<"-----------------------------"<<endl;
     cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
@@ -117,6 +118,7 @@ void mostrarMenuPrincipalProveedores(){
     cout<<"3 - MODIFICAR PROVEEDOR."<<endl;
     cout<<"4 - LISTAR PROVEEDORES."<<endl;
     cout<<"5 - ELIMINAR PROVEEDOR."<<endl;
+    cout<<"6 - GESTIONAR CONTACTOS."<<endl;
     cout<<"-----------------------------"<<endl;
     cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
@@ -134,6 +136,20 @@ void mostrarMenuPrincipalConfiguraciones(){
     cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
 }
+
+void mostrarMenuContactos(){
+    cout<<"MENU CONFIGURACIONES"<<endl;
+    cout<<"-----------------------------"<<endl;
+    cout<<"1 - AGREGAR VENDEDOR."<<endl;
+    cout<<"2 - BUSCAR VENDEDOR."<<endl;
+    cout<<"3 - MODIFICAR VENDEDOR."<<endl;
+    cout<<"4 - LISTAR VENDEDORES."<<endl;
+    cout<<"5 - ELIMINAR VENDEDOR."<<endl;
+    cout<<"-----------------------------"<<endl;
+    cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
+    cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
+}
+
 
 void mostrarMenuPrincipalPresupuestos(){
     dibujarCuadro(1,1,77,3);

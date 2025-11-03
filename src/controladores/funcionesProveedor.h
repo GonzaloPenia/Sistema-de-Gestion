@@ -1,12 +1,17 @@
+#ifndef FUNCIONESCONTACTO_H_INCLUDED
+    #include "funcionesContacto.h"
+#endif
+
 void cargarProveedor();
 void buscarProveedor();
 void seleccionarProveedorExistente();
 void modificarNombreProveedor();
 void modificarDireccionProveedor();
-void modificarContactoEmailProveedor();
-void modificarEmailProveedor();
-void modificarTelefonoFijoProveedor();
-void modificarTelefonoMovilProveedor();
+// FUNCIONES OBSOLETAS - Ahora se gestionan los contactos a traves del menu de contactos
+// void modificarContactoEmailProveedor();
+// void modificarEmailProveedor();
+// void modificarTelefonoFijoProveedor();
+// void modificarTelefonoMovilProveedor();
 void borrarProveedorLogico();
 void borrarProveedorFisico();
 
@@ -42,6 +47,18 @@ void cargarProveedor(){
         }while(!continuar);
         if(regArchivoProveedor.escribirArchivo(regProveedor)==true){
             cout<<"PROVEEDOR AGREGADO EXITOSAMENTE"<<endl;
+
+            // Preguntar si desea agregar contactos
+            int agregarContactos;
+            cout << endl;
+            cout << "DESEA AGREGAR CONTACTOS PARA ESTE PROVEEDOR? (1-SI, 0-NO): ";
+            cin >> agregarContactos;
+
+            if(agregarContactos == 1){
+                system("cls");
+                menuContactos(id, regProveedor.getNombre());
+            }
+
             aux = false;
         } else {
             cout<<"NO SE PUDO AGREGAR EL PROVEEDOR"<<endl;
@@ -140,6 +157,7 @@ void modificarNombreProveedor()
 
 }
 
+/* FUNCION OBSOLETA - Los contactos ahora se gestionan a traves del menu de contactos
 void modificarContactoEmailProveedor()
 {
     ArchivoProveedor Archivo("../../data/proveedores.dat");
@@ -213,7 +231,9 @@ void modificarContactoEmailProveedor()
         }
     }
 }
+*/
 
+/* FUNCION OBSOLETA - Los contactos ahora se gestionan a traves del menu de contactos
 void modificarEmailProveedor()
 {
     ArchivoProveedor Archivo("../../data/proveedores.dat");
@@ -291,7 +311,9 @@ void modificarEmailProveedor()
         }
     }
 }
+*/
 
+/* FUNCION OBSOLETA - Los contactos ahora se gestionan a traves del menu de contactos
 void modificarTelefonoMovilProveedor()
 {
     ArchivoProveedor Archivo("../../data/proveedores.dat");
@@ -368,7 +390,9 @@ void modificarTelefonoMovilProveedor()
         }
     }
 }
+*/
 
+/* FUNCION OBSOLETA - Los contactos ahora se gestionan a traves del menu de contactos
 void modificarTelefonoFijoProveedor()
 {
     ArchivoProveedor Archivo("../../data/proveedores.dat");
@@ -446,6 +470,7 @@ void modificarTelefonoFijoProveedor()
     }
 
 }
+*/
 
 void modificarDireccionProveedor()
     {
@@ -562,7 +587,11 @@ void borrarProveedorLogico()
     bool flag=Archivo.modificarArchivo(pos,Proveedor);
     if(flag==true)
     {
-        cout<<"REGISTRO BORRADO DE FORMA CORRECTA";
+        // Eliminar todos los contactos asociados al proveedor
+        eliminarContactosDeEntidad(id);
+
+        cout<<"REGISTRO BORRADO DE FORMA CORRECTA"<<endl;
+        cout<<"CONTACTOS ASOCIADOS ELIMINADOS"<<endl;
     }
     else{
         cout<<"NO SE PUDO BORRAR EL REGISTRO";

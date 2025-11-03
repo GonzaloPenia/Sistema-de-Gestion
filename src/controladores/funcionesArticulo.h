@@ -328,7 +328,7 @@ void borrarFisico(){ //ESTA FUNCION ADEMAS DE DAR DE BAJA, SOBREESCRIBIRÁ LOS D
     Articulo.setDescripcion(d);
     Articulo.setCosto(0);
     Articulo.setGananacia(0);
-    Articulo.setPrecioVenta(0);
+    //Articulo.setPrecioVenta(0);
     //Proveedor Prov;
     //Prov.setCantidadCompras(0);
     //Prov.setEmailProveedor("");
@@ -373,7 +373,11 @@ void listarArticuloPorPrecioDeMayorAMenor(){
             posMaximo=i;
             for(j=i+1;j<cantidad;j++)
                 {
-                if( vArticulos[j].getPrecioVenta() > vArticulos[posMaximo].getPrecioVenta() )
+                    
+                int precioVenta = vArticulos[j].getCosto() * ( 1 + vArticulos[j].getGanancia()/100.0 );
+                int precioVentaMax = vArticulos[posMaximo].getCosto() * ( 1 + vArticulos[posMaximo].getGanancia()/100.0 );
+
+                if( precioVenta > precioVentaMax )
                     {
                     posMaximo=j;
                     }
@@ -421,7 +425,11 @@ void listarArticuloPorPrecioDeMenorAMayor(){
             posMinimo=i;
             for(j=i+1;j<cantidad;j++)
                 {
-                if( vArticulos[j].getPrecioVenta() < vArticulos[posMinimo].getPrecioVenta() )
+                
+                int precioVenta = vArticulos[j].getCosto() * ( 1 + vArticulos[j].getGanancia()/100.0 );
+                int precioVentaMin = vArticulos[posMinimo].getCosto() * ( 1 + vArticulos[posMinimo].getGanancia()/100.0 );
+                
+                if( precioVenta > precioVentaMin )
                     {
                     posMinimo=j;
                     }

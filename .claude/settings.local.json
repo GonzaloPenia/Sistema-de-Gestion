@@ -10,7 +10,8 @@
       "Bash(git pull:*)",
       "Bash(dir:*)",
       "Bash(where:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(./PROVISORIOS/generadorArticulos.exe)"
     ],
     "deny": [],
     "ask": []

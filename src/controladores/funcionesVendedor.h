@@ -63,7 +63,7 @@ void mostrarVendedor(){
 
 void buscarVendedor(){
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
-    int id,pos;
+    int id;
     cout<<"BUSCAR UN VENDEDOR POR ID."<<endl;
     cout<<"INGRESE EL ID DEL VENDEDOR QUE DESEA BUSCAR EN NUESTRA BdD:"<<endl;
     cin>>id;
@@ -630,10 +630,10 @@ void modificarDomicilioVendedor(){
 
 
     }
-    Vendedor Vendedor= regVendedor.leerArchivo(pos);         
+    Vendedor Vendedor= regVendedor.leerArchivo(pos);
     cout<<"INGRESE EL NUEVO DOMICILIO"<<endl;
     regDireccion.Cargar();
-    Vendedor.setDomicilio(regDireccion);    
+    Vendedor.setDireccion(regDireccion); // heredado de Entidad    
 
     bool flag= regVendedor.modificarArchivo(pos, Vendedor);
     if(flag==true)

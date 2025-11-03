@@ -19,6 +19,8 @@ using namespace std;
 #include "clsArchivo/ArchivoVendedor.h"
 #include "controladores/funcionesVendedor.h"
 
+#include "clases/Contacto.h"
+
 #include "clases/Entidad.h"
 #include "clases/Cliente.h"
 #include "clsArchivo/ArchivoCliente.h"
@@ -308,7 +310,32 @@ int main(){
                         //system ("pause");
                         break;
 
+                    case 6:{
+                        cout<<"6-GESTIONAR CONTACTOS."<<endl;
+                        cout<<"---------------------"<<endl;
+                        ArchivoCliente regClienteContactos("../../data/clientes.dat");
+                        int idCliente;
+                        cout<<"INGRESE EL ID DEL CLIENTE: ";
+                        cin>>idCliente;
 
+                        int pos = regClienteContactos.buscarSinMostrar(idCliente);
+                        if(pos == -1){
+                            cout<<"NO SE ENCONTRO CLIENTE CON ESE ID"<<endl;
+                            system("pause");
+                        } else if(pos == -2){
+                            cout<<"ERROR AL ACCEDER AL ARCHIVO"<<endl;
+                            system("pause");
+                        } else {
+                            Cliente clienteTemp = regClienteContactos.leerArchivo(pos);
+                            if(clienteTemp.getEstado()){
+                                menuContactos(idCliente, clienteTemp.getNombre());
+                            } else {
+                                cout<<"EL CLIENTE ESTA INACTIVO"<<endl;
+                                system("pause");
+                            }
+                        }
+                        break;
+                        }
 
                     case 0:{
                         cout << "0 - SALIDA DEL MENU DE CLIENTES" << endl << endl;
@@ -531,22 +558,30 @@ int main(){
                                 break;
 
                             case 2 :
-                                modificarContactoEmailProveedor();
+                                // FUNCION OBSOLETA - Usar opcion 6 "GESTIONAR CONTACTOS"
+                                cout << "ESTA FUNCION FUE REEMPLAZADA" << endl;
+                                cout << "USE LA OPCION 6 'GESTIONAR CONTACTOS' DEL MENU PRINCIPAL" << endl;
                                 system ("pause");
                                 break;
 
                             case 3 :
-                                modificarEmailProveedor();
+                                // FUNCION OBSOLETA - Usar opcion 6 "GESTIONAR CONTACTOS"
+                                cout << "ESTA FUNCION FUE REEMPLAZADA" << endl;
+                                cout << "USE LA OPCION 6 'GESTIONAR CONTACTOS' DEL MENU PRINCIPAL" << endl;
                                 system ("pause");
                                 break;
 
                             case 4 :
-                                modificarTelefonoMovilProveedor();
+                                // FUNCION OBSOLETA - Usar opcion 6 "GESTIONAR CONTACTOS"
+                                cout << "ESTA FUNCION FUE REEMPLAZADA" << endl;
+                                cout << "USE LA OPCION 6 'GESTIONAR CONTACTOS' DEL MENU PRINCIPAL" << endl;
                                 system ("pause");
                                 break;
 
                             case 5 :
-                                modificarTelefonoFijoProveedor();
+                                // FUNCION OBSOLETA - Usar opcion 6 "GESTIONAR CONTACTOS"
+                                cout << "ESTA FUNCION FUE REEMPLAZADA" << endl;
+                                cout << "USE LA OPCION 6 'GESTIONAR CONTACTOS' DEL MENU PRINCIPAL" << endl;
                                 system ("pause");
                                 break;
 
@@ -615,7 +650,6 @@ int main(){
                         break;
                     }
 
-
                     case 0:
                         cout << "0 - SALIDA DEL MENU DE PROVEEDORES" << endl << endl;
                         cout << "Usted ha decidido salir del Menu de Proveedores." << endl << endl;
@@ -634,8 +668,43 @@ int main(){
             break;
         }
 
-        ///CASE 5 - CONFIGURACIONES
-        case 5: {
+        ///CASE 5 - CONTACTOS
+        case 5:{
+            int listar;
+            mostrarMenuContactos();
+            cin>>listar;
+            switch (listar)
+                    {
+                case 1:
+                    //listarProveedoresPorIdMayorAMenor();
+                    system ("pause");
+                    break;
+                case 2:
+                    //listarProveedoresPorIdMenorAMayor();
+                    system ("pause");
+                    break;
+                case 3:
+                    //listarProveedoresPorMayorCantidadDeCompras();
+                    system ("pause");
+                    break;
+                case 4:
+                    //listarProveedoresPorMenorCantidadDeCompras();
+                    system ("pause");
+                    break;
+
+                case 5:
+                    //listaDeProveedores();
+                    system ("pause");
+                    break;
+
+                default:
+                    break;
+                }
+            break;
+            }
+
+        ///CASE 6 - CONFIGURACIONES
+        case 6: {
             while(sub_menu!=0){
                 system ("cls");
                 mostrarMenuPrincipalConfiguraciones();
