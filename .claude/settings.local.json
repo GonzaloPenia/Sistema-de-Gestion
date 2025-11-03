@@ -3,7 +3,14 @@
     "allow": [
       "Bash(mkdir:*)",
       "Bash(mv:*)",
-      "Bash(g++:*)"
+      "Bash(g++:*)",
+      "Bash(git rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)",
+      "Bash(dir:*)",
+      "Bash(where:*)",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": []

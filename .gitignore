@@ -8,8 +8,8 @@ main.exe
 *.out
 
 # Archivos de datos
-data/articulos.dat
-data/proveedores.dat
+#data/articulos.dat
+#data/proveedores.dat
 
 # Configuración local de Claude
 .claude/

@@ -31,8 +31,8 @@ void cargarProveedor(){
             bool repetido = regArchivoProveedor.verificarRepetido(id); //VERIFICAMOS QUE EL ID ESTE DISPONIBLE Y QUE NO HAYA REPETIDOS.
             if(repetido){
                 system ("cls");
-                cout<<"CARGA DE NUEVO PROVEEDOR."<<endl<<endl;
                 cout<<"ESTAS INTENTANDO USAR UN ID QUE YA ESTA SIENDO UTILIZADO, PRUEBA UNO DIFERENTE"<<endl;
+                cout<<"ID DEL PROVEEDOR A REGISTRAR: ";
             } else if (repetido==false){                            //NO HAY NINGUN PROVEEDOR CON ESE ID REGISTRADO
                 regProveedor.Cargar(id);
                 system("cls");
