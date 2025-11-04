@@ -83,9 +83,15 @@ void eliminarContactosDeEntidad(int idEntidad) {
 // ============================================
 
 // Listar todos los contactos activos de una entidad
-void listarContactosPorEntidad(int idEntidad) {
+void listarContactosPorEntidad() {
     ArchivoContacto archivoContacto;
     Contacto regContacto;
+    int idEntidad;
+
+    cout << "DE QUE ENTIDAD QUERRIA VER LOS CONTACTOS? ";
+    cin >> idEntidad;
+    
+
     FILE *p = fopen("../../data/contactos.dat", "rb");
 
     if (p == NULL) {
@@ -94,8 +100,8 @@ void listarContactosPorEntidad(int idEntidad) {
     }
 
     cout << endl;
-    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << endl;
-    cout << setfill('-') << setw(93) << "-" << setfill(' ') << endl;
+    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15) << "ENTIDAD" <<endl;
+    cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
 
     bool hayContactos = false;
     while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
@@ -103,7 +109,8 @@ void listarContactosPorEntidad(int idEntidad) {
             cout << left << setw(8) << regContacto.getIdContacto()
                  << setw(30) << regContacto.getNombreContacto()
                  << setw(20) << regContacto.getNroTelefono()
-                 << setw(35) << regContacto.getEmail() << endl;
+                 << setw(35) << regContacto.getEmail()
+                 << setw(20) << regContacto.getIdEntidad() << endl;
             hayContactos = true;
         }
     }
@@ -116,10 +123,37 @@ void listarContactosPorEntidad(int idEntidad) {
     cout << endl;
 }
 
+void listarContactos(){
+    ArchivoContacto archivoContacto;
+    Contacto regContacto;
+    FILE *p = fopen("../../data/contactos.dat", "rb");
+
+    if (p == NULL) {
+        cout << "NO SE PUDO ABRIR EL ARCHIVO DE CONTACTOS" << endl;
+        return;
+    }
+    
+    while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
+        if (regContacto.getEstado()) {
+            regContacto.Mostrar();           
+        }
+    }
+
+    
+    
+
+
+
+}
+
 // Agregar un nuevo contacto a una entidad
-void agregarContacto(int idEntidad) {
+void agregarContacto() {
     ArchivoContacto archivoContacto;
     Contacto nuevoContacto;
+    int IdEntidad;
+
+    IdEntidad = nuevoContacto.Asociar();    
+    nuevoContacto.setIdEntidad(IdEntidad);
 
     cout << endl;
     cout << "=======================================" << endl;
@@ -130,7 +164,6 @@ void agregarContacto(int idEntidad) {
     // Obtener el proximo ID
     int nuevoId = obtenerProximoIdContacto();
     nuevoContacto.setIdContacto(nuevoId);
-    nuevoContacto.setIdEntidad(idEntidad);
 
     // Cargar datos del contacto
     nuevoContacto.Cargar();
@@ -139,6 +172,8 @@ void agregarContacto(int idEntidad) {
     if (archivoContacto.escribirArchivo(nuevoContacto)) {
         cout << endl;
         cout << "CONTACTO AGREGADO EXITOSAMENTE CON ID: " << nuevoId << endl;
+        cout << "CONTACTO AGREGADO EXITOSAMENTE A LA ENTIDAD: " << IdEntidad << endl;
+        
     } else {
         cout << "ERROR AL GUARDAR EL CONTACTO" << endl;
     }
@@ -155,7 +190,7 @@ void modificarContacto(int idEntidad) {
     cout << endl;
 
     // Listar contactos de la entidad
-    listarContactosPorEntidad(idEntidad);
+    listarContactosPorEntidad();
 
     int cantidadContactos = contarContactosPorEntidad(idEntidad);
     if (cantidadContactos == 0) {
@@ -223,7 +258,7 @@ void eliminarContacto(int idEntidad) {
     cout << endl;
 
     // Listar contactos de la entidad
-    listarContactosPorEntidad(idEntidad);
+    listarContactosPorEntidad();
 
     int cantidadContactos = contarContactosPorEntidad(idEntidad);
     if (cantidadContactos == 0) {
@@ -282,24 +317,20 @@ void eliminarContacto(int idEntidad) {
     }
 }
 
-// Buscar contacto por nombre dentro de una entidad
-void buscarContactoPorNombre(int idEntidad) {
+// Buscar contacto por ID dentro de una entidad
+void buscarContactoPorID() {
     ArchivoContacto archivoContacto;
+    int idEntidad;
 
     cout << endl;
     cout << "=======================================" << endl;
-    cout << "     BUSCAR CONTACTO POR NOMBRE" << endl;
+    cout << "      BUSCAR CONTACTO POR ID" << endl;
     cout << "=======================================" << endl;
     cout << endl;
 
-    char nombreBuscar[30];
-    cout << "INGRESE EL NOMBRE A BUSCAR: ";
-    cargarCadena(nombreBuscar, 30);
-
-    // Convertir a minusculas para busqueda case-insensitive
-    char nombreMinusc[30];
-    strcpy(nombreMinusc, nombreBuscar);
-    convertirMinuscula(nombreMinusc);
+    int idContactoBuscar;
+    cout << "INGRESE EL ID DEL CONTACTO A BUSCAR: ";
+    cin >> idContactoBuscar;
 
     FILE *p = fopen("../../data/contactos.dat", "rb");
     if (p == NULL) {
@@ -308,31 +339,28 @@ void buscarContactoPorNombre(int idEntidad) {
     }
 
     cout << endl;
-    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << endl;
-    cout << setfill('-') << setw(93) << "-" << setfill(' ') << endl;
+    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15)  << "ENTIDAD" << endl;
+    cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
 
     Contacto regContacto;
     bool encontrado = false;
 
     while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
-        if (regContacto.getIdEntidad() == idEntidad && regContacto.getEstado()) {
-            char nombreContacto[30];
-            strcpy(nombreContacto, regContacto.getNombreContacto());
-            convertirMinuscula(nombreContacto);
-
-            // Buscar si el nombre buscado esta contenido en el nombre del contacto
-            if (strstr(nombreContacto, nombreMinusc) != nullptr) {
-                cout << left << setw(8) << regContacto.getIdContacto()
-                     << setw(30) << regContacto.getNombreContacto()
-                     << setw(20) << regContacto.getNroTelefono()
-                     << setw(35) << regContacto.getEmail() << endl;
-                encontrado = true;
-            }
+        if (regContacto.getIdContacto() == idContactoBuscar &&
+            regContacto.getIdEntidad() == idEntidad &&
+            regContacto.getEstado()) {
+            cout << left << setw(8) << regContacto.getIdContacto()
+                 << setw(30) << regContacto.getNombreContacto()
+                 << setw(20) << regContacto.getNroTelefono()
+                 << setw(35) << regContacto.getEmail()
+                 << setw(15) << regContacto.getIdEntidad() << endl;   
+            encontrado = true;
+            break; // Salir del bucle porque el ID es unico
         }
     }
 
     if (!encontrado) {
-        cout << "NO SE ENCONTRARON CONTACTOS CON ESE NOMBRE" << endl;
+        cout << "NO SE ENCONTRO EL CONTACTO CON ID: " << idContactoBuscar << endl;
     }
 
     fclose(p);
@@ -353,7 +381,7 @@ void menuContactos(int idEntidad, const char* nombreEntidad) {
         cout << "2. LISTAR TODOS LOS CONTACTOS" << endl;
         cout << "3. MODIFICAR CONTACTO" << endl;
         cout << "4. ELIMINAR CONTACTO" << endl;
-        cout << "5. BUSCAR CONTACTO POR NOMBRE" << endl;
+        cout << "5. BUSCAR CONTACTO POR ID" << endl;
         cout << "6. VER CANTIDAD DE CONTACTOS" << endl;
         cout << "0. VOLVER AL MENU ANTERIOR" << endl;
         cout << "========================================" << endl;
@@ -362,11 +390,11 @@ void menuContactos(int idEntidad, const char* nombreEntidad) {
 
         switch (opcion) {
             case 1:
-                agregarContacto(idEntidad);
+                agregarContacto();
                 system("pause");
                 break;
             case 2:
-                listarContactosPorEntidad(idEntidad);
+                listarContactosPorEntidad();
                 system("pause");
                 break;
             case 3:
@@ -378,7 +406,7 @@ void menuContactos(int idEntidad, const char* nombreEntidad) {
                 system("pause");
                 break;
             case 5:
-                buscarContactoPorNombre(idEntidad);
+                buscarContactoPorID();
                 system("pause");
                 break;
             case 6:

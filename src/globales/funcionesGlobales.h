@@ -59,7 +59,8 @@ void mostrarMenuPrincipal(){
     cout<<"2 - MENU CLIENTES."<<endl;
     cout<<"3 - MENU ARTICULOS."<<endl;
     cout<<"4 - MENU PROVEEDORES."<<endl;
-    cout<<"5 - CONFIGURACIONES."<<endl;
+    cout<<"5 - MENU CONTACTOS."<<endl;
+    cout<<"6 - MENU CONFIGURACIONES."<<endl;
     cout<<"----------------------"<<endl;
     cout<<"0 - FIN DEL PROGRAMA..."<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
@@ -138,13 +139,23 @@ void mostrarMenuPrincipalConfiguraciones(){
 }
 
 void mostrarMenuContactos(){
-    cout<<"MENU CONFIGURACIONES"<<endl;
+    cout<<"MENU CONTACTOS"<<endl;
     cout<<"-----------------------------"<<endl;
-    cout<<"1 - AGREGAR VENDEDOR."<<endl;
-    cout<<"2 - BUSCAR VENDEDOR."<<endl;
-    cout<<"3 - MODIFICAR VENDEDOR."<<endl;
-    cout<<"4 - LISTAR VENDEDORES."<<endl;
-    cout<<"5 - ELIMINAR VENDEDOR."<<endl;
+    cout<<"1 - AGREGAR CONTACTO."<<endl;
+    cout<<"2 - BUSCAR CONTACTO."<<endl;
+    cout<<"3 - MODIFICAR CONTACTO."<<endl;
+    cout<<"4 - LISTAR CONTACTO."<<endl;
+    cout<<"5 - ELIMINAR CONTACTO."<<endl;
+    cout<<"-----------------------------"<<endl;
+    cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
+    cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
+}
+
+void subMenuListarContactos(){
+    cout<<"MENU CONTACTOS"<<endl;
+    cout<<"-----------------------------"<<endl;
+    cout<<"1 - LISTAR TODOS LOS CONTACTOS."<<endl;
+    cout<<"2 - LISTAR CONTACTOS POR ENTIDAD."<<endl;
     cout<<"-----------------------------"<<endl;
     cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";

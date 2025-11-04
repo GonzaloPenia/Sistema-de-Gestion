@@ -96,11 +96,12 @@ int main(){
                         break;
                     }*/
 
-                    case 0:
+                    case 0: {
                         cout << "0 - VOLVER AL MENU PRINCIPAL" << endl << endl;
                         cout << "Usted ha decidido salir del Menu de Emision." << endl << endl;
                         system ("pause");
                         break;
+                    }
 
                     default:
                         cout << "ERROR" << endl << endl;
@@ -671,29 +672,65 @@ int main(){
         ///CASE 5 - CONTACTOS
         case 5:{
             int listar;
+            system ("cls");
             mostrarMenuContactos();
             cin>>listar;
+            system ("cls");
             switch (listar)
                     {
                 case 1:
-                    //listarProveedoresPorIdMayorAMenor();
+                    //AGREGAR CONTACTO;
+                    
+
+                    agregarContacto();                    
                     system ("pause");
                     break;
                 case 2:
-                    //listarProveedoresPorIdMenorAMayor();
+                    //BUSCAR CONTACTO
+                    buscarContactoPorID();
                     system ("pause");
                     break;
                 case 3:
-                    //listarProveedoresPorMayorCantidadDeCompras();
+                    //MODIFICAR CONTACTO
                     system ("pause");
                     break;
                 case 4:
-                    //listarProveedoresPorMenorCantidadDeCompras();
+                    //LISTAR CONTACTO
+                    subMenuListarContactos();
+                    int ListaContactos;
+                    cin >> ListaContactos;
+                    switch(ListaContactos){
+
+                        case 1:{
+                            listarContactos();
+                            break;
+
+                        }
+                        case 2:{
+                            listarContactosPorEntidad();
+
+                            break;
+                        }
+
+                        case 0: {
+
+                            cout << "VOLVIENDO AL MENU DE CONTACTOS..." <<endl;
+                            system ("pause");
+
+                            break;
+                        }
+
+
+
+                        default: 
+                            break;
+                    }
+                    
                     system ("pause");
                     break;
 
                 case 5:
-                    //listaDeProveedores();
+                    //ELIMINAR CONTACTO
                     system ("pause");
                     break;
 

@@ -54,6 +54,8 @@ class Contacto{
 
         void Mostrar();
 
+        int Asociar();
+
 };
 
 void Contacto::Cargar(){
@@ -67,11 +69,21 @@ void Contacto::Cargar(){
 }
 
 void Contacto::Mostrar(){
+    cout << endl;
     cout << "FICHA DE CONTACTO:" << endl;
     cout << "ID Contacto: " << _idContacto << endl;
     cout << "Nombre del contacto: " << _nombreContacto << endl;
     cout << "Numero de telefono: " << _nroTelefono << endl;
     cout << "Email: " << _email << endl;
+    cout << "Este contacto pertence a la entidad: "<<_idEntidad << endl;
 }
 
+int Contacto::Asociar(){
+
+    int IdEntidad;
+    cout << "A que entidad lo quiere asociar?"<< endl;
+    cin >> IdEntidad;
+
+    return IdEntidad;
+}
 #endif // CONTACTO_H_INCLUDED
