@@ -317,10 +317,9 @@ void eliminarContacto(int idEntidad) {
     }
 }
 
-// Buscar contacto por ID dentro de una entidad
+// Buscar contacto por ID
 void buscarContactoPorID() {
     ArchivoContacto archivoContacto;
-    int idEntidad;
 
     cout << endl;
     cout << "=======================================" << endl;
@@ -347,13 +346,12 @@ void buscarContactoPorID() {
 
     while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
         if (regContacto.getIdContacto() == idContactoBuscar &&
-            regContacto.getIdEntidad() == idEntidad &&
             regContacto.getEstado()) {
             cout << left << setw(8) << regContacto.getIdContacto()
                  << setw(30) << regContacto.getNombreContacto()
                  << setw(20) << regContacto.getNroTelefono()
                  << setw(35) << regContacto.getEmail()
-                 << setw(15) << regContacto.getIdEntidad() << endl;   
+                 << setw(15) << regContacto.getIdEntidad() << endl;
             encontrado = true;
             break; // Salir del bucle porque el ID es unico
         }
