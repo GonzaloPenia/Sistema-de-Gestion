@@ -12,7 +12,7 @@ class Proveedor: public Entidad{
 
     Proveedor(char,Direccion, Contacto, bool , int, int, bool); //CONSTRUCTOR DE LA CLASE PROVEEDOR
 
-    Proveedor(int id, int cantidad_compras, char nombre, Direccion direccion, Contacto contacto){
+    Proveedor(int id, int cantidad_compras, char nombre, Direccion direccion){
         _id=id;
         _cantidad_compras=cantidad_compras;
         _estado=true;
@@ -32,6 +32,7 @@ class Proveedor: public Entidad{
     void setEstado(const bool e){_estado=e;}
 
     void Mostrar();
+    void Mostrar(bool);
     void Cargar(int identificador);
 };
 
@@ -53,9 +54,17 @@ void Proveedor::Mostrar(){
     cout<<"ID PROVEEDOR: "<<_id<<endl;
     cout<<"NOMBRE PROVEEDOR: "<<_nombre<<endl;
     cout<<"CANTIDAD DE COMPRAS REALIZADAS: "<<_cantidad_compras<<endl;
+    cout<<endl;
     _direccion.Mostrar();
-    // _contacto.Mostrar(); // OBSOLETO - contactos ahora son independientes
+    cout<<endl;
+    cout<<"CONTACTOS DEL PROVEEDOR:"<<endl;
+    listarContactosPorEntidad(_id);
     cout<<endl;
 }
+void Proveedor::Mostrar(bool){
 
+    cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
+    cout << left << setw(5) << _id << setw(55) << _nombre << setw(15) << _cantidad_compras << endl << endl;
+
+}
 #endif // CLSPROVEEDOR_H_INCLUDED

@@ -25,18 +25,41 @@ void recaudacionCredito(float recaudacion, int idCliente);
 void listarRecaudacionPorCliente();
 void elegirClienteRecaudacion();
 
+int obtenerProximoIdCliente() {
+    ArchivoCliente archivoCliente;
+    Cliente regCliente;
+    FILE *p = fopen("../../data/clientes.dat", "rb");
+
+    if (p == NULL) {
+        return 1; // Si el archivo no existe, el primer ID es 1
+    }
+
+    int maxId = 0;
+    while (fread(&regCliente, sizeof(regCliente), 1, p) == 1) {
+        if (regCliente.getId() > maxId) {
+            maxId = regCliente.getId();
+        }
+    }
+    fclose(p);
+    return maxId + 1;
+}
 
 void cargarCliente(){
     Cliente regCliente;
     ArchivoCliente regArchivoCliente;
     int id;
     bool repetido2;
+    
+    cout<<"1 - AGREGAR CLIENTE."<<endl;
+    cout<<"---------------------"<<endl;
     cout<<"CARGA DE NUEVO CLIENTE."<<endl<<endl;
     cout<<"INGRESE LOS SIGUIENTES DATOS QUE LE SERAN SOLICITADOS."<<endl<<endl;
     bool aux=true;
     while (aux==true){
         bool continuar;
         do{
+            
+            cout<<"LE SUGERIMOS EL SIGUIENTE ID DISPONIBLE: "<< obtenerProximoIdCliente() <<"." <<endl;
             cout<<"ID DEL CLIENTE A REGISTRAR: ";
             cin>>id;
             bool repetido = regArchivoCliente.verificarRepetido(id); //VERIFICAMOS QUE EL ID ESTE DISPONIBLE Y QUE NO HAYA REPETIDOS.
@@ -57,17 +80,7 @@ void cargarCliente(){
             if(repetido2!=true){
             cout<<"CLIENTE AGREGADO EXITOSAMENTE"<<endl;
 
-            // Preguntar si desea agregar contactos
-            int agregarContactos;
-            cout << endl;
-            cout << "DESEA AGREGAR CONTACTOS PARA ESTE CLIENTE? (1-SI, 0-NO): ";
-            cin >> agregarContactos;
-
-            if(agregarContactos == 1){
-                system("cls");
-                menuContactos(id, regCliente.getNombre());
-            }
-
+            agregarContacto(regCliente.getId()); // Agregar al menos un contacto para el cliente creado
             aux = false;
             }
         }else{
@@ -86,8 +99,9 @@ void listarClientes(){
 void buscarCliente(){
     ArchivoCliente regCliente("../../data/clientes.dat");
     int id;
-    cout<<"BUSCAR UN CLIENTE."<<endl<<endl;
 
+    cout<<"BUSCAR UN CLIENTE."<<endl<<endl;
+    cout<<"------------------"<<endl;
     cout<<"INGRESE EL METODO QUE QUIERE USAR PARA BUSCAR AL CLIENTE:"<<endl;
     cout<<"(1-BUSCAR POR ID  2-BUSCAR POR NOMBRE 3-BUSCAR POR CUIT)"<<endl;
     int metodo;
@@ -129,8 +143,11 @@ void modificarTipo(){
     ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     system("cls");
-    cout<<"MODIFICACION DE TIPO"<<endl;
+    cout<<"MODIFICACION DE TIPO DE CLIENTE"<<endl;
     cout<<"------------------------------------"<<endl;
+    cout<<endl;
+    listarClientes();
+    cout<<endl;
     cout<<"INGRESE EL ID DEL CLIENTE QUE DESEA MODIFICAR"<<endl;
     cin>>id;
     pos= regCliente.buscarEnArchivo(id);
@@ -181,6 +198,9 @@ void modificarDireccionYContacto(){
     system("cls");
     cout<<"MODIFICACION DE DIRECCION Y CONTACTO"<<endl;
     cout<<"------------------------------------"<<endl;
+    cout<<endl;
+    listarClientes();
+    cout<<endl;
     cout<<"INGRESE EL ID DEL CLIENTE QUE DESEA MODIFICAR"<<endl;
     cin>>id;
     pos= regCliente.buscarEnArchivo(id);
@@ -243,6 +263,9 @@ void modificarCantidadVentas(){
     system("cls");
     cout<<"MODIFICACION DE CANTIDAD DE VENTAS"<<endl;
     cout<<"------------------------------------"<<endl;
+    cout<<endl;
+    listarClientes();
+    cout<<endl;
     cout<<"INGRESE EL ID DEL CLIENTE QUE DESEA MODIFICAR"<<endl;
     cin>>id;
     pos= regCliente.buscarEnArchivo(id);
@@ -284,6 +307,9 @@ void modificarNombreCliente(){
     int id,pos;
     cout<<"MODIFICACION DE NOMBRE"<<endl;
     cout<<"------------------------------------"<<endl;
+    cout<<endl;
+    listarClientes();
+    cout<<endl;
     cout<<"INGRESE EL ID DEL CLIENTE QUE DESEA MODIFICAR"<<endl;
     cin>>id;
     pos= regCliente.buscarEnArchivo(id);
@@ -707,7 +733,7 @@ void listaCuitMenorAMayorCliente(){
                 vClientes[posMinimo] = aux;
                 }
         }
-    cout << left << setw(5) << "ID" << setw(55) << "Razon Social" << setw(15) << "CUIT" << endl;
+    cout << left << setw(5) << "ID" << setw(55) << "Nombre/Razon Social" << setw(15) << "CUIT" << endl;
     for(int i=0; i<cantidad; i++)
     {
         if(vClientes[i].getEstado())
@@ -761,7 +787,7 @@ void listaCuitMayorAMenorCliente(){
                 vClientes[posMaximo] = aux;
                 }
         }
-    cout << left << setw(5) << "ID" << setw(55) << "Razon Social" << setw(15) << "CUIT" << endl;
+    cout << left << setw(5) << "ID" << setw(55) << "Nombre/Razon Social" << setw(15) << "CUIT" << endl;
     for(int i=0; i<cantidad; i++)
     {
         if(vClientes[i].getEstado())
@@ -815,7 +841,7 @@ void listaAlfabeticamenteCliente(){
                 vClientes[posMaximo] = aux;
                 }
         }
-    cout << left << setw(5) << "ID" << setw(55) << "Razon Social" << setw(15) << "CUIT" << endl;
+    cout << left << setw(5) << "ID" << setw(55) << "Nombre/Razon Social" << setw(15) << "CUIT" << endl;
     for(int i=0; i<cantidad; i++)
     {
         if(vClientes[i].getEstado())

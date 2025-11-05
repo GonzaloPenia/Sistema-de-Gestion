@@ -85,16 +85,21 @@ Proveedor ArchivoProveedor::leerArchivo(int pos){
 }
 
 void ArchivoProveedor::leerArchivo(){
-    Proveedor Proveedor;
-    FILE *p=fopen(nombre,"rb");
+    Proveedor regProveedor;
+    FILE *p=fopen("../../data/proveedores.dat","rb");
     if(p==NULL){
-        cout<<"ERROR DE ARCHIVO"<<endl;
-        return;
+        cout<<"FALLO EN EL ACCESO AL ARCHIVO";
+        return ;
     }
-    while(fread(&Proveedor,sizeof Proveedor,1,p)==1){
-        Proveedor.Mostrar();
+    cout << left << setw(5) << "ID" << setw(55) << "NOMBRE" << setw(15) << "COMPRAS REALIZADAS:" << endl;
+    while(fread(&regProveedor, sizeof (regProveedor),1,p)==1){
+        if(regProveedor.getEstado()){
+            cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
+            cout << left << setw(5) << regProveedor.getId() << setw(55) << regProveedor.getNombre() << setw(15) << regProveedor.getCantidadCompras() << endl << endl;
+        }
     }
     fclose(p);
+    return;
 }
 
 bool ArchivoProveedor::modificarArchivo(int pos, Proveedor Proveedor){

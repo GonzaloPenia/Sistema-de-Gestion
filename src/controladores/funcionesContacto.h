@@ -10,10 +10,6 @@ using namespace std;
     #define ARCHIVOCONTACTO_H_INCLUDED
 #endif
 
-// ============================================
-// FUNCIONES AUXILIARES
-// ============================================
-
 // Obtener el proximo ID disponible para un nuevo contacto
 int obtenerProximoIdContacto() {
     ArchivoContacto archivoContacto;
@@ -34,7 +30,7 @@ int obtenerProximoIdContacto() {
     return maxId + 1;
 }
 
-// Contar cuantos contactos activos tiene una entidad
+// Cuenta cuantos contactos activos tiene una entidad
 int contarContactosPorEntidad(int idEntidad) {
     ArchivoContacto archivoContacto;
     Contacto regContacto;
@@ -78,10 +74,6 @@ void eliminarContactosDeEntidad(int idEntidad) {
     fclose(p);
 }
 
-// ============================================
-// FUNCIONES PRINCIPALES
-// ============================================
-
 // Listar todos los contactos activos de una entidad
 void listarContactosPorEntidad() {
     ArchivoContacto archivoContacto;
@@ -123,6 +115,41 @@ void listarContactosPorEntidad() {
     cout << endl;
 }
 
+void listarContactosPorEntidad(int idEntidad) {
+    ArchivoContacto archivoContacto;
+    Contacto regContacto;
+
+    FILE *p = fopen("../../data/contactos.dat", "rb");
+
+    if (p == NULL) {
+        cout << "NO SE PUDO ABRIR EL ARCHIVO DE CONTACTOS" << endl;
+        return;
+    }
+
+    cout << endl;
+    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15) <<endl;
+    cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
+
+    bool hayContactos = false;
+    while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
+        if (regContacto.getIdEntidad() == idEntidad && regContacto.getEstado()) {
+            cout << left << setw(8) << regContacto.getIdContacto()
+                 << setw(30) << regContacto.getNombreContacto()
+                 << setw(20) << regContacto.getNroTelefono()
+                 << setw(35) << regContacto.getEmail()
+                 << endl;
+            hayContactos = true;
+        }
+    }
+
+    if (!hayContactos) {
+        cout << "NO HAY CONTACTOS REGISTRADOS PARA ESTA ENTIDAD" << endl;
+    }
+
+    fclose(p);
+    cout << endl;
+}
+
 void listarContactos(){
     ArchivoContacto archivoContacto;
     Contacto regContacto;
@@ -139,14 +166,10 @@ void listarContactos(){
         }
     }
 
-    
-    
-
-
 
 }
 
-// Agregar un nuevo contacto a una entidad
+// Agregar un nuevo contacto a una entidad ya existente
 void agregarContacto() {
     ArchivoContacto archivoContacto;
     Contacto nuevoContacto;
@@ -178,6 +201,34 @@ void agregarContacto() {
         cout << "ERROR AL GUARDAR EL CONTACTO" << endl;
     }
 }
+
+// Agregar un nuevo contacto a una entidad durante su creacion
+void agregarContacto(int IdEntidad) {
+    ArchivoContacto archivoContacto;
+    Contacto Contacto;
+        
+    Contacto.setIdEntidad(IdEntidad);
+
+    cout << endl;
+    cout << "=======================================" << endl;
+    cout << "       AGREGAR UN CONTACTO" << endl;
+    cout << "=======================================" << endl;
+    cout << endl;
+
+    int nuevoId = obtenerProximoIdContacto();
+    Contacto.setIdContacto(nuevoId);
+
+    Contacto.Cargar();
+
+    if (archivoContacto.escribirArchivo(Contacto)) {
+        cout << endl;
+        cout << "EL CONTACTO " << Contacto.getIdContacto() << " SE AGREGÓ EXITOSAMENTE" << endl;
+        
+    } else {
+        cout << "ERROR AL GUARDAR EL CONTACTO" << endl;
+    }
+}
+
 
 // Modificar un contacto existente
 void modificarContacto(int idEntidad) {
@@ -365,63 +416,6 @@ void buscarContactoPorID() {
     cout << endl;
 }
 
-// Menu principal de gestion de contactos
-void menuContactos(int idEntidad, const char* nombreEntidad) {
-    int opcion;
 
-    do {
-        system("cls");
-        cout << "========================================" << endl;
-        cout << "       GESTION DE CONTACTOS" << endl;
-        cout << "  ENTIDAD: " << nombreEntidad << " (ID: " << idEntidad << ")" << endl;
-        cout << "========================================" << endl;
-        cout << "1. AGREGAR NUEVO CONTACTO" << endl;
-        cout << "2. LISTAR TODOS LOS CONTACTOS" << endl;
-        cout << "3. MODIFICAR CONTACTO" << endl;
-        cout << "4. ELIMINAR CONTACTO" << endl;
-        cout << "5. BUSCAR CONTACTO POR ID" << endl;
-        cout << "6. VER CANTIDAD DE CONTACTOS" << endl;
-        cout << "0. VOLVER AL MENU ANTERIOR" << endl;
-        cout << "========================================" << endl;
-        cout << "OPCION: ";
-        cin >> opcion;
-
-        switch (opcion) {
-            case 1:
-                agregarContacto();
-                system("pause");
-                break;
-            case 2:
-                listarContactosPorEntidad();
-                system("pause");
-                break;
-            case 3:
-                modificarContacto(idEntidad);
-                system("pause");
-                break;
-            case 4:
-                eliminarContacto(idEntidad);
-                system("pause");
-                break;
-            case 5:
-                buscarContactoPorID();
-                system("pause");
-                break;
-            case 6:
-                cout << endl;
-                cout << "CANTIDAD DE CONTACTOS ACTIVOS: " << contarContactosPorEntidad(idEntidad) << endl;
-                cout << endl;
-                system("pause");
-                break;
-            case 0:
-                cout << "VOLVIENDO AL MENU ANTERIOR..." << endl;
-                break;
-            default:
-                cout << "OPCION INVALIDA" << endl;
-                system("pause");
-                break;
-        }
-    } while (opcion != 0);
-}
 
 #endif // FUNCIONESCONTACTO_H_INCLUDED

@@ -90,7 +90,6 @@ void mostrarMenuPrincipalClientes(){
     cout<<"3 - MODIFICAR CLIENTE."<<endl;
     cout<<"4 - LISTAR CLIENTES."<<endl;
     cout<<"5 - ELIMINAR CLIENTE."<<endl;
-    cout<<"6 - GESTIONAR CONTACTOS."<<endl;
     cout<<"-----------------------------"<<endl;
     cout<<"0 - VOLVER AL MENU PRINCIPAL"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
@@ -177,10 +176,7 @@ void mostrarMenuPrincipalPresupuestos(){
 }
 
 
-
 ///SUBMENUS DE LAS DISTINTAS SECCIONES
-
-    //ARTICULOS
 
 void mostrarSubMenuModificarArticulos(){
     cout<<"MODIFICAR ATRIBUTOS ARTICULOS"<<endl;
@@ -338,7 +334,7 @@ void mostrarSubMenuListarClientes(){
 }
 
 void mostrarSubMenuModificarCliente(){
-    cout<<"MODIFICAR ATRIBUTOS CLIENTES"<<endl;
+    cout<<"MODIFICAR ATRIBUTOS DE LOS CLIENTES"<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"1 - MODIFICAR TIPO."<<endl;
     cout<<"2 - MODIFICAR DIRECCION/CONTACTO."<<endl;
@@ -471,8 +467,6 @@ void dibujarCuadro(int x1, int y1, int x2, int y2){
     gotoxy(x2,y1); cout<< "\277";
     gotoxy(x2,y2); cout<< "\331";
 }
-
-
 
 /// FUNCIONES PARA BORRAR LA PANTALLA Y MANTENER DISTINTOS TITULOS
 

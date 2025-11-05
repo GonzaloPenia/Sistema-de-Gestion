@@ -244,7 +244,7 @@ class Direccion{
 
         void Cargar();
 
-        void Mostrar(){ cout << _calle << " " << _numero << ", " << _localidad << " (CP: " << _codigoPostal << "), " << _provincia << endl; }
+        void Mostrar(){ cout << "DIRECCION DEL PROVEEDOR:"<<endl; cout << _calle << " " << _numero << ", " << _localidad << " (CP: " << _codigoPostal << "), " << _provincia << endl; }
 
         string toString();
 };

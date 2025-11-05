@@ -122,16 +122,12 @@ int main(){
                 system ("cls");
                 switch(sub_menu){
                     case 1: {
-                        cout<<"1 - AGREGAR CLIENTE."<<endl;
-                        cout<<"---------------------"<<endl;
                         cargarCliente();
                         system ("pause");
                         break;
                     }
 
                     case 2:{
-                        cout<<"2-BUSCAR CLIENTE."<<endl;
-                        cout<<"------------------"<<endl;
                         buscarCliente();
                         system ("pause");
                         break;
@@ -139,8 +135,6 @@ int main(){
 
                     case 3:{
                         int modificar;
-                        cout<<"3-MODIFICAR CLIENTE."<<endl;
-                        cout<<"---------------------"<<endl;
                         system ("cls");
                         mostrarSubMenuModificarCliente();
                         cin>>modificar;
@@ -148,35 +142,26 @@ int main(){
                         {
 
                             case 1:{
-                                cout<<"1-MODIFICAR TIPO."<<endl;
-                                cout<<"---------------------"<<endl;
                                 modificarTipo();
                                 system ("pause");
-
                                 break;
                                 }
 
 
                             case 2:{
-                                cout<<"2-MODIFICAR DIRECCION/CONTACTO."<<endl;
-                                cout<<"---------------------"<<endl;
                                 modificarDireccionYContacto();
                                 system("pause");
                                 break;
                                 }
 
-
                             case 3:{
-                                cout<<"3-MODIFICAR CANTIDAD DE VENTAS."<<endl;
-                                cout<<"---------------------"<<endl;
                                 modificarCantidadVentas();
                                 system("pause");
                                 break;
                                 }
 
                             case 4:{
-                                cout<<"4-MODIFICAR NOMBRE."<<endl;///MODIFICAR NOMBRE
-                                cout<<"---------------------"<<endl;
+
                                 modificarNombreCliente();
                                 system("pause");
                                 break;
@@ -191,7 +176,6 @@ int main(){
                         }
 ///TODAS LAS LISTAS DE CLIENTES
                     case 4:
-
                         int listar;
                         cout<<"4-LISTAR CLIENTES."<<endl;
                         cout<<"---------------------"<<endl;
@@ -310,33 +294,6 @@ int main(){
                         }
                         //system ("pause");
                         break;
-
-                    case 6:{
-                        cout<<"6-GESTIONAR CONTACTOS."<<endl;
-                        cout<<"---------------------"<<endl;
-                        ArchivoCliente regClienteContactos("../../data/clientes.dat");
-                        int idCliente;
-                        cout<<"INGRESE EL ID DEL CLIENTE: ";
-                        cin>>idCliente;
-
-                        int pos = regClienteContactos.buscarSinMostrar(idCliente);
-                        if(pos == -1){
-                            cout<<"NO SE ENCONTRO CLIENTE CON ESE ID"<<endl;
-                            system("pause");
-                        } else if(pos == -2){
-                            cout<<"ERROR AL ACCEDER AL ARCHIVO"<<endl;
-                            system("pause");
-                        } else {
-                            Cliente clienteTemp = regClienteContactos.leerArchivo(pos);
-                            if(clienteTemp.getEstado()){
-                                menuContactos(idCliente, clienteTemp.getNombre());
-                            } else {
-                                cout<<"EL CLIENTE ESTA INACTIVO"<<endl;
-                                system("pause");
-                            }
-                        }
-                        break;
-                        }
 
                     case 0:{
                         cout << "0 - SALIDA DEL MENU DE CLIENTES" << endl << endl;
@@ -534,6 +491,7 @@ int main(){
                 switch(sub_menu){
                     case 1: {
                         //cout<<"1 - AGREGAR PROVEEDOR."<<endl;
+                        system ("cls");
                         cargarProveedor();
                         system ("pause");
                         break;
@@ -541,6 +499,7 @@ int main(){
 
                     case 2: {
                         //cout<<"2 - BUSCAR PROVEEDOR."<<endl;
+                        system ("cls");
                         buscarProveedor();
                         system ("pause");
                         break;
@@ -548,6 +507,7 @@ int main(){
 
                     case 3: {
                         //cout<<"2 - MODIFICAR PROVEEDOR."<<endl;
+                        system ("cls");
                         int modificar;
                         mostrarSubMenuModificarProveedores();
                         cin>>modificar;
@@ -598,29 +558,35 @@ int main(){
 
                     case 4:{
                         //cout<<"3 - LISTAR PROVEEDOR."<<endl;
+                        system ("cls");
                         int listar;
                         mostrarSubMenuListarProveedores();
                         cin>>listar;
                         switch (listar)
                              {
                             case 1:
+                                system ("cls"); 
                                 listarProveedoresPorIdMayorAMenor();
                                 system ("pause");
                                 break;
                             case 2:
+                                system ("cls");    
                                 listarProveedoresPorIdMenorAMayor();
                                 system ("pause");
                                 break;
                             case 3:
+                                system ("cls");
                                 listarProveedoresPorMayorCantidadDeCompras();
                                 system ("pause");
                                 break;
                             case 4:
+                                system ("cls");
                                 listarProveedoresPorMenorCantidadDeCompras();
                                 system ("pause");
                                 break;
 
                             case 5:
+                                system ("cls");
                                 listaDeProveedores();
                                 system ("pause");
                                 break;

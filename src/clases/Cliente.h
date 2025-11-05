@@ -77,5 +77,6 @@ void Cliente::Mostrar(){
     cout << endl;
     cout<<"Cantidad de ventas: "<<_cantidadVentas<<endl;
     cout<<"---------------------"<<endl<<endl;
+    
 
 }

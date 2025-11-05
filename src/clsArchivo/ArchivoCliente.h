@@ -151,7 +151,7 @@ void ArchivoCliente::leerArchivo(){
         cout<<"FALLO EN EL ACCESO AL ARCHIVO";
         return ;
     }
-    cout << left << setw(5) << "ID" << setw(55) << "Razon Social" << setw(15) << "CUIT" << endl;
+    cout << left << setw(5) << "ID" << setw(55) << "NOMBRE" << setw(15) << "CUIT" << endl;
     while(fread(&regCliente, sizeof (regCliente),1,p)==1){
         if(regCliente.getEstado()){
             cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;

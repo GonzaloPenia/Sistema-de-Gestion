@@ -2,12 +2,12 @@
     #include "funcionesContacto.h"
 #endif
 
+int obtenerProximoIdProveedor();
 void cargarProveedor();
 void buscarProveedor();
 void seleccionarProveedorExistente();
 void modificarNombreProveedor();
 void modificarDireccionProveedor();
-// FUNCIONES OBSOLETAS - Ahora se gestionan los contactos a traves del menu de contactos
 // void modificarContactoEmailProveedor();
 // void modificarEmailProveedor();
 // void modificarTelefonoFijoProveedor();
@@ -21,6 +21,25 @@ void listarProveedoresPorIdMenorAMayor();
 void listarProveedoresPorMayorCantidadDeCompras();
 void listarProveedoresPorMenorCantidadDeCompras();
 
+int obtenerProximoIdProveedor() {
+    ArchivoProveedor archivoProveedor;
+    Proveedor regProveedor;
+    FILE *p = fopen("../../data/proveedores.dat", "rb");
+
+    if (p == NULL) {
+        return 1; // Si el archivo no existe, el primer ID es 1
+    }
+
+    int maxId = 0;
+    while (fread(&regProveedor, sizeof(regProveedor), 1, p) == 1) {
+        if (regProveedor.getId() > maxId) {
+            maxId = regProveedor.getId();
+        }
+    }
+    fclose(p);
+    return maxId + 1;
+}
+
 void cargarProveedor(){
     Proveedor regProveedor;
     ArchivoProveedor regArchivoProveedor;
@@ -31,6 +50,7 @@ void cargarProveedor(){
     while (aux==true){
         bool continuar;
         do{
+            cout<<"LE SUGERIMOS EL SIGUIENTE ID DISPONIBLE: "<< obtenerProximoIdProveedor() <<"." <<endl;
             cout<<"ID DEL PROVEEDOR A REGISTRAR: ";
             cin>>id;
             bool repetido = regArchivoProveedor.verificarRepetido(id); //VERIFICAMOS QUE EL ID ESTE DISPONIBLE Y QUE NO HAYA REPETIDOS.
@@ -56,7 +76,7 @@ void cargarProveedor(){
 
             if(agregarContactos == 1){
                 system("cls");
-                menuContactos(id, regProveedor.getNombre());
+                agregarContacto(id);
             }
 
             aux = false;
@@ -660,6 +680,9 @@ void listarProveedoresPorIdMayorAMenor(){
         return;
     }
 
+    cout<<"LISTADO DE PROVEEDORES POR ID DE MAYOR A MENOR."<<endl;
+    cout<<"----------------------------"<<endl;
+
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 
     for(i=0; i<cantidad-1; i++)
@@ -685,7 +708,7 @@ void listarProveedoresPorIdMayorAMenor(){
     {
         if(vProveedor[i].getEstado())
             {            
-            vProveedor[i].Mostrar();
+            vProveedor[i].Mostrar(true);
             }
     }
 
@@ -707,6 +730,9 @@ void listarProveedoresPorIdMenorAMayor(){
         cout << "NO SE PUDO PEDIR MEMORIA... " << endl;
         return;
     }
+
+    cout<<"LISTADO DE PROVEEDORES POR ID DE MENOR A MAYOR."<<endl;
+    cout<<"----------------------------"<<endl;
 
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 
@@ -733,7 +759,7 @@ void listarProveedoresPorIdMenorAMayor(){
     {
         if(vProveedor[i].getEstado())
             {
-            vProveedor[i].Mostrar();
+            vProveedor[i].Mostrar(true);
             }
     }
 
@@ -755,6 +781,9 @@ void listarProveedoresPorMayorCantidadDeCompras(){
         cout << "NO SE PUDO PEDIR MEMORIA... " << endl;
         return;
     }
+
+    cout<<"LISTADO DE PROVEEDORES POR MAYOR CANTIDAD DE COMPRAS."<<endl;
+    cout<<"----------------------------"<<endl;
 
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 
@@ -781,7 +810,7 @@ void listarProveedoresPorMayorCantidadDeCompras(){
     {
         if(vProveedor[i].getEstado())
             {
-            vProveedor[i].Mostrar();
+            vProveedor[i].Mostrar(true);
             }
     }
 
@@ -803,6 +832,9 @@ void listarProveedoresPorMenorCantidadDeCompras(){
         cout << "NO SE PUDO PEDIR MEMORIA... " << endl;
         return;
     }
+
+    cout<<"LISTADO DE PROVEEDORES POR MENOR CANTIDAD DE COMPRAS."<<endl;
+    cout<<"----------------------------"<<endl;
 
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 
@@ -829,7 +861,7 @@ void listarProveedoresPorMenorCantidadDeCompras(){
     {
         if(vProveedor[i].getEstado())
             {
-            vProveedor[i].Mostrar();
+            vProveedor[i].Mostrar(true);
             }
     }
 

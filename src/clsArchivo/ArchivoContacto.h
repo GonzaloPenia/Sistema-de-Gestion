@@ -187,7 +187,6 @@ bool ArchivoContacto::modificarArchivo(int pos, Contacto regContacto){
     return confirmacion; //DEVUELVE CONFIRMACION EN CASO DE SER EXITOSO
 }
 
-
 int ArchivoContacto::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO DEL ARCHIVO
     Contacto regContacto;
     FILE *p=fopen(nombre,"rb");
@@ -201,7 +200,6 @@ int ArchivoContacto::contarArchivo(){ //DEVUELVE LA CANTIDAD DE ELEMENTOS DENTRO
     fclose(p);
     return contador;
 }
-
 
 void ArchivoContacto::encontrarContacto(int id){
     Contacto regContacto;
@@ -222,7 +220,6 @@ void ArchivoContacto::encontrarContacto(int id){
     }
     fclose(p);
 }
-
 
 int ArchivoContacto::buscarSinMostrar(int id){
 
