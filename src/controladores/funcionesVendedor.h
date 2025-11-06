@@ -110,15 +110,14 @@ void listarDeMayorAMenorVentasVendedor(){
         
     if(cantidad!=0){
         
-        cout << left << setw(25) << "Razon Social" << setw(35) << "Cargo" << setw(15) << "Ventas" << endl;
+        cout<<"LISTADO DE VENDEDORES ORDENADOS DE MAYOR A MENOR CANTIDAD DE VENTAS REALIZADAS"<<endl;
+        cout<<endl;
+        cout << left << setw(5) << "ID" << setw(15) << "Nombre" << setw(15) << "Cargo" << setw(15) << "Ventas" << setw(15) << "Antiguedad" << endl;
             for(int i=0; i<cantidad; i++)
         {
         if(vVendedores[i].getEstado())
             {
-
-            cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
-            cout << left << setw(25) << vVendedores[i].getNombre() << setw(35) << vVendedores[i].getCargo() << setw(15) << vVendedores[i].getventasRealizadas() << endl << endl;
-
+            vVendedores[i].Mostrar(true);
             }
         }
 
@@ -165,15 +164,15 @@ void listarDeMenorAMayorVentasVendedor(){
                 vVendedor[posMinimo] = aux;
                 }
         }
-    cout << left << setw(25) << "Razon Social" << setw(35) << "Cargo" << setw(15) << "Ventas" << endl;
+        
+        cout<<"LISTADO DE VENDEDORES ORDENADOS DE MENOR A MAYOR CANTIDAD DE VENTAS REALIZADAS"<<endl;
+        cout<<endl;
+        cout << left << setw(5) << "ID" << setw(15) << "Nombre" << setw(15) << "Cargo" << setw(15) << "Ventas" << setw(15) << "Antiguedad" << endl;
     for(int i=0; i<cantidad; i++)
     {
         if(vVendedor[i].getEstado())
             {
-
-            cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
-            cout << left << setw(25) << vVendedor[i].getNombre() << setw(35) << vVendedor[i].getCargo() << setw(15) << vVendedor[i].getventasRealizadas() << endl << endl;
-
+            vVendedor[i].Mostrar(true);
             }
     }
 
@@ -216,16 +215,17 @@ void listaAntiguedadMenorAMayorVendedor(){
                 vVendedor[posMinimo] = aux;
                 }
         }
-    cout << left << setw(5) << "ID" << setw(55) << "Nombre" << setw(15) << "Antiguedad" << endl;
+
+    cout<<"LISTADO DE VENDEDORES ORDENADOS DE MENOR A MAYOR ANTIGUEDAD"<<endl;
+    cout<<endl;
+    cout << left << setw(5) << "ID" << setw(15) << "Nombre" << setw(15) << "Cargo" << setw(15) << "Ventas" << setw(15) << "Antiguedad" << endl;
+    
     for(int i=0; i<cantidad; i++)
     {
         if(vVendedor[i].getEstado())
-            {
-
-            cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
-        cout << left << setw(5) << vVendedor[i].getId() << setw(55) << vVendedor[i].getNombre() << setw(15) << vVendedor[i].getaniosAntiguedad() << endl << endl;
-
-            }
+        {
+        vVendedor[i].Mostrar(true);
+        }
     }
 
     delete [] vVendedor;
@@ -267,15 +267,14 @@ void listaAntiguedadMayorAMenorVendedor(){
                 vVendedor[posMaximo] = aux;
                 }
         }
-    cout << left << setw(5) << "ID" << setw(55) << "Nombre" << setw(15) << "Antiguedad" << endl;
+    cout<<"LISTADO DE VENDEDORES ORDENADOS DE MAYOR A MENOR ANTIGUEDAD"<<endl;
+    cout<<endl;
+    cout << left << setw(5) << "ID" << setw(15) << "Nombre" << setw(15) << "Cargo" << setw(15) << "Ventas" << setw(15) << "Antiguedad" << endl;
     for(int i=0; i<cantidad; i++)
     {
         if(vVendedor[i].getEstado())
             {
-
-            cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
-        cout << left << setw(5) << vVendedor[i].getId() << setw(55) << vVendedor[i].getNombre() << setw(15) << vVendedor[i].getaniosAntiguedad() << endl << endl;
-
+            vVendedor[i].Mostrar(true);
             }
     }
 

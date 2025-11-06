@@ -871,7 +871,7 @@ void recaudacionFactura(float recaudacion, int idCliente){
     recaudacionaux=Cliente.getRecaudacion();
     Cliente.setRecaudacion(recaudacionaux+recaudacion);
     
-    bool flag = regArchivoCliente.modificarArchivo(pos, Cliente);
+    regArchivoCliente.modificarArchivo(pos, Cliente);
     system("cls");
 
 }
@@ -890,7 +890,7 @@ void recaudacionCredito(float recaudacion, int idCliente){
 
     recaudacionaux=Cliente.getRecaudacion();
     Cliente.setRecaudacion(recaudacionaux-recaudacion);
-    bool flag = regArchivoCliente.modificarArchivo(pos, Cliente);
+    regArchivoCliente.modificarArchivo(pos, Cliente);
     system("cls");
 
 }

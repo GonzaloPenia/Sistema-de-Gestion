@@ -13,7 +13,9 @@
 using namespace std;
 
 #include "globales/funcionesGlobales.h"
-#include "globales/clsGlobales.h"
+//#include "globales/clsGlobales.h"
+#include "clases/Direccion.h"
+#include "clases/Fecha.h"
 
 #include "clases/Vendedor.h"
 #include "clsArchivo/ArchivoVendedor.h"

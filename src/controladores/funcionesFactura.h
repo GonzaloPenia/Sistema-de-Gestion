@@ -155,6 +155,7 @@ int cancelacionFactura (Factura& regFactura){
     cancelar = confirmacion();
     systemClsEmisionFactura();
     if (cancelar){
+        regFactura.setEstado(false);
         cout << "La factura ha sido cancelada con exito." << endl << endl;
         return 0;
     } else {
@@ -310,7 +311,7 @@ int emisionMain(Factura& regFactura){
     return 0;
 }
 
-bool cargarCliente(Factura& regFactura){                //OK
+bool cargarCliente(Factura& regFactura){                
     ArchivoCliente regArchivoCliente;
     int opcion;
     int pos;
@@ -381,7 +382,7 @@ bool cargarCliente(Factura& regFactura){                //OK
     return continuar;
 }
 
-bool cargarVendedor(Factura& regFactura){               //OK
+bool cargarVendedor(Factura& regFactura){    
     ArchivoVendedor regArchivoVendedor;
     int pos;
     bool continuar;
@@ -414,7 +415,7 @@ bool cargarVendedor(Factura& regFactura){               //OK
     return continuar;
 }
 
-bool cargarDatosVenta(Factura& regFactura){             //OK
+bool cargarDatosVenta(Factura& regFactura){
     bool continuar;
     do {
         cout << "INGRESO DE LOS DATOS DE VENTA:" << endl << endl;
@@ -462,7 +463,7 @@ bool cargarDatosVenta(Factura& regFactura){             //OK
     return continuar;
 }
 
-void cargarDetalleVenta(Factura& regFactura){           //OK
+void cargarDetalleVenta(Factura& regFactura){
     Factura auxFactura;
     auxFactura = regFactura;    //AUX FACTURA ES UNA COPIA DE LA FACTURA ORIGINAL
     Detalle detalleAux{};
@@ -547,7 +548,7 @@ void cargarDetalleVenta(Factura& regFactura){           //OK
     regFactura.setDetalleVenta(detalleAux);
 }
 
-void modificarDetalleVenta (Factura& regFactura){       //OK
+void modificarDetalleVenta (Factura& regFactura){
     Factura auxFactura;
     auxFactura = regFactura;
     Detalle detalleAux{};
@@ -698,17 +699,19 @@ void altaFactura(Factura& regFactura){                  //OK
     fecha.cargarFechaSistema();
     regFactura.setFecha(fecha);
     regFactura.setId(idFactura+1);
-    archiFactura.AgregarRegistro(regFactura);
+    archiFactura.agregarRegistro(regFactura);
 }
 
 void imprimirFactura(Factura& regFactura){              //OK
-    regFactura.escribirEnArchivoTexto();
+    regFactura.Mostrar();
+    //regFactura.escribirEnArchivoTexto();
 }
-
+/*
 void imprimirFacturaDesdeArchivo(Factura& regFactura){
     ArchivoFactura regArchivoFactura;
-    regArchivoFactura.leerArchBin_escribirArchTxt("../../data/facturas.dat");
+    //regArchivoFactura.leerArchBin_escribirArchTxt("../../data/facturas.dat");
 }
+    */
 
 void actualizarStock(Factura& regFactura){
 

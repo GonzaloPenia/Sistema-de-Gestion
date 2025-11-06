@@ -56,59 +56,75 @@ public:
 
     void Cargar(int dni);
     void Mostrar();
+    void Mostrar(bool);
 
 };
 
 void Vendedor::Cargar(int id){
     setId(id);
     cout << "NOMBRE COMPLETO: ";
-    cargarCadena(_nombre,50); // usando propiedad heredada
+    cargarCadena(_nombre,50);
     cout << "DNI: ";
     cin >> _dni;
+    cout << "-----------------------------------------------------------"<<endl;
+    do{
+        cout << "CARGO: ";
+        cout << "1 PARA VENDEDOR, 2 PARA SUPERVISOR, 3 PARA ENCARGADO: ";
+        cin>>_cargo;
+    } while(_cargo<1 || _cargo>3);
     
-    cout << "CARGO: ";
-    cin>>_cargo;
-    
-    cout << "SUELDO: ";
+    cout << "INGRESE EL SUELDO QUE PERCIBIRA EL EMPLEADO: $";
     cin>>_sueldo;
     
-    cout << "VENTAS REALIZADAS: ";
+    cout << "INGRESE VENTAS REALIZADAS: ";
     cin>>_ventasRealizadas;
     
-    cout << "ANIOS DE ANTIGUEDAD: ";
+    cout << "INGRESE ANIOS DE ANTIGUEDAD: ";
     cin>>_aniosAntiguedad;
     
-    cout << "FECHA DE INGRESO A LA ACTIVIDAD LABORAL: ";
+    cout << "-----------------------------------------------------------"<<endl;
+    cout << "INGRESE FECHA DE INGRESO A LA ACTIVIDAD LABORAL: ";
     _fechaIngreso.Cargar();
-    
-   
-    cout << "FECHA DE NACIMIENTO: ";
+    cout << "-----------------------------------------------------------"<<endl;
+    cout << "INGRESE FECHA DE NACIMIENTO: "<<endl;
     _fechaNacimiento.Cargar();
     _edad = calcularEdad(_fechaNacimiento);
     cout << "EDAD: " << _edad << endl;
-    
-    cout<<"DOMICILIO: "<< endl;
-    _direccion.Cargar(); // usando propiedad heredada (antes _domicilio)
+    cout << "-----------------------------------------------------------"<<endl;
+    cout<<"INGRESE EL DOMICILIO: "<< endl;
+    _direccion.Cargar();
 
-    _estado=true; // usando propiedad heredada
+    _estado=true;
 }
 
 void Vendedor::Mostrar(){
-    cout <<"ID: "<<_id<<endl;
+    
+    cout << "DATOS PERSONALES:"<<endl;
+    cout << "-----------------------------------------------------------"<<endl;
+    cout <<"ID DE VENDEDOR: "<<_id<<endl;
     cout<<"NOMBRE: "<<_nombre<<endl; // usando propiedad heredada
     cout<<"DNI: "<<_dni<<endl;
-    cout<<"CARGO: "<<_cargo<<endl;
-    cout<<"SUELDO: "<<_sueldo<<endl;
-    cout<<"VENTAS REALIZADAS: "<<_ventasRealizadas<<endl;
-    cout<<"ANIOS DE ANTIGUEDAD: "<<_aniosAntiguedad<<endl;
-    cout << "FECHA DE INGRESO: ";
-    _fechaIngreso.Mostrar();
-    cout << endl;
+    cout << "FECHA DE NACIMIENTO: ";
+    _fechaNacimiento.Mostrar();
     cout<<"EDAD: "<<_edad<<endl;
     cout << "DOMICILIO: ";
     _direccion.Mostrar(); // usando propiedad heredada
+    
+    cout << "DATOS LABORALES:"<<endl;
+    cout << "-----------------------------------------------------------"<<endl;
+    cout << "1 PARA VENDEDOR, 2 PARA SUPERVISOR, 3 PARA ENCARGADO: ";
+    cout<<"CARGO: "<<_cargo<<endl;
+    cout<<"SUELDO: $"<<_sueldo<<endl;
+    cout<<"VENTAS REALIZADAS: "<<_ventasRealizadas<<endl;
+    cout<<"ANIOS DE ANTIGUEDAD: "<<_aniosAntiguedad<<endl;
+    cout << "FECHA DE INGRESO A LA ACTIVIDAD LABORAL: "<<endl;;
+    _fechaIngreso.Mostrar();
     cout << endl;
-    cout << "FECHA DE NACIMIENTO: ";
-    _fechaNacimiento.Mostrar();
+    cout << endl;
     cout << endl;
 }
+
+void Vendedor::Mostrar(bool){
+    cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
+    cout << left << setw(5) << _id << setw(15) << _nombre << setw(15) << _cargo << setw(15) << _ventasRealizadas << setw(15) << _aniosAntiguedad << endl;
+} 
