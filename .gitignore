@@ -17,6 +17,17 @@ main.exe
 # Configuración local de VSCode
 .vscode/
 
+# Archivos de Visual Studio
+.vs/
+*.ipch
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.VC.db
+*.VC.VC.opendb
+
 # No ignorar carpetas output (ejecutables se compilan aquí)
 # output/
 # src/output/
