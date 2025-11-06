@@ -1,6 +1,9 @@
 #ifndef ITEM_H_INCLUDED
 #define ITEM_H_INCLUDED
 
+class Articulo;
+class ArchivoArticulo;
+
 class Item{
 
 private:
@@ -13,6 +16,8 @@ private:
     float _importe;
     bool _estado;
 
+    void calcularPrecioYImporte(float costo, int ganancia, int tipoCliente);
+
 public:
 
     Item (){
@@ -24,6 +29,9 @@ public:
         _importe=0;
         _estado=false;
     }
+
+    // Constructor para crear items en facturas
+    Item(Articulo& articulo, float cantidad, int tipoCliente);
 
     void setNroItem(int nroItem) { _nroItem = nroItem; }
     void setIdArticulo(int idArticulo) { _idArticulo = idArticulo; }
@@ -41,31 +49,68 @@ public:
     float getImporte() { return _importe; }
     bool getEstado() { return _estado; }
 
+    // Metodo para obtener el articulo original desde el archivo
+    // Util para reconstruir informacion del catalogo si es necesario
+    Articulo obtenerArticuloOriginal() const;
+
     void Cargar(Articulo regArticulo, int cantidad, int tipoCliente);
     void Mostrar();
     void escribirArchivoTexto(FILE *p);
 
 };
 
-void Item::Cargar (Articulo regArticulo, int cantidad, int tipoCliente){
+// Metodo privado para calcular precio e importe segun tipo de cliente
+void Item::calcularPrecioYImporte(float costo, int ganancia, int tipoCliente){
     float valorIVA = 1.21;
-    _nroItem = 1;
-    _idArticulo=regArticulo.getId();
-    strcpy(_descripcion,regArticulo.getDescripcion());
-    _cantidad=cantidad;
 
-    int costo = regArticulo.getCosto();
-    int ganancia = regArticulo.getGanancia();
-    
-    if (tipoCliente == 1 || tipoCliente == 2){    
-        _precioUnitario= costo * ( 1 + ganancia/100.0 );
-        _importe=_precioUnitario*cantidad*valorIVA;
+    // Tipo 1 y 2: Responsable Inscripto y Monotributo (IVA discriminado)
+    // Tipo 3 y 4: Exento y Consumidor Final (IVA incluido)
+    if (tipoCliente == 1 || tipoCliente == 2){
+        _precioUnitario = costo * (1 + ganancia/100.0);
+        _importe = _precioUnitario * _cantidad * valorIVA;
     } else {
-        _precioUnitario=(costo * ( 1 + ganancia/100.0 ) )* valorIVA;
-        _importe=_precioUnitario*cantidad;
+        _precioUnitario = (costo * (1 + ganancia/100.0)) * valorIVA;
+        _importe = _precioUnitario * _cantidad;
+    }
+}
+
+// Constructor que crea un Item desde un Articulo
+// Uso: Item item(articulo, cantidad, tipoCliente);
+Item::Item(Articulo& articulo, float cantidad, int tipoCliente){
+    _nroItem = 1; // Se ajusta luego al agregarlo al Detalle
+    _idArticulo = articulo.getId();
+    strcpy(_descripcion, articulo.getDescripcion());
+    _cantidad = cantidad;
+
+    calcularPrecioYImporte(articulo.getCosto(), articulo.getGanancia(), tipoCliente);
+
+    _estado = true;
+}
+
+// Metodo para obtener el articulo original desde el archivo
+// Retorna el Articulo actual del catalogo (puede tener datos actualizados)
+Articulo Item::obtenerArticuloOriginal() const {
+    ArchivoArticulo archivo;
+    int pos = archivo.buscarSinMostrar(_idArticulo);
+
+    if (pos != -1) {
+        return archivo.leerArchivo(pos);
     }
 
-    _estado=true;
+    // Si no se encuentra, retorna un articulo vacio
+    return Articulo();
+}
+
+// Metodo que mantiene compatibilidad con codigo existente
+void Item::Cargar (Articulo regArticulo, int cantidad, int tipoCliente){
+    _nroItem = 1;
+    _idArticulo = regArticulo.getId();
+    strcpy(_descripcion, regArticulo.getDescripcion());
+    _cantidad = cantidad;
+
+    calcularPrecioYImporte(regArticulo.getCosto(), regArticulo.getGanancia(), tipoCliente);
+
+    _estado = true;
 }
 
 void Item::Mostrar (){

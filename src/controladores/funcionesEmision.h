@@ -219,7 +219,7 @@ void listarEmisiones(){
                         int idCliente;
                         cin >> idCliente;
 
-                        ArchivoContacto regArchivoCliente;
+                        ArchivoCliente regArchivoCliente;
 
                         while (regArchivoCliente.buscarRegistro(idCliente)==-1){
                             cout << endl << "No se ha encontrado un cliente con ese id." << endl;

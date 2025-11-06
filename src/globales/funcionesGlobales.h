@@ -1,6 +1,14 @@
 #ifndef FUNCIONESGLOBALES_H_INCLUDED
 #define FUNCIONESGLOBALES_H_INCLUDED
 
+// Forward declarations para las clases que se usan en las funciones de carrito
+// Estas clases se incluyen en main.cpp antes de las implementaciones
+class Articulo;
+class ArchivoArticulo;
+class Item;
+class Detalle;
+class Factura;
+
 ///FUNCIONES GLOBALES
 
 ///MENU PRINCIPAL
@@ -540,4 +548,51 @@ void systemClsVisualizacionPresupuesto(){
     cout << "VISUALIZACION DE PRESUPUESTO" << endl << endl;
 }
 
+///============================================================================
+/// FUNCIONES AUXILIARES PARA GESTION DE CARRITO DE ITEMS EN FACTURAS
+///============================================================================
+
+/**
+ * Busca y selecciona un articulo del catalogo
+ * Retorna el Articulo seleccionado por el usuario
+ * Retorna un Articulo vacio si no se selecciona nada
+ */
+Articulo seleccionarArticulo();
+
+/**
+ * Valida que haya suficiente stock disponible para la cantidad solicitada
+ * Retorna true si hay stock suficiente, false si no
+ */
+bool validarStockDisponible(Articulo& articulo, float cantidad);
+
+/**
+ * Crea un Item desde un Articulo validando stock previamente
+ * Retorna true si se creo exitosamente, false si fallo
+ */
+bool crearItemDesdeArticulo(Item& item, Articulo& articulo, float cantidad, int tipoCliente);
+
+/**
+ * Pide al usuario la cantidad deseada de un articulo
+ * Retorna la cantidad ingresada (mayor a 0)
+ */
+float pedirCantidad();
+
+/**
+ * Muestra un resumen del carrito actual
+ * Muestra cantidad de items y total parcial
+ */
+void mostrarResumenCarrito(Detalle& detalle, float importeTotal);
+
+/**
+ * Menu de gestion del carrito de items
+ * Permite agregar, modificar, eliminar items antes de confirmar
+ */
+void menuGestionCarrito(Factura& factura);
+
+///============================================================================
+/// NOTA: Las implementaciones de las funciones de carrito se encuentran en
+/// controladores/funcionesCarrito.h que debe incluirse DESPUES de las clases en main.cpp
+///============================================================================
+
 #endif // FUNCIONESGLOBALES_H_INCLUDED
+

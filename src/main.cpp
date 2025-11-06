@@ -44,6 +44,9 @@ using namespace std;
 #include "controladores/funcionesEmision.h"
 #include "controladores/funcionesFactura.h"
 
+// Incluir las implementaciones de funciones de carrito DESPUES de todas las clases
+#include "controladores/funcionesCarrito.h"
+
 int main(){
     int menu=1;
     while(menu!=0){
@@ -66,20 +69,10 @@ int main(){
                     case 1: {
                         cout<<"1-EMISION DE FACTURA."<<endl;
                         cout<<"---------------------"<<endl;
-                        Factura regFactura;
-                        emisionMain(regFactura);
+                        menuGestionCarrito();
                         system ("pause");
                         break;
                     }
-
-                    //EMISION DE NOTAS DE CREDITO
-                   /* case 2: {
-                        cout<<"2-EMISION DE NOTA DE CREDITO."<<endl;
-                        NotaDeCredito regNotaDeCredito;
-                        emisionMain(regNotaDeCredito);
-                        system ("pause");
-                        break;
-                    }*/
 
                     //LISTADO DE FACTURAS Y NOTAS DE CREDITO
                     case 2: {
@@ -88,15 +81,6 @@ int main(){
                         system ("pause");
                         break;
                     }
-
-                    //PRESUPUESTOS
-                    /* 4: {
-                        cout<<"4-PRESUPUESTOS."<<endl;
-                        Presupuesto regPresupuesto;
-                        seccionPresupuesto(regPresupuesto);
-                        system ("pause");
-                        break;
-                    }*/
 
                     case 0: {
                         cout << "0 - VOLVER AL MENU PRINCIPAL" << endl << endl;

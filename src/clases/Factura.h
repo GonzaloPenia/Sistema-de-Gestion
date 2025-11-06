@@ -1,6 +1,8 @@
 #ifndef FACTURA_H_INCLUDED
 #define FACTURA_H_INCLUDED
 
+#include <sstream>  // Para stringstream
+
 ///CLASE DERIVADA DE EMISION: FACTURA
 class Factura : public Emision{
 
