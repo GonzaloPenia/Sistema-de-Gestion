@@ -237,7 +237,6 @@ void agregarContacto(int IdEntidad) {
     }
 }
 
-
 // Modificar un contacto existente
 void modificarContacto(int idEntidad) {
     ArchivoContacto archivoContacto;
@@ -423,7 +422,5 @@ void buscarContactoPorID() {
     fclose(p);
     cout << endl;
 }
-
-
 
 #endif // FUNCIONESCONTACTO_H_INCLUDED
