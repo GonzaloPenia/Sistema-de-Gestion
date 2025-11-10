@@ -166,6 +166,14 @@ void listarContactos(){
         }
     }
 
+    /*PRIMERO OBJETO CLIENTE = MAURISIO
+    INT CONTACTO AUX
+    CONTACTO AUX = MAURISIO.GETID()
+    CONTACTO AUX BUSCAR EN CONTACTOS.DAT TODOS LOS CONTACTOS ASOCIADOS A ESTE ID   
+    
+    
+    
+    */
 
 }
 

@@ -649,8 +649,10 @@ int main(){
 
                         }
                         case 2:{
-                            listarContactosPorEntidad();
 
+                            
+                            listarContactosPorEntidad();
+                            listaDeProveedores();
                             break;
                         }
 
