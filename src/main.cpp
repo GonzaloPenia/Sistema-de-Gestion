@@ -23,12 +23,14 @@ using namespace std;
 
 #include "clases/Contacto.h"
 
+
 #include "clases/Entidad.h"
 #include "clases/Cliente.h"
-#include "clsArchivo/ArchivoCliente.h"
-#include "controladores/funcionesCliente.h"
 #include "clases/Proveedor.h"
 #include "clsArchivo/ArchivoProveedor.h"
+#include "clsArchivo/ArchivoCliente.h"
+#include "controladores/funcionesCliente.h"
+
 
 #include "clases/Articulo.h"
 #include "clsArchivo/ArchivoArticulo.h"
@@ -652,7 +654,7 @@ int main(){
 
                             
                             listarContactosPorEntidad();
-                            listaDeProveedores();
+                            
                             break;
                         }
 

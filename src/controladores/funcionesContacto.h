@@ -78,10 +78,13 @@ void eliminarContactosDeEntidad(int idEntidad) {
 void listarContactosPorEntidad() {
     ArchivoContacto archivoContacto;
     Contacto regContacto;
+    ArchivoCliente ArchivoCliente;
+    ArchivoProveedor archivoProveedor;
     int idEntidad;
+    int idAux;
 
-    cout << "DE QUE ENTIDAD QUERRIA VER LOS CONTACTOS? ";
-    cin >> idEntidad;
+    cout << "DE QUE ENTIDAD QUERRIA VER LOS CONTACTOS?  (1 - Cliente, 2 - Proveedor): ";    
+    cin >> idAux;
     
 
     FILE *p = fopen("../../data/contactos.dat", "rb");
@@ -92,7 +95,16 @@ void listarContactosPorEntidad() {
     }
 
     cout << endl;
-    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15) << "ENTIDAD" <<endl;
+    if(idAux==1){
+    cout << endl;
+
+    ArchivoCliente.leerArchivo();
+    system("pause");
+    cout << "Ingrese el ID del CLIENTE que quiere ver el contacto: ";
+    cin >> idEntidad;
+    cout << endl;
+
+    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15) << "CLIENTE" <<endl;
     cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
 
     bool hayContactos = false;
@@ -108,8 +120,34 @@ void listarContactosPorEntidad() {
     }
 
     if (!hayContactos) {
-        cout << "NO HAY CONTACTOS REGISTRADOS PARA ESTA ENTIDAD" << endl;
+        cout << "NO HAY CONTACTOS REGISTRADOS PARA ESTA CLIENTE" << endl;
     }
+    } else{
+    cout << endl;
+    archivoProveedor.leerArchivo();
+    system("pause");
+    cout << "Ingrese el ID del PROVEEDOR que quiere ver el contacto: ";
+    cin >> idEntidad;
+    cout << endl;
+    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15) << "PROVEEDOR" <<endl;
+    cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
+
+    bool hayContactos = false;
+    while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
+        if (regContacto.getIdEntidad() == idEntidad && regContacto.getEstado()) {
+            cout << left << setw(8) << regContacto.getIdContacto()
+                 << setw(30) << regContacto.getNombreContacto()
+                 << setw(20) << regContacto.getNroTelefono()
+                 << setw(35) << regContacto.getEmail()
+                 << setw(20) << regContacto.getIdEntidad() << endl;
+            hayContactos = true;
+        }
+    }
+
+    if (!hayContactos) {
+        cout << "NO HAY CONTACTOS REGISTRADOS PARA ESTE PROVEEDOR" << endl;
+    }
+}
 
     fclose(p);
     cout << endl;
@@ -166,10 +204,13 @@ void listarContactos(){
         }
     }
 
-    /*PRIMERO OBJETO CLIENTE = MAURISIO
-    INT CONTACTO AUX
-    CONTACTO AUX = MAURISIO.GETID()
-    CONTACTO AUX BUSCAR EN CONTACTOS.DAT TODOS LOS CONTACTOS ASOCIADOS A ESTE ID   
+    /* ArchivoContacto archivoContacto;
+    Contacto regContacto;
+    int IdAmandar;
+    FILE *p = fopen("../../data/contactos.dat", "rb");
+    cout << "Ingrese el Id " << endl;
+    cin>>IdAmandar;
+    archivoContacto.buscarContacto(IdAmandar);   
     
     
     
@@ -236,6 +277,7 @@ void agregarContacto(int IdEntidad) {
         cout << "ERROR AL GUARDAR EL CONTACTO" << endl;
     }
 }
+
 
 // Modificar un contacto existente
 void modificarContacto(int idEntidad) {
@@ -422,5 +464,7 @@ void buscarContactoPorID() {
     fclose(p);
     cout << endl;
 }
+
+
 
 #endif // FUNCIONESCONTACTO_H_INCLUDED

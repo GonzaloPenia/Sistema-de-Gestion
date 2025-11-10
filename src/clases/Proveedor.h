@@ -1,6 +1,9 @@
 #ifndef CLSPROVEEDOR_H_INCLUDED
 #define CLSPROVEEDOR_H_INCLUDED
 
+
+void listarContactosPorEntidad(int idEntidad);
+
 class Proveedor: public Entidad{
     private:
         int _id;

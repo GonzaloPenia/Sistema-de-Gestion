@@ -75,7 +75,7 @@ void Contacto::Mostrar(){
     cout << "Nombre del contacto: " << _nombreContacto << endl;
     cout << "Numero de telefono: " << _nroTelefono << endl;
     cout << "Email: " << _email << endl;
-    cout << "Este contacto pertence a la entidad: "<<_idEntidad << endl;
+    //cout << "Este contacto pertence a la entidad: "<<_idEntidad << endl;
 }
 
 int Contacto::Asociar(){
