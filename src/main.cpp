@@ -69,7 +69,7 @@ int main(){
                     case 1: {
                         cout<<"1-EMISION DE FACTURA."<<endl;
                         cout<<"---------------------"<<endl;
-                        menuGestionCarrito();
+                        gestionCarrito();
                         system ("pause");
                         break;
                     }

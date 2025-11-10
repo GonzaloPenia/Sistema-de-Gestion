@@ -12,11 +12,11 @@ private:
     int _idArticulo;
     char _descripcion[40];
     float _precioUnitario;
-    float _cantidad;
+    int _cantidad;
     float _importe;
     bool _estado;
 
-    void calcularPrecioYImporte(float costo, int ganancia, int tipoCliente);
+    float calcularPrecioYImporte(float costo, int ganancia, int tipoCliente);
 
 public:
 
@@ -31,13 +31,13 @@ public:
     }
 
     // Constructor para crear items en facturas
-    Item(Articulo& articulo, float cantidad, int tipoCliente);
+    Item(Articulo& articulo, int cantidad, int tipoCliente);
 
     void setNroItem(int nroItem) { _nroItem = nroItem; }
     void setIdArticulo(int idArticulo) { _idArticulo = idArticulo; }
     void setDescripcion (const char* descripcion) {strcpy(_descripcion,descripcion);}
     void setPrecioUnitario(float precioUnitario) { _precioUnitario = precioUnitario; }
-    void setCantidad(float cantidad) { _cantidad = cantidad; }
+    void setCantidad(int cantidad) { _cantidad = cantidad; }
     void setImporte(float importe) { _importe = importe; }
     void setEstado(bool estado){_estado=estado;}
 
@@ -45,7 +45,7 @@ public:
     int getIdArticulo() { return _idArticulo; }
     const char* getDescripcion() { return _descripcion; }
     float getPrecioUnitario() { return _precioUnitario; }
-    float getCantidad() { return _cantidad; }
+    int getCantidad() { return _cantidad; }
     float getImporte() { return _importe; }
     bool getEstado() { return _estado; }
 
@@ -55,35 +55,40 @@ public:
 
     void Cargar(Articulo regArticulo, int cantidad, int tipoCliente);
     void Mostrar();
-    void escribirArchivoTexto(FILE *p);
 
 };
 
 // Metodo privado para calcular precio e importe segun tipo de cliente
-void Item::calcularPrecioYImporte(float costo, int ganancia, int tipoCliente){
+float Item::calcularPrecioYImporte(float costo, int ganancia, int tipoCliente){
     float valorIVA = 1.21;
+
+    cout<< "DEBUG. COSTO: " << costo << " - GANANCIA: " << ganancia << " - TIPO CLIENTE: " << tipoCliente << endl;
 
     // Tipo 1 y 2: Responsable Inscripto y Monotributo (IVA discriminado)
     // Tipo 3 y 4: Exento y Consumidor Final (IVA incluido)
     if (tipoCliente == 1 || tipoCliente == 2){
         _precioUnitario = costo * (1 + ganancia/100.0);
         _importe = _precioUnitario * _cantidad * valorIVA;
+        cout << "DEBUG. ENTRO AL 1 O 2 EL IMPORTE ES:" << _importe << endl;
+        return _importe;
     } else {
         _precioUnitario = (costo * (1 + ganancia/100.0)) * valorIVA;
         _importe = _precioUnitario * _cantidad;
+        cout << "DEBUG. ENTRO AL 3 O 4 EL IMPORTE ES:" << _importe << endl;
+        return _importe;
     }
+
 }
 
-// Constructor que crea un Item desde un Articulo
-// Uso: Item item(articulo, cantidad, tipoCliente);
-Item::Item(Articulo& articulo, float cantidad, int tipoCliente){
+//!! CONSTRUCTOR QUE USA LA FUNCION ConversionArticuloItem();
+
+Item::Item(Articulo& articulo, int cantidad, int tipoCliente){
     _nroItem = 1; // Se ajusta luego al agregarlo al Detalle
     _idArticulo = articulo.getId();
     strcpy(_descripcion, articulo.getDescripcion());
     _cantidad = cantidad;
-
-    calcularPrecioYImporte(articulo.getCosto(), articulo.getGanancia(), tipoCliente);
-
+    _importe = calcularPrecioYImporte(articulo.getCosto(), articulo.getGanancia(), tipoCliente);
+    cout << "DEBUG. EL IMPORTE ES:" << _importe << endl;
     _estado = true;
 }
 
@@ -121,8 +126,5 @@ void Item::Mostrar (){
     cout << right << setw(10) << _precioUnitario << setw(4) << " " << setw(11) << _importe << endl;
 }
 
-void Item::escribirArchivoTexto(FILE *p) {
-    fprintf(p,"%3d%2s%9.2f%2s%7d%2s%-55s%10.2f%4s%11.2f\n", _nroItem, " ", _cantidad, " ", _idArticulo, " ", _descripcion, _precioUnitario, " ", _importe);
-}
 
 #endif // ITEM_H_INCLUDED

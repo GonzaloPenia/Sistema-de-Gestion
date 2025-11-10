@@ -15,6 +15,7 @@ public:
 
     bool escribirArchivo(Articulo regArticulo);
     Articulo leerArchivo(int pos);
+    Articulo obtenerArticulo(int pos);
     void leerArchivo();
     bool modificarArchivo(int pos, Articulo Articulo);
     int modificarArchivo(Proveedor regProveedor);
@@ -62,6 +63,24 @@ int ArchivoArticulo::buscarEnArchivo(int id){
     }
     fclose(p);
     return -1;
+}
+Articulo ArchivoArticulo::obtenerArticulo(int id){
+    Articulo Articulo;
+    FILE *p=fopen(nombre,"rb");
+    if(p==NULL){
+        cout<<"FALLO EN EL ACCESO AL ARCHIVO";
+    }
+    int contador=0;
+    while(fread(&Articulo,sizeof Articulo,1,p)==1){
+        if(Articulo.getId()==id){
+            Articulo = Articulo;
+            fclose(p);
+            return Articulo;
+        }
+        contador++;
+    }
+    fclose(p);
+    return Articulo;
 }
 
 int ArchivoArticulo::buscarRegistro(int id){

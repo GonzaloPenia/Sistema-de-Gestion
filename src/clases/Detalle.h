@@ -5,7 +5,7 @@ class Detalle{
 
 private:
     Item _detalleVenta[30]{};
-    int _tamActual; // Tamaño actual del array
+    int _tamActual; // Tamanio actual del array
     bool _estado;
 
 public:
@@ -18,15 +18,15 @@ public:
     void setEstado(bool estado){_estado=estado;}
     void resetTamActual(){_tamActual=0;}
 
-    int getTamActual() {return _tamActual; } //Método para obtener el tamaño del array
+    int getTamActual() {return _tamActual; } //Mï¿½todo para obtener el tamaï¿½o del array
     bool getEstado() { return _estado; }
-    //GETTER para obtener un item en una posición específica
+    //GETTER para obtener un item en una posiciï¿½n especï¿½fica
     Item getItem(int pos) {
         if (pos >= 0 && pos <= _tamActual) {
             return _detalleVenta[pos];
         } else {
             cout << endl << "Posicion fuera de rango" << endl;
-            return Item(); //Retorna un item vacío. Ver si es mejor hacer otra cosa cuando esta fuera de rango
+            return Item(); //Retorna un item vacï¿½o. Ver si es mejor hacer otra cosa cuando esta fuera de rango
         }
     }
 
@@ -64,7 +64,7 @@ void Detalle::agregarItem(Item nuevoItem) {
         _detalleVenta[_tamActual] = nuevoItem;
         _tamActual++;
     } else {
-        cout << endl << "ATENCION. No se pudo cargar el Item ya que se ha alcanzado el maximo de items permitido."<< endl<<endl;// Ver que hacer cuando el array está lleno
+        cout << endl << "ATENCION. No se pudo cargar el Item ya que se ha alcanzado el maximo de items permitido."<< endl<<endl;// Ver que hacer cuando el array estï¿½ lleno
     }
 }
 
@@ -73,7 +73,7 @@ void Detalle::modificarItem(int pos, Item nuevoItem) {
     if (pos >= 0 && pos <= _tamActual) {
         _detalleVenta[pos] = nuevoItem;
     } else {
-        //VER QUE HACER SI ESTÁ FUERA DE RANGO
+        //VER QUE HACER SI ESTï¿½ FUERA DE RANGO
     }
 }
 
@@ -88,7 +88,7 @@ void Detalle::borrarItem(int pos){
         }
         _tamActual--;
     } else {
-        //VER QUE HACER SI ESTÁ FUERA DE RANGO
+        //VER QUE HACER SI ESTï¿½ FUERA DE RANGO
     }
 }
 

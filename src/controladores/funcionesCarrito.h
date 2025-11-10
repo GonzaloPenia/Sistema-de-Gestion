@@ -1,16 +1,30 @@
 #ifndef FUNCIONES_CARRITO_H_INCLUDED
 #define FUNCIONES_CARRITO_H_INCLUDED
 
+void mostrarMenu() {
+    cout << "MENU DE GESTION DEL CARRITO" << endl;
+    cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
+    cout << "1 - Agregar Articulo al Carrito" << endl;
+    cout << "2 - Modificar Cantidad de un Item (En desarrollo)" << endl;
+    cout << "3 - Eliminar Item del Carrito (En desarrollo)" << endl;
+    cout << "4 - Vaciar Carrito" << endl;
+    cout << "5 - Confirmar y Continuar" << endl;
+    cout << "0 - Cancelar y Salir" << endl;
+    cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
+    cout << "Ingrese una opcion: ";
+}   
+
+
 Articulo seleccionarArticulo() {
     int idArticulo;
     Articulo Articulo;
     ArchivoArticulo ArchivoArticulo;
-    listarArticuloPorPrecioDeMayorAMenor();
+
+    listaArticulosSimplificada();
     
     cout << endl << "Ingrese el ID del articulo que desea agregar al carrito: ";
-    //FALTA VALIDACION
     cin >> idArticulo;
-    Articulo=ArchivoArticulo.leerArchivo(idArticulo);
+    Articulo=ArchivoArticulo.obtenerArticulo(idArticulo);
     return Articulo;
 }
 
@@ -24,15 +38,10 @@ bool validarStockDisponible(Articulo& articulo, float cantidad) {
     return true;
 }
 
-Item crearItemDesdeArticulo(Articulo& articulo, float cantidad, int tipoCliente) {
-    // Validar que el articulo tenga ID valido
-    if (articulo.getId() == 0) {
-        cout << endl << "ERROR: Articulo invalido." << endl;
-        return Item(); // Retorna item vacio
-    }
-
-    // Crear el item usando el constructor
-    Item item(articulo, cantidad, tipoCliente);
+Item conversionArticuloItem(Articulo& articulo, int cantidad, int tipoCliente) {
+    int CantidadDeItems = cantidad;
+    
+    Item item(articulo, CantidadDeItems, tipoCliente);
 
     return item;
 }
@@ -80,81 +89,93 @@ Factura cargarItemEnFactura(Factura& factura, Item& nuevoItem) {
 
 void mostrarResumenCarrito(Detalle& detalle, float importeTotal) {
     int cantidadItems = detalle.getTamActual();
-
+    float importe = importeTotal; // Ya calculado en la factura
     cout << endl;
     cout << setfill('=') << setw(78) << "=" << setfill(' ') << endl;
     cout << " RESUMEN DEL CARRITO" << endl;
     cout << setfill('=') << setw(78) << "=" << setfill(' ') << endl;
     cout << " Cantidad de items: " << cantidadItems << endl;
     cout << fixed << setprecision(2);
-    cout << " Total: $" << importeTotal << endl;
+    cout << " Total: $" << importe << endl;
     cout << setfill('=') << setw(78) << "=" << setfill(' ') << endl;
     cout << endl;
 }
 
-void menuGestionCarrito() {
+void gestionCarrito() {
     int opcion = 1;
+    Factura factura;
     while (opcion != 0) {
         systemClsEmisionFactura();
-        Factura factura;
         // Mostrar resumen del carrito
+        
+        
         Detalle detalleActual = factura.getDetalleVenta();
         mostrarResumenCarrito(detalleActual, factura.getImporteTotal());
 
         // Mostrar detalle completo si hay items
         if (detalleActual.getTamActual() > 0) {
-            factura.mostrarDetalleCompleto();
+            //factura.mostrarDetalleCompleto();
             cout << endl;
         }
-
-        Factura auxFactura = factura; // Copia para modificaciones temporales
-
-        cout << "GESTION DEL CARRITO" << endl;
-        cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
-        cout << "1 - Agregar articulo al carrito" << endl;
-        cout << "2 - Modificar cantidad de un item" << endl;
-        cout << "3 - Eliminar item del carrito" << endl;
-        cout << "4 - Vaciar carrito completo" << endl;
-        cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
-        cout << "5 - CONFIRMAR Y CONTINUAR" << endl;
-        cout << "0 - CANCELAR" << endl << endl;
-        cout << "Ingrese su opcion: ";
+        
+        mostrarMenu();
         cin >> opcion;
 
+
         switch (opcion) {
+            
             case 1: {
                 //LOOP PARA AGREGAR ARTICULOS HASTA CONFIRMAR
                 systemClsEmisionFactura();
                 cout << "AGREGAR ARTICULO AL CARRITO" << endl;
                 Articulo articulo = seleccionarArticulo();
+                cout << endl << "Articulo seleccionado:" << endl;
+                articulo.Mostrar();
                 int cantidad = pedirCantidad(articulo);
+                cout << "Cantidad solicitada: " << cantidad << endl << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 Item nuevoItem;
-                nuevoItem = crearItemDesdeArticulo( articulo, cantidad, factura.getTipoCliente() );
+                nuevoItem = conversionArticuloItem( articulo, cantidad, factura.getTipoCliente() );
 
-                // Solo agregar si el item es válido (ID != 0)
-                if (nuevoItem.getIdArticulo() != 0) {
-                    factura = cargarItemEnFactura(factura, nuevoItem);
-                }
+                nuevoItem.Mostrar();
+                system("pause");
+                // VALIDACION DE ID
+                if (nuevoItem.getIdArticulo() != 0) factura = cargarItemEnFactura(factura, nuevoItem);
 
                 system("pause");
                 break;
             }
 
+            
             case 2:
-                // Modificar cantidad (por implementar)
+                // MODIFICAR CANTIDAD DE UN ITEM (por implementar).
                 cout << endl << "Opcion en desarrollo..." << endl;
                 system("pause");
                 break;
 
+            
             case 3:
-                // Eliminar item (por implementar)
+                // ELIMINAR ITEM DEL CARRITO (por implementar)
                 cout << endl << "Opcion en desarrollo..." << endl;
                 system("pause");
                 break;
 
+            
             case 4: {
-                // Vaciar carrito
+                // VACIAR CARRITO
                 systemClsEmisionFactura();
                 cout << "VACIAR CARRITO" << endl;
                 cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
@@ -169,14 +190,16 @@ void menuGestionCarrito() {
                 break;
             }
 
+
             case 5:
-                // Confirmar y continuar
+                // CONFIRMAR Y CONTINUAR
                 if (factura.getDetalleVenta().getTamActual() == 0) {
-                    cout << endl << "ERROR: El carrito esta vacio. Agregue al menos un articulo." << endl;
+                    cout << endl << "EL CARRITO ESTA VACIO AGREGUE AL MENOS UN ARTICULO" << endl;
                     system("pause");
                     opcion = 1; // No salir del menu
                 } else {
-                    cout << endl << "Carrito confirmado. Continuando..." << endl;
+                    cout << endl << "CARRITO CONFIRMADO. CONTINUANDO..." << endl;
+                    generarFactura(factura);
                     system("pause");
                     opcion = 0; // Salir del menu
                 }
@@ -194,5 +217,6 @@ void menuGestionCarrito() {
         }
     }
 }
+
 
 #endif // FUNCIONES_CARRITO_H_INCLUDED

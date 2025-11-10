@@ -7,6 +7,7 @@
 void cargarArticulo();
 void buscarArticulo();
 void listaDeArticulos();
+void listaArticulosSimplificada();
 void modificarDescripcion();
 void modificarProveedor();
 void modificarPrecio();
@@ -126,6 +127,24 @@ void listaDeArticulos(){
     ArchivoArticulo Archivo("../../data/articulos.dat");
     Archivo.leerArchivo();
     cout<<"-------------------------"<<endl;
+}
+
+void listaArticulosSimplificada(){
+    ArchivoArticulo Archivo("../../data/articulos.dat");
+    Articulo regArticulo;
+    FILE *p=fopen(Archivo.getNombre(),"rb");
+    if(p==NULL){
+        cout<<"ERROR DE ARCHIVO"<<endl;
+        return;
+    }
+    cout << "LISTA A DE ARTICULOS:" << endl;
+    cout << "--------------------------------" << endl;
+    while(fread(&regArticulo,sizeof regArticulo,1,p)==1){
+        if(regArticulo.getEstado()==true){
+            cout << "ID: " << regArticulo.getId() << " | DESCRIPCION: " << regArticulo.getDescripcion() << " | PRECIO VENTA: $" << regArticulo.getCosto() * (1 + regArticulo.getGanancia() / 100.0) << endl;
+        }
+    }
+    fclose(p);
 }
 
 void modificarDescripcion(){
