@@ -36,6 +36,7 @@ public:
     int buscarEnArchivo(int id);
     int buscarRegistro(int id);
     int buscarRegistro(const char* cuit);
+    Contacto buscarContacto(int id);
     bool verificarRepetido(int id);
     int contarArchivo();
     void vectorizarArchivo(Contacto registros[],int cantidad);
@@ -108,6 +109,26 @@ int ArchivoContacto::buscarRegistro(int id){
     }
     fclose(p);
     return -1;
+}
+
+Contacto ArchivoContacto::buscarContacto(int id){
+    Contacto regContacto;
+    FILE *p=fopen(nombre,"rb");
+    if(p==NULL){
+        cout<<"FALLO EN EL ACCESO AL ARCHIVO";
+        return regContacto;
+    }
+
+    int contador=0;
+    while(fread(&regContacto, sizeof (regContacto),1,p)==1){
+        if(regContacto.getIdContacto()==id){
+            fclose(p);
+            return regContacto;
+        }
+        contador++;
+    }
+    fclose(p);
+    return regContacto;
 }
 
 int ArchivoContacto::buscarRegistro(const char* email){
