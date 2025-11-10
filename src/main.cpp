@@ -374,39 +374,29 @@ int main(){
                         switch (listar)
                         {
                         case 1:
-                        cout<<"1-LISTAR DE MAYOR A MENOR PRECIO."<<endl;
-                        cout<<"----------------------------"<<endl;
                         listarArticuloPorPrecioDeMayorAMenor();
                         system ("pause");
                         break;
 
 
                         case 2:
-                        cout<<"2-LISTAR DE MENOR A MAYOR PRECIO."<<endl;
-                        cout<<"--------------------"<<endl;
                         listarArticuloPorPrecioDeMenorAMayor();
                         system ("pause");
                         break;
 
 
                         case 3:
-                        cout<<"3-ORDENAR POR ID DE MENOR A MAYOR."<<endl;
-                        cout<<"--------------------"<<endl;
                         listaArticuloPorIdDeMayorAMenor();
                         system ("pause");
                         break;
 
 
                         case 4:
-                        cout<<"4-ORDENAR POR ID DE MAYOR A MENOR."<<endl;
-                        cout<<"--------------------"<<endl;
                         listaArticuloPorIdDeMenorAMayor();
                         system ("pause");
                         break;
 
                         case 5:
-                        cout<<"5-LISTAR POR ORDEN EN EL QUE FUERON AGREGADOS."<<endl;
-                        cout<<"--------------------"<<endl;
                         listaDeArticulos();
                         system ("pause");
                         break;

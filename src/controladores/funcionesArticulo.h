@@ -370,6 +370,11 @@ void borrarFisico(){ //ESTA FUNCION ADEMAS DE DAR DE BAJA, SOBREESCRIBIRÁ LOS D
 }
 
 void listarArticuloPorPrecioDeMayorAMenor(){
+    
+    system("cls");
+    cout << "LISTADO DE ARTICULOS POR PRECIO DE MAYOR A MENOR" << endl;
+    cout << "------------------------------------------------" << endl;
+
     ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMaximo;
@@ -414,7 +419,7 @@ void listarArticuloPorPrecioDeMayorAMenor(){
     {
         if(vArticulos[i].getEstado())
             {
-            vArticulos[i].Mostrar();
+            vArticulos[i].Mostrar(true);
             }
     }
 
@@ -422,6 +427,11 @@ void listarArticuloPorPrecioDeMayorAMenor(){
 }
 
 void listarArticuloPorPrecioDeMenorAMayor(){
+
+    system("cls");
+    cout << "LISTADO DE ARTICULOS POR PRECIO DE MENOR A MAYOR" << endl;
+    cout << "------------------------------------------------" << endl;
+
     ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMinimo;
@@ -448,7 +458,7 @@ void listarArticuloPorPrecioDeMenorAMayor(){
                 int precioVenta = vArticulos[j].getCosto() * ( 1 + vArticulos[j].getGanancia()/100.0 );
                 int precioVentaMin = vArticulos[posMinimo].getCosto() * ( 1 + vArticulos[posMinimo].getGanancia()/100.0 );
                 
-                if( precioVenta > precioVentaMin )
+                if( precioVenta < precioVentaMin )
                     {
                     posMinimo=j;
                     }
@@ -466,7 +476,7 @@ void listarArticuloPorPrecioDeMenorAMayor(){
     {
         if(vArticulos[i].getEstado())
             {
-            vArticulos[i].Mostrar();
+            vArticulos[i].Mostrar(true);
             }
     }
 
@@ -474,7 +484,10 @@ void listarArticuloPorPrecioDeMenorAMayor(){
 }
 
 void listaArticuloPorIdDeMayorAMenor(){
-        ArchivoArticulo regArchivo("../../data/articulos.dat");
+    system("cls");
+    cout << "LISTADO DE ARTICULOS POR ID DE MAYOR A MENOR   " << endl;
+    cout << "-----------------------------------------------" << endl;
+    ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -514,7 +527,7 @@ void listaArticuloPorIdDeMayorAMenor(){
     {
         if(vArticulos[i].getEstado())
             {
-            vArticulos[i].Mostrar();
+            vArticulos[i].Mostrar(true);
             }
     }
 
@@ -522,6 +535,11 @@ void listaArticuloPorIdDeMayorAMenor(){
 }
 
 void listaArticuloPorIdDeMenorAMayor(){
+
+
+    system("cls");
+    cout << "LISTADO DE ARTICULOS POR ID DE MENOR A MAYOR" << endl;
+    cout << "-----------------------------------------------" << endl;
     ArchivoArticulo regArchivo("../../data/articulos.dat");
 
     int i, j,cantidad,posMinimo;
@@ -562,7 +580,7 @@ void listaArticuloPorIdDeMenorAMayor(){
     {
         if(vArticulos[i].getEstado())
             {
-            vArticulos[i].Mostrar();
+            vArticulos[i].Mostrar(true);
             }
     }
 

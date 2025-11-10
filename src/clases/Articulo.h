@@ -58,6 +58,7 @@ public:
     bool Cargar(int id, Proveedor auxProveedor);
 
     void Mostrar();
+    void Mostrar(bool);
 };
 
 bool Articulo::Cargar(int identificador){
@@ -144,7 +145,20 @@ void Articulo::Mostrar(){
         cout<<"ULTIMA FECHA ACTUALIZACION DE PRECIO: ";
         ultima_actualizacion_precio.Mostrar();
         proveedor.Mostrar();
+
+
+        
+
     }
+}
+
+void Articulo::Mostrar(bool){
+
+    if(estado==true){
+        cout << "ID: " << id << "  | DESCRIPCION: " << descripcion << "  | PRECIO VENTA: $" << costo * (1 + ganancia / 100.0) << "  | PROVEEDOR: " << proveedor.getNombre() << "  | ULT. ACTUALIZACION: " << ultima_actualizacion_precio.getDia()<<"/"<<ultima_actualizacion_precio.getMes()<<"/"<<ultima_actualizacion_precio.getAnio() << endl;
+    }
+
+    
 }
 
 #endif // CLSARTICULO_H_INCLUDED
