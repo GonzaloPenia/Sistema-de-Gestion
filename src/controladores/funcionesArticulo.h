@@ -148,6 +148,7 @@ void listaArticulosSimplificada(){
 }
 
 void modificarDescripcion(){
+    system("cls");
     ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"MODIFICACION DE DESCRIPCION"<<endl;
@@ -192,6 +193,7 @@ void modificarDescripcion(){
 }
 
 void modificarProveedor(){
+    system("cls");
     ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"MODIFICACION DE PROVEEDOR"<<endl;
@@ -241,6 +243,7 @@ void modificarProveedor(){
 }
 
 void modificarPrecio(){
+    system("cls");
     ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"INGRESE EL ID DEL ARTICULO CUYO PRECIO DESEA MODIFICAR"<<endl;
@@ -280,6 +283,7 @@ void modificarPrecio(){
 }
 
 void borrarLogico(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL ARTICULO
+    system("cls");
     ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"ELIMINAR UN ARTICULO."<<endl;
@@ -316,6 +320,7 @@ void borrarLogico(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL ARTICULO
 }
 
 void borrarFisico(){ //ESTA FUNCION ADEMAS DE DAR DE BAJA, SOBREESCRIBIRÁ LOS DATOS
+    system("cls");
     ArchivoArticulo Archivo("../../data/articulos.dat");
     int id,pos;
     cout<<"ELIMINAR FISICO UN ARTICULO."<<endl;

@@ -72,6 +72,7 @@ void buscarVendedor(){
 }
 
 void listarDeMayorAMenorVentasVendedor(){
+    system("cls");
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMaximo;
@@ -129,6 +130,8 @@ void listarDeMayorAMenorVentasVendedor(){
 }
 
 void listarDeMenorAMayorVentasVendedor(){
+    
+    system("cls");
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMinimo;
@@ -180,6 +183,7 @@ void listarDeMenorAMayorVentasVendedor(){
 }
 
 void listaAntiguedadMenorAMayorVendedor(){
+    system("cls");
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMinimo;
@@ -232,6 +236,7 @@ void listaAntiguedadMenorAMayorVendedor(){
 }
 
 void listaAntiguedadMayorAMenorVendedor(){
+    system("cls");
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
 
     int i, j,cantidad,posMaximo;
@@ -282,14 +287,21 @@ void listaAntiguedadMayorAMenorVendedor(){
 }
 
 void listarVendedores(){
+    system("cls");
+    cout<<"5-LISTAR POR ORDEN EN EL QUE FUERON AGREGADOS."<<endl;
+    cout<<"--------------------"<<endl;
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
     regVendedor.leerArchivo();
     cout<<"-------------------------"<<endl;
 }
 
 void borrarLogicoVendedor(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIENTE
+    system("cls");
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
+    cout<<"1-BAJA LOGICA."<<endl;
+    cout<<"---------------------"<<endl;
+    
     cout<<"ELIMINAR UN VENDEDOR."<<endl;
     cout<<"---------------------"<<endl;
     cout<<"INGRESE EL ID DEL VENDEDOR EL CUAL DESEA ELIMINAR:"<<endl;
@@ -334,11 +346,15 @@ void borrarLogicoVendedor(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIE
 }
 
 void borrarFisicoVendedor(){ //ESTA FUNCION PONDRA TODOS LOS VALORES EN 0 DEL CLIENTE
+    system("cls");
     ArchivoVendedor regVendedor("../../data/vendedores.dat");
     int id,pos;
     int a;
     a=rand();    
     
+    cout<<"2-BAJA FISICA."<<endl;
+    cout<<"---------------------"<<endl;
+
     cout<<"ELIMINAR UN VENDEDOR."<<endl;
     cout<<"---------------------"<<endl;
     cout<<"INGRESE EL ID DEL VENDEDOR EL CUAL DESEA ELIMINAR:"<<endl;

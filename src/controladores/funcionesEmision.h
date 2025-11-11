@@ -102,7 +102,6 @@ Fecha rangoFecha (Fecha& fechaInicial){
     return fechaFinal;
 }
 
-
 void mostrarEncabezadoEmisionResumida(){
     cout << setfill('-') << setw(103) << "-" << setfill(' ') << endl;
     cout << left << setw(14) << "FECHA" << setw(6) << "NUMERO" << setw(4) << " " << setw(10) << "ID.CLIENTE"
@@ -119,7 +118,6 @@ void mostrarEncabezadoEmisionArticulo(){
     cout << setfill('-') << setw(122) << "-" << setfill(' ') << endl;
 }
 
-
 void listarFacturas(){
     ArchivoFactura regArchivoFactura;
 
@@ -128,6 +126,8 @@ void listarFacturas(){
     regArchivoFactura.listarRegistos();
 }
 
+
+//! ATENCION
 void listarFacturasRangoFecha(Fecha fechaInicial, Fecha fechaFinal){
     ArchivoFactura regArchivoFactura;
     Factura regFactura;
@@ -175,7 +175,7 @@ void listarFacturasArticulo(Fecha fechaInicial, Fecha fechaFinal, int idArticulo
     for (int i=0; i<cantidad; i++){
         regFactura = regArchivoFactura.leerRegistro(i);
         if(regFactura.getFecha()>=fechaInicial && regFactura.getFecha()<=fechaFinal){
-            for (int j=0; i<regFactura.getDetalleVenta().getTamActual(); i++){
+            for (int j=0; j<regFactura.getDetalleVenta().getTamActual(); j++){
                 if (regFactura.getDetalleVenta().getItem(j).getIdArticulo() == idArticulo){
                     regFactura.MostrarFacturaArticulo(j);
                 }
@@ -186,6 +186,9 @@ void listarFacturasArticulo(Fecha fechaInicial, Fecha fechaFinal, int idArticulo
 }
 
 void listarEmisiones(){
+    
+    cout<<"2-LISTADO DE FACTURAS"<<endl;
+    
     int opcion=1;
     while (opcion!=0){
         system ("cls");

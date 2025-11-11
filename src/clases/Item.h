@@ -88,7 +88,6 @@ Item::Item(Articulo& articulo, int cantidad, int tipoCliente){
     strcpy(_descripcion, articulo.getDescripcion());
     _cantidad = cantidad;
     _importe = calcularPrecioYImporte(articulo.getCosto(), articulo.getGanancia(), tipoCliente);
-    cout << "DEBUG. EL IMPORTE ES:" << _importe << endl;
     _estado = true;
 }
 

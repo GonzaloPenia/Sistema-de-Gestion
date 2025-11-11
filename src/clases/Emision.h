@@ -198,10 +198,6 @@ void Emision::calcularImportes(){
 
     //MUESTRA EL DETALLE COMPLETO (UNIVERSAL: FACTURA, NOTA DE CR�DITO, PRESUPUESTO)
 void Emision::mostrarDetalleCompleto(){
-    cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
-    cout << "DETALLE DE VENTA" << endl;
-    cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
-    //ENCABEZADO DETALLE
     cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
     cout << left << setw(5) << "Item";
     cout << right << setw(11) << "Cantidad  ";
@@ -220,7 +216,9 @@ void Emision::mostrarDetalleCompleto(){
     cout << left << setw(15) << "TOTAL:" <<  setw(1) << "$";
     cout << right << setw(15) << _importeTotal << endl;
     cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
-
+    cout << endl;
+    cout << endl;
+    cout << endl;
 }
 
 #endif // EMISION_H_INCLUDED

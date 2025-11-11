@@ -198,6 +198,8 @@ void mostrarSubMenuModificarArticulos(){
 }
 
 void mostrarSubMenuListarArticulos(){
+    system("cls");
+
     cout<<"LISTAR ARTICULOS"<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"1 - LISTAR DE MAYOR A MENOR PRECIO."<<endl;
@@ -211,6 +213,8 @@ void mostrarSubMenuListarArticulos(){
 }
 
 void mostrarSubMenuBajaArticulos(){
+    system("cls");
+    
     cout<<"BAJA ARTICULOS"<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"1 - BAJA LOGICA."<<endl;
@@ -249,11 +253,9 @@ void mostrarSubMenuModificarProveedores(){
     cout<<"MODIFICAR PROVEEDOR."<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"1 - MODIFICAR NOMBRE DEL PROVEEDOR."<<endl;
-    cout<<"2 - MODIFICAR CONTACTO EMAIL DEL PROVEEDOR."<<endl;
-    cout<<"3 - MODIFICAR EMAIL DEL PROVEEDOR."<<endl;
-    cout<<"4 - MODIFICAR TELEFONO MOVIL DEL PROVEEDOR."<<endl;
-    cout<<"5 - MODIFICAR TELEFONO FIJO DEL PROVEEDOR."<<endl;
-    cout<<"6 - MODIFICAR DIRECCION DEL PROVEEDOR."<<endl;
+    cout<<"2 - MODIFICAR DIRECCION DEL PROVEEDOR."<<endl;
+
+    cout<<"Si usted desea modificar un contacto debe gestionarlo a traves del menu de contactos."<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"0 - VOLVER ATRAS"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";

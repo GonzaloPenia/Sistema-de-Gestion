@@ -50,7 +50,7 @@ void cargarCliente(){
     int id;
     bool repetido2;
     
-    cout<<"1 - AGREGAR CLIENTE."<<endl;
+    cout<<"AGREGAR CLIENTE."<<endl;
     cout<<"---------------------"<<endl;
     cout<<"CARGA DE NUEVO CLIENTE."<<endl<<endl;
     cout<<"INGRESE LOS SIGUIENTES DATOS QUE LE SERAN SOLICITADOS."<<endl<<endl;
@@ -91,6 +91,10 @@ void cargarCliente(){
 }
 
 void listarClientes(){
+    system("cls");
+    cout<<"LISTAR POR ORDEN EN EL QUE FUERON AGREGADOS."<<endl;
+    cout<<"--------------------"<<endl;
+    
     ArchivoCliente regCliente("../../data/clientes.dat");
     regCliente.leerArchivo();
     cout<<"-------------------------"<<endl;
@@ -343,6 +347,9 @@ void modificarNombreCliente(){
 }
 
 void listarDeMayorAMenorVentas(){
+    system("cls");
+    cout<<"LISTAR DE MAYOR A MENOR VENTAS."<<endl;
+    cout<<"----------------------------"<<endl;
     ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
@@ -394,6 +401,9 @@ void listarDeMayorAMenorVentas(){
 }
 
 void listarDeMenorAMayorVentas(){
+    system("cls");
+    cout<<"LISTAR DE MENOR A MAYOR VENTAS."<<endl;
+    cout<<"--------------------"<<endl;
     ArchivoCliente regClientes("../../data/clientes.dat");
 
     int i, j,cantidad,posMinimo;
@@ -445,6 +455,10 @@ void listarDeMenorAMayorVentas(){
 }
 
 void listaIdMenorAMayorCliente(){
+    system("cls");
+    cout<<"ORDENAR POR ID DE MENOR A MAYOR."<<endl;
+    cout<<"--------------------"<<endl;
+    
     ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMinimo;
@@ -496,7 +510,11 @@ void listaIdMenorAMayorCliente(){
 }
 
 void listaIdMayorAMenorCliente(){
-        ArchivoCliente regCliente("../../data/clientes.dat");
+    system("cls");
+    cout<<"ORDENAR POR ID DE MAYOR A MENOR."<<endl;
+    cout<<"--------------------"<<endl;
+    
+    ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
 
@@ -550,7 +568,7 @@ void borrarLogicoCliente(){ //ESTA FUNCION SOLO DARA DE BAJA EL ESTADO DEL CLIEN
     ArchivoCliente regCliente("../../data/clientes.dat");
     int id,pos;
     int eliminar;
-    cout<<"ELIMINAR UN CLIENTE."<<endl;
+    cout<<"ELIMINAR UN CLIENTE (LOGICO)."<<endl;
     cout<<"---------------------"<<endl;
     cout<<"INGRESE EL ID DEL CLIENTE EL CUAL DESEA ELIMINAR:"<<endl;
     cin>> id;
@@ -605,7 +623,7 @@ void borrarFisicoCliente(){ //ESTA FUNCION PONDRA TODOS LOS VALORES EN 0 DEL CLI
     int eliminar;
     a=rand();
 
-    cout<<"ELIMINAR UN CLIENTE."<<endl;
+    cout<<"ELIMINAR UN CLIENTE. (FISICO)"<<endl;
     cout<<"---------------------"<<endl;
     cout<<"INGRESE EL ID DEL CLIENTE EL CUAL DESEA ELIMINAR:"<<endl;
     cin>> id;
@@ -694,6 +712,11 @@ void aumentarVentas(){
 }
 
 void listaCuitMenorAMayorCliente(){
+    
+    system("cls");
+    cout<<"LISTAR POR ORDEN EN EL QUE FUERON AGREGADOS."<<endl;
+    cout<<"--------------------"<<endl;    
+    
     ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMinimo;
@@ -749,6 +772,10 @@ void listaCuitMenorAMayorCliente(){
 }
 
 void listaCuitMayorAMenorCliente(){
+    system("cls");
+    cout<<"LISTAR POR CUIT DE MAYOR A MENOR."<<endl;
+    cout<<"--------------------"<<endl;
+    
     ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
@@ -803,6 +830,10 @@ void listaCuitMayorAMenorCliente(){
 }
 
 void listaAlfabeticamenteCliente(){
+    system("cls");
+    cout<<"LISTAR ALFABETICAMENTE."<<endl;
+    cout<<"--------------------"<<endl;
+    
     ArchivoCliente regCliente("../../data/clientes.dat");
 
     int i, j,cantidad,posMaximo;
@@ -896,6 +927,9 @@ void recaudacionCredito(float recaudacion, int idCliente){
 }
 
 void listarRecaudacion(){
+    system("cls");
+
+    
     ArchivoCliente regCliente("../../data/clientes.dat");
 
     int opcion;
