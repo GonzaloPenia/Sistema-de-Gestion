@@ -19,12 +19,92 @@ Factura eliminarItemDelCarrito(Factura& factura) {
     cout << "Esta funcionalidad estara disponible en futuras actualizaciones." << endl;
     return factura;
 }
+
 Factura modificarCarrito(Factura& factura) {
     cout << "MODIFICAR ITEM DEL CARRITO (En desarrollo)" << endl;
     cout << "Esta funcionalidad estara disponible en futuras actualizaciones." << endl;
     return factura;
 }
 
+Cliente elegirCliente(){
+    Cliente cliente;
+    ArchivoCliente archivoCliente;
+    int idCliente;
+
+    cout << "PARA CONTINUAR DEBE SELECCIONAR UN CLIENTE." << endl << endl;
+
+    do {
+        listarClientes();
+        cout << endl << "INGRESE EL ID DEL CLIENTE AL QUE SE LE VA A VENDER: ";
+        cin >> idCliente;
+
+        cliente = archivoCliente.buscarCliente(idCliente);
+
+        if (cliente.getId() == -1) {
+            cout << endl << "ERROR: No se encontro un cliente con el ID " << idCliente << endl;
+            cout << "Por favor, intente nuevamente." << endl << endl;
+            system("pause");
+            system("cls");
+        }
+    } while (cliente.getId() == -1);
+
+    cout << endl << "Cliente seleccionado: " << cliente.getNombre() << endl;
+    system("pause");
+
+    return cliente;
+}
+
+Vendedor elegirVendedor(){
+
+    Vendedor vendedor;
+    ArchivoVendedor archivoVendedor;
+    int idVendedor;
+
+    cout << "PARA CONTINUAR DEBE SELECCIONAR UN VENDEDOR." << endl << endl;
+
+    do {
+        listarVendedores();
+        cout << endl << "INGRESE EL ID DEL VENDEDOR A CARGO DE LA VENTA: ";
+        cin >> idVendedor;
+
+        vendedor = archivoVendedor.buscarVendedor(idVendedor);
+
+        if (vendedor.getId() == -1) {
+            cout << endl << "ERROR: No se encontro un vendedor con el ID " << idVendedor << endl;
+            cout << "Por favor, intente nuevamente." << endl << endl;
+            system("pause");
+            system("cls");
+        }
+    } while (vendedor.getId() == -1);
+
+    cout << endl << "Vendedor seleccionado: " << vendedor.getNombre() << endl;
+    system("pause");
+
+    return vendedor;
+}
+
+void elegirDatosVenta(int& tipoCompra, char* condicionPago) {
+    cout << endl << "DATOS DE LA VENTA" << endl;
+    cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
+    cout << "Seleccione el tipo de compra:" << endl;
+    cout << "1 - Contado Directo" << endl;
+    cout << "2 - Cuenta Corriente" << endl;
+    cout << "Ingrese una opcion (1 o 2): ";
+
+    do {
+        cin >> tipoCompra;
+        if (tipoCompra != 1 && tipoCompra != 2) {
+            cout << "Opcion invalida. Ingrese 1 o 2: ";
+        }
+    } while (tipoCompra != 1 && tipoCompra != 2);
+
+    cout << endl << "Ingrese la condicion de pago (ej: Contado, 30 dias, 60 dias): ";
+    cin.ignore();
+    cin.getline(condicionPago, 35);
+
+    cout << endl << "Datos de venta configurados correctamente." << endl;
+    system("pause");
+}
 
 void vaciarCarrito(Factura& factura) {
     cout << "VACIAR CARRITO" << endl;
@@ -39,7 +119,7 @@ void vaciarCarrito(Factura& factura) {
     }
 }
 
-Articulo seleccionarArticulo() {
+Articulo elegirArticulo() {
     int idArticulo;
     Articulo Articulo;
     ArchivoArticulo ArchivoArticulo;
@@ -132,12 +212,20 @@ void gestionCarrito() {
     cout<<"---------------------"<<endl;
     int opcion = 1;
     Factura factura;
+    Cliente cliente = elegirCliente();
+    Vendedor vendedor = elegirVendedor();
+
+    // Elegir tipo de compra y condicion de pago
+    int tipoCompra;
+    char condicionPago[35];
+    elegirDatosVenta(tipoCompra, condicionPago);
+    
     while (opcion != 0) {
         systemClsEmisionFactura();
         
+        cout<<"CLIENTE: "<< cliente.getNombre() <<endl;
+        cout<<"VENDEDOR: "<< vendedor.getNombre() <<endl;
         Detalle detalleActual = factura.getDetalleVenta();
-        
-        //mostrarResumenCarrito(detalleActual, factura.getImporteTotal());
 
         // Mostrar detalle completo si hay items
         if (detalleActual.getTamActual() > 0) {
@@ -148,21 +236,14 @@ void gestionCarrito() {
         mostrarMenu();
         cin >> opcion;
 
-
         switch (opcion) {
                 case 1: {
                     //LOOP PARA AGREGAR ARTICULOS HASTA CONFIRMAR
                     systemClsEmisionFactura();
-                    Articulo articulo = seleccionarArticulo();
+                    Articulo articulo = elegirArticulo();
                     int cantidad = pedirCantidad(articulo);
-                    
-                    system("pause");
-                    cout << endl << "Pulse ENTER para continuar..." << endl << endl;
 
-                    Item nuevoItem;
-                    nuevoItem = conversionArticuloItem( articulo, cantidad, factura.getTipoCliente() );
-                    //nuevoItem.Mostrar();
-
+                    Item nuevoItem = conversionArticuloItem( articulo, cantidad, factura.getTipoCliente() );
 
                     if (nuevoItem.getIdArticulo() != 0) factura = cargarItemEnFactura(factura, nuevoItem);
                     else cout << "Estas intentando ingresar un articulo con un ID inválido." << endl;
@@ -194,6 +275,29 @@ void gestionCarrito() {
                         system("pause");
                         opcion = 1; // No salir del menu
                     } else {
+                        // Cargar datos del cliente en la factura
+                        factura.setIdCliente(cliente.getId());
+                        factura.setCuitCliente(cliente.getCuit());
+                        factura.setTipoCliente(cliente.getTipo());
+                        factura.setNombreCliente(cliente.getNombre());
+                        factura.setDireccion(cliente.getDireccion());
+
+                        // Cargar datos del vendedor en la factura
+                        factura.setIdVendedor(vendedor.getId());
+                        factura.setNombreVendedor(vendedor.getNombre());
+
+                        // Cargar datos de la venta
+                        factura.setTipoCompra(tipoCompra);
+                        factura.setCondicionPago(condicionPago);
+
+                        // Establecer la fecha actual (el constructor ya carga la fecha del sistema)
+                        Fecha fechaActual;
+                        factura.setFecha(fechaActual);
+
+                        // Establecer el estado como activo
+                        factura.setEstado(true);
+
+                        // Generar y guardar la factura
                         generarFactura(factura);
                         opcion = 0; // Salir del menu
                     }

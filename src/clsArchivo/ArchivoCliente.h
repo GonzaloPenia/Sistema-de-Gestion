@@ -21,6 +21,7 @@ public:
     vector<Cliente> buscarPorNombreParcial(const char* subcadena);
     int buscarEnArchivo(int id);
     int buscarRegistro(int id);
+    Cliente buscarCliente(int id);
     int buscarRegistro(const char* cuit);
     bool verificarRepetido(int id);
     int contarArchivo();
@@ -117,6 +118,32 @@ int ArchivoCliente::buscarRegistro(const char* cuit){
     }
     fclose(p);
     return -1;
+}
+
+Cliente ArchivoCliente::buscarCliente(int id){
+    //id
+    Cliente regCliente;
+    Cliente cliente;
+
+    FILE *p=fopen(nombre,"rb");
+    if(p==NULL){
+        cout<<"ERROR DE ARCHIVO"<<endl;
+        return cliente;
+    }
+
+    while(fread(&regCliente,sizeof (regCliente),1,p)==1){
+        if(regCliente.getId()==id){
+            if(regCliente.getEstado()){
+                cliente=regCliente;
+            }else{
+                cliente.setId(-1); //SI DEVUELVE UN CLIENTE CON ID -1 ES PORQUE NO SE ENCONTRÓ
+                return cliente;
+            }
+        }
+    }
+    fclose(p);
+
+    return cliente;
 }
 
 bool ArchivoCliente::escribirArchivo(Cliente regCliente){
@@ -242,9 +269,6 @@ void ArchivoCliente::encontrarCliente(int id){
         cout<<"ERROR DE ARCHIVO"<<endl;
         return;
     }
-
-
-
     while(fread(&regCliente,sizeof (regCliente),1,p)==1){
 
         if(regCliente.getId()==id){

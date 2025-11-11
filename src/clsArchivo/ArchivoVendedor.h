@@ -15,6 +15,7 @@ public:
     bool escribirArchivo(Vendedor regVendedor);
     void listarArchivo();
     Vendedor leerArchivo(int pos);
+    Vendedor buscarVendedor(int id);
     void leerArchivo();
     bool modificarArchivo(int pos, Vendedor regVendedor);
     int buscarEnArchivo(int id);
@@ -86,6 +87,31 @@ void ArchivoVendedor::listarArchivo(){
     }
     cout << endl;
     fclose(p);
+}
+
+Vendedor ArchivoVendedor::buscarVendedor(int id){
+    Vendedor regVendedor;
+    Vendedor vendedor;
+
+    FILE *p=fopen(nombre,"rb");
+    if(p==NULL){
+        cout<<"ERROR DE ARCHIVO AL MOMENTO DE INTENTAR ACCEDER AL ARCHIVO VENDEDOR"<<endl;
+        return vendedor;
+    }
+
+    while(fread(&regVendedor,sizeof (regVendedor),1,p)==1){
+        if(regVendedor.getId()==id){
+            if(regVendedor.getEstado()){
+                vendedor=regVendedor;
+            }else{
+                vendedor.setId(-1); //SI DEVUELVE UN CLIENTE CON ID -1 ES PORQUE NO SE ENCONTRÓ
+                return vendedor;
+            }
+        }
+    }
+    fclose(p);
+
+    return vendedor;
 }
 
 Vendedor ArchivoVendedor::leerArchivo(int pos){
