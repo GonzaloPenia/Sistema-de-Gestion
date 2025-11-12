@@ -280,9 +280,10 @@ void mostrarSubMenuListarFacturas(){
     gotoxy(30,2);
     cout<<"LISTA DE FACTURAS"<<endl<<endl;
     cout<<"----------------------------"<<endl;
-    cout<<"1 - POR RANGO DE FECHA"<<endl;
-    cout<<"2 - POR CLIENTE Y RANGO DE FECHA"<<endl;
-    cout<<"3 - POR ARTICULO Y RANGO DE FECHA"<<endl;
+    cout<<"1 - TODAS"<<endl;
+    cout<<"2 - POR RANGO DE FECHA"<<endl;
+    cout<<"3 - POR CLIENTE Y RANGO DE FECHA"<<endl;
+    cout<<"4 - POR ARTICULO Y RANGO DE FECHA"<<endl;
     cout<<"----------------------------"<<endl;
     cout<<"0 - VOLVER ATRAS"<<endl<<endl;
     cout<<"Digite el Nro. de la opcion que desea ejecutar y presione ENTER: ";
@@ -550,51 +551,6 @@ void systemClsVisualizacionPresupuesto(){
     cout << "VISUALIZACION DE PRESUPUESTO" << endl << endl;
 }
 
-///============================================================================
-/// FUNCIONES AUXILIARES PARA GESTION DE CARRITO DE ITEMS EN FACTURAS
-///============================================================================
-
-/**
- * Busca y selecciona un articulo del catalogo
- * Retorna el Articulo seleccionado por el usuario
- * Retorna un Articulo vacio si no se selecciona nada
- */
-Articulo seleccionarArticulo();
-
-/**
- * Valida que haya suficiente stock disponible para la cantidad solicitada
- * Retorna true si hay stock suficiente, false si no
- */
-bool validarStockDisponible(Articulo& articulo, float cantidad);
-
-/**
- * Crea un Item desde un Articulo validando stock previamente
- * Retorna true si se creo exitosamente, false si fallo
- */
-bool crearItemDesdeArticulo(Item& item, Articulo& articulo, float cantidad, int tipoCliente);
-
-/**
- * Pide al usuario la cantidad deseada de un articulo
- * Retorna la cantidad ingresada (mayor a 0)
- */
-float pedirCantidad();
-
-/**
- * Muestra un resumen del carrito actual
- * Muestra cantidad de items y total parcial
- */
-void mostrarResumenCarrito(Detalle& detalle, float importeTotal);
-
-/**
- * Menu de gestion del carrito de items
- * Permite agregar, modificar, eliminar items antes de confirmar
- */
-void menuGestionCarrito(Factura& factura);
-
-///============================================================================
-/// NOTA: Las implementaciones de las funciones de carrito se encuentran en
-/// controladores/funcionesCarrito.h que debe incluirse DESPUES de las clases en main.cpp
-///============================================================================
 
 #endif // FUNCIONESGLOBALES_H_INCLUDED
 

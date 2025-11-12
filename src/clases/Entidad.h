@@ -3,10 +3,6 @@
 #include <iostream>
 using namespace std;
 
-#ifndef CLSGLOBALES_H_INCLUDED
-    #include "../globales/clsGlobales.h"
-#endif
-
 #ifndef FUNCIONESGLOBALES_H_INCLUDED
     #include "../globales/funcionesGlobales.h"
 #endif

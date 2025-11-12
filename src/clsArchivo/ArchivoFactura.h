@@ -5,7 +5,7 @@
 class ArchivoFactura{
 
 private:
-    char nombre[20];
+    char nombre[50];
 
 public:
     ArchivoFactura(const char *n="../../data/facturas.dat"){ //CONSTRUCTOR
@@ -19,7 +19,6 @@ public:
     void crearArchivoVacio();
     int crearArchivoNuevo(Factura reg);
     Factura leerRegistro(int pos);
-    bool listarRegistos();
     int contarRegistros();
     int buscarRegistro(int codigo);
     bool modificarRegistro (Factura regFactura, int pos);
@@ -103,23 +102,6 @@ Factura ArchivoFactura::leerRegistro(int pos){
     fread(&reg, sizeof reg,1, p);
     fclose(p);
     return reg;
-}
-
-//LISTAR EL ARCHIVO COMPLETO
-bool ArchivoFactura::listarRegistos(){
-    Factura reg;
-    FILE *p;
-    p = fopen(nombre, "rb");
-    if (p == NULL){
-    cout << "NO SE PUDO ACCEDER AL ARCHIVO FACTURAS.DAT" << endl;
-    return false;
-    }
-    while (fread(&reg, sizeof reg, 1, p)==1 ){
-    reg.MostrarFacturaResumen();
-    cout << endl;
-    }
-    fclose(p);
-    return true;
 }
 
 ///CONTADO

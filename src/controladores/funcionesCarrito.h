@@ -40,6 +40,7 @@ Cliente elegirCliente(){
 
         cliente = archivoCliente.buscarCliente(idCliente);
 
+
         if (cliente.getId() == -1) {
             cout << endl << "ERROR: No se encontro un cliente con el ID " << idCliente << endl;
             cout << "Por favor, intente nuevamente." << endl << endl;
@@ -49,7 +50,6 @@ Cliente elegirCliente(){
     } while (cliente.getId() == -1);
 
     cout << endl << "Cliente seleccionado: " << cliente.getNombre() << endl;
-    system("pause");
 
     return cliente;
 }
@@ -78,9 +78,24 @@ Vendedor elegirVendedor(){
     } while (vendedor.getId() == -1);
 
     cout << endl << "Vendedor seleccionado: " << vendedor.getNombre() << endl;
-    system("pause");
 
     return vendedor;
+}
+
+Factura cargarDatos ( Factura factura, Cliente cliente, Vendedor vendedor, int tipoCompra, char* condicionPago){
+        factura.setIdVendedor    ( vendedor.getId() );
+        factura.setNombreVendedor( vendedor.getNombre() );
+        factura.setIdCliente     ( cliente.getId() );
+        factura.setCuitCliente   ( cliente.getCuit() );
+        factura.setTipoCliente   ( cliente.getTipo() );
+        factura.setNombreCliente ( cliente.getNombre() );
+        factura.setDireccion     ( cliente.getDireccion() );
+        factura.setTipoCompra    (tipoCompra);
+        factura.setCondicionPago (condicionPago);
+        Fecha fechaActual;
+        factura.setFecha(fechaActual);
+        factura.setEstado(true);
+        return factura;
 }
 
 void elegirDatosVenta(int& tipoCompra, char* condicionPago) {
@@ -218,7 +233,6 @@ void gestionCarrito() {
     // Elegir tipo de compra y condicion de pago
     int tipoCompra;
     char condicionPago[35];
-    elegirDatosVenta(tipoCompra, condicionPago);
     
     while (opcion != 0) {
         systemClsEmisionFactura();
@@ -273,32 +287,14 @@ void gestionCarrito() {
                         cout << endl << "EL CARRITO ESTA VACIO AGREGUE AL MENOS UN ARTICULO." << endl;
                         cout << endl << "TOQUE ENTER PARA CONTINUAR..." << endl;
                         system("pause");
-                        opcion = 1; // No salir del menu
+                        opcion = 1;
+
                     } else {
-                        // Cargar datos del cliente en la factura
-                        factura.setIdCliente(cliente.getId());
-                        factura.setCuitCliente(cliente.getCuit());
-                        factura.setTipoCliente(cliente.getTipo());
-                        factura.setNombreCliente(cliente.getNombre());
-                        factura.setDireccion(cliente.getDireccion());
-
-                        // Cargar datos del vendedor en la factura
-                        factura.setIdVendedor(vendedor.getId());
-                        factura.setNombreVendedor(vendedor.getNombre());
-
                         // Cargar datos de la venta
-                        factura.setTipoCompra(tipoCompra);
-                        factura.setCondicionPago(condicionPago);
-
-                        // Establecer la fecha actual (el constructor ya carga la fecha del sistema)
-                        Fecha fechaActual;
-                        factura.setFecha(fechaActual);
-
-                        // Establecer el estado como activo
-                        factura.setEstado(true);
-
-                        // Generar y guardar la factura
+                        elegirDatosVenta(tipoCompra, condicionPago);
+                        factura = cargarDatos( factura, cliente, vendedor, tipoCompra, condicionPago );
                         generarFactura(factura);
+
                         opcion = 0; // Salir del menu
                     }
                     break;

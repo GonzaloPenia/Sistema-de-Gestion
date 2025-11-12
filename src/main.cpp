@@ -64,7 +64,7 @@ int main(){
                                     
                                     //LISTADO DE FACTURAS Y NOTAS DE CREDITO
                                     case 2: 
-                                        listarEmisiones();
+                                        listadoDeFacturas();
                                         system ("pause");
                                         break;
                                     
