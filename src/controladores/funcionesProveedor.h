@@ -363,8 +363,9 @@ void listarProveedoresPorIdMayorAMenor(){
         return;
     }
 
-    cout<<"LISTADO DE PROVEEDORES POR ID DE MAYOR A MENOR."<<endl;
-    cout<<"----------------------------"<<endl;
+    cout<<"LISTADO DE PROVEEDORES POR ID DE MAYOR A MENOR."<<endl<<endl;
+    cout << left << setw(5) << "ID" << setw(55) << "NOMBRE" << setw(15) << "COMPRAS REALIZADAS:" << endl;
+    
 
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 
@@ -386,7 +387,7 @@ void listarProveedoresPorIdMayorAMenor(){
                 vProveedor[posMaximo] = aux;
                 }
         }
-
+    
     for(int i=0; i<cantidad; i++)
     {
         if(vProveedor[i].getEstado())
@@ -414,8 +415,9 @@ void listarProveedoresPorIdMenorAMayor(){
         return;
     }
 
-    cout<<"LISTADO DE PROVEEDORES POR ID DE MENOR A MAYOR."<<endl;
-    cout<<"----------------------------"<<endl;
+    cout<<"LISTADO DE PROVEEDORES POR ID DE MENOR A MAYOR."<<endl<<endl;
+    cout << left << setw(5) << "ID" << setw(55) << "NOMBRE" << setw(15) << "COMPRAS REALIZADAS:" << endl;
+    
 
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 
@@ -465,8 +467,9 @@ void listarProveedoresPorMayorCantidadDeCompras(){
         return;
     }
 
-    cout<<"LISTADO DE PROVEEDORES POR MAYOR CANTIDAD DE COMPRAS."<<endl;
-    cout<<"----------------------------"<<endl;
+    cout<<"LISTADO DE PROVEEDORES POR MAYOR CANTIDAD DE COMPRAS."<<endl<<endl;
+     cout << left << setw(5) << "ID" << setw(55) << "NOMBRE" << setw(15) << "COMPRAS REALIZADAS:" << endl;
+    
 
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 
@@ -516,8 +519,9 @@ void listarProveedoresPorMenorCantidadDeCompras(){
         return;
     }
 
-    cout<<"LISTADO DE PROVEEDORES POR MENOR CANTIDAD DE COMPRAS."<<endl;
-    cout<<"----------------------------"<<endl;
+    cout<<"LISTADO DE PROVEEDORES POR MENOR CANTIDAD DE COMPRAS."<<endl<<endl;
+    cout << left << setw(5) << "ID" << setw(55) << "NOMBRE" << setw(15) << "COMPRAS REALIZADAS:" << endl;
+   
 
     regArchivo.vectorizarArchivo(vProveedor, cantidad); //CARGO EN EL VECTOR DINAMICO EL CONTENIDO DEL ARCHIVO
 

@@ -65,7 +65,7 @@ void Proveedor::Mostrar(){
     cout<<endl;
 }
 void Proveedor::Mostrar(bool){
-
+    
     cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
     cout << left << setw(5) << _id << setw(55) << _nombre << setw(15) << _cantidad_compras << endl << endl;
 

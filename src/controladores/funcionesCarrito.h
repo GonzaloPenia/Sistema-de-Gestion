@@ -1,12 +1,16 @@
 #ifndef FUNCIONES_CARRITO_H_INCLUDED
 #define FUNCIONES_CARRITO_H_INCLUDED
 
+// Declaraciones adelantadas
+int pedirCantidad(Articulo& articulo);
+Item conversionArticuloItem(Articulo& articulo, int cantidad, int tipoCliente);
+
 void mostrarMenu() {
     cout << "MENU DE GESTION DEL CARRITO" << endl;
     cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
     cout << "1 - Agregar Articulo al Carrito" << endl;
-    cout << "2 - Modificar Cantidad de un Item (En desarrollo)" << endl;
-    cout << "3 - Eliminar Item del Carrito (En desarrollo)" << endl;
+    cout << "2 - Modificar Cantidad de un Item" << endl;
+    cout << "3 - Eliminar Item del Carrito" << endl;
     cout << "4 - Vaciar Carrito" << endl;
     cout << "5 - Confirmar y Continuar" << endl;
     cout << "0 - Cancelar y Salir" << endl;
@@ -15,14 +19,125 @@ void mostrarMenu() {
 }   
 
 Factura eliminarItemDelCarrito(Factura& factura) {
-    cout << "ELIMINAR ITEM DEL CARRITO (En desarrollo)" << endl;
-    cout << "Esta funcionalidad estara disponible en futuras actualizaciones." << endl;
+    systemClsEmisionFactura();
+    cout << "ELIMINAR ITEM DEL CARRITO" << endl;   
+    cout << setfill('=') << setw(78) << "=" << setfill(' ') << endl;
+
+    Detalle detalleActual = factura.getDetalleVenta();
+
+    // Verificar si hay items en el carrito
+    if (detalleActual.getTamActual() == 0) {
+        cout << endl << "EL CARRITO ESTA VACIO. No hay items para modificar." << endl;
+        return factura;
+    }
+
+    // Mostrar items actuales
+    cout << endl << "ITEMS EN EL CARRITO:" << endl;
+    factura.mostrarDetalleCompleto();
+
+    // Pedir número de item a eliminar
+    int nroItem;
+    cout << endl << "Ingrese el numero de item que desea eliminar (1-" << detalleActual.getTamActual() << "): ";
+    cin >> nroItem;
+
+    // Validar que el número de item sea válido
+    if (nroItem < 1 || nroItem > detalleActual.getTamActual()) {
+        cout << endl << "ERROR: Numero de item invalido." << endl;
+        return factura;
+    }
+
+    // Obtener el item a eliminar (los items en el array empiezan en 0, pero se muestran desde 1)
+    int posItem = nroItem - 1;
+    Item itemActual = detalleActual.getItem(posItem);
+
+    // Obtener el artículo correspondiente para mostrar info
+    ArchivoArticulo archivoArticulo;
+    Articulo articulo = archivoArticulo.obtenerArticulo(itemActual.getIdArticulo());
+
+    cout << endl << "Item seleccionado: " << articulo.getDescripcion() << endl;
+    cout << "Cantidad: " << itemActual.getCantidad() << endl;
+
+    // Confirmar eliminación
+    cout << endl << "Esta seguro que desea eliminar este item? (1-SI, 0-NO): ";
+    int confirmar;
+    cin >> confirmar;
+
+    if (confirmar == 1) {
+        // ELIMINAR el item del detalle usando borrarItem
+        detalleActual.borrarItem(posItem);
+
+        // Actualizar la factura con el detalle modificado
+        factura.setDetalleVenta(detalleActual);
+
+        // Recalcular importes
+        factura.calcularImportes();
+
+        cout << endl << "Item eliminado exitosamente!" << endl;
+    } else {
+        cout << endl << "Eliminacion cancelada." << endl;
+    }
+    
+    
     return factura;
 }
 
 Factura modificarCarrito(Factura& factura) {
-    cout << "MODIFICAR ITEM DEL CARRITO (En desarrollo)" << endl;
-    cout << "Esta funcionalidad estara disponible en futuras actualizaciones." << endl;
+    systemClsEmisionFactura();
+    cout << "MODIFICAR CANTIDAD DE ITEM EN EL CARRITO" << endl;
+    cout << setfill('=') << setw(78) << "=" << setfill(' ') << endl;
+
+    Detalle detalleActual = factura.getDetalleVenta();
+
+    // Verificar si hay items en el carrito
+    if (detalleActual.getTamActual() == 0) {
+        cout << endl << "EL CARRITO ESTA VACIO. No hay items para modificar." << endl;
+        return factura;
+    }
+
+    // Mostrar items actuales
+    cout << endl << "ITEMS EN EL CARRITO:" << endl;
+    factura.mostrarDetalleCompleto();
+
+    // Pedir número de item a modificar
+    int nroItem;
+    cout << endl << "Ingrese el numero de item que desea modificar (1-" << detalleActual.getTamActual() << "): ";
+    cin >> nroItem;
+
+    // Validar que el número de item sea válido
+    if (nroItem < 1 || nroItem > detalleActual.getTamActual()) {
+        cout << endl << "ERROR: Numero de item invalido." << endl;
+        return factura;
+    }
+
+    // Obtener el item a modificar (los items en el array empiezan en 0, pero se muestran desde 1)
+    int posItem = nroItem - 1;
+    Item itemActual = detalleActual.getItem(posItem);
+
+    // Obtener el artículo correspondiente para validar stock
+    ArchivoArticulo archivoArticulo;
+    Articulo articulo = archivoArticulo.obtenerArticulo(itemActual.getIdArticulo());
+
+    cout << endl << "Item seleccionado: " << articulo.getDescripcion() << endl;
+    cout << "Cantidad actual: " << itemActual.getCantidad() << endl;
+
+    // Pedir nueva cantidad
+    int nuevaCantidad = pedirCantidad(articulo);
+
+    // Crear nuevo item con la cantidad actualizada
+    Item itemModificado = conversionArticuloItem(articulo, nuevaCantidad, factura.getTipoCliente());
+    itemModificado.setNroItem(nroItem); // Mantener el mismo número de item
+
+    // Modificar el item en el detalle
+    detalleActual.modificarItem(posItem, itemModificado);
+
+    // Actualizar la factura con el detalle modificado
+    factura.setDetalleVenta(detalleActual);
+
+    // Recalcular importes
+    factura.calcularImportes();
+
+    cout << endl << "Cantidad modificada exitosamente!" << endl;
+
     return factura;
 }
 
@@ -122,11 +237,14 @@ void elegirDatosVenta(int& tipoCompra, char* condicionPago) {
 }
 
 void vaciarCarrito(Factura& factura) {
+    int confirmacion;
     cout << "VACIAR CARRITO" << endl;
     cout << setfill('-') << setw(78) << "-" << setfill(' ') << endl;
-    cout << "Esta seguro que desea vaciar todo el carrito?" << endl;
+    cout << "Esta seguro que desea vaciar todo el carrito? (1-SI, 2-NO): ";
+    cin >> confirmacion;
+    
 
-    if (confirmacion()) {
+    if (confirmacion!=0) {
         Detalle detalleVacio;
         factura.setDetalleVenta(detalleVacio);
         factura.calcularImportes();

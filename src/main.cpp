@@ -62,7 +62,7 @@ int main(){
                                         system ("pause");
                                         break;
                                     
-                                    //LISTADO DE FACTURAS Y NOTAS DE CREDITO
+                                    //LISTADO DE FACTURAS
                                     case 2: 
                                         listadoDeFacturas();
                                         system ("pause");

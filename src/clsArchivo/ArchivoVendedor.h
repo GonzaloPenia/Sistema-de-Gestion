@@ -137,11 +137,11 @@ void ArchivoVendedor::leerArchivo(){
     }
 
 
-    cout << left << setw(15) << "Cargo" << setw(35) << "Nombre" << setw(15) << "Sueldo" << endl;
+    cout << left << setw(15) << "ID" << setw(10) << "Cargo" << setw(25) << "Nombre" << setw(15) << "Sueldo" << endl;
     while(fread(&regVendedor, sizeof (regVendedor),1,p)==1){
         if(regVendedor.getEstado()){
         cout << setfill('-') << setw(75) << "-" << setfill(' ') << endl;
-        cout << left << setw(15) << regVendedor.getCargo() << setw(35) << regVendedor.getNombre() << setw(15) << regVendedor.getSueldo() << endl << endl;
+        cout << left << setw(15) << regVendedor.getId() << setw(10) << regVendedor.getCargo() << setw(25) << regVendedor.getNombre() << setw(15) << regVendedor.getSueldo() << endl << endl;
         }
     }
     fclose(p);
