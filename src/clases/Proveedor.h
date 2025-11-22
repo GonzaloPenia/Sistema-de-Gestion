@@ -2,7 +2,7 @@
 #define CLSPROVEEDOR_H_INCLUDED
 
 
-void listarContactosPorEntidad(int idEntidad);
+void listarContactosPorEntidadAux(int idEntidad);
 
 class Proveedor: public Entidad{
     private:
@@ -61,7 +61,7 @@ void Proveedor::Mostrar(){
     _direccion.Mostrar();
     cout<<endl;
     cout<<"CONTACTOS DEL PROVEEDOR:"<<endl;
-    listarContactosPorEntidad(_id);
+    listarContactosPorEntidadAux(_id);
     cout<<endl;
 }
 void Proveedor::Mostrar(bool){

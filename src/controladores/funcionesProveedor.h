@@ -12,6 +12,7 @@ void borrarProveedorLogico();
 void borrarProveedorFisico();
 
 void listaDeProveedores();
+void listarProveedoresResumido();
 void listarProveedoresPorIdMayorAMenor();
 void listarProveedoresPorIdMenorAMayor();
 void listarProveedoresPorMayorCantidadDeCompras();
@@ -110,6 +111,37 @@ void listaDeProveedores()
 {
     ArchivoProveedor Archivo("../../data/proveedores.dat");
     Archivo.leerArchivo();
+}
+
+void listarProveedoresResumido() {
+    ArchivoProveedor regProveedor("../../data/proveedores.dat");
+    Proveedor proveedor;
+    FILE *p = fopen("../../data/proveedores.dat", "rb");
+
+    if (p == NULL) {
+        cout << "NO SE PUDO ABRIR EL ARCHIVO DE PROVEEDORES" << endl;
+        return;
+    }
+
+    cout << "PROVEEDORES DISPONIBLES:" << endl;
+    cout << left << setw(10) << "ID" << setw(50) << "NOMBRE" << endl;
+    cout << setfill('-') << setw(60) << "-" << setfill(' ') << endl;
+
+    bool hayProveedores = false;
+    while (fread(&proveedor, sizeof(proveedor), 1, p) == 1) {
+        if (proveedor.getEstado()) {
+            cout << left << setw(10) << proveedor.getId()
+                 << setw(50) << proveedor.getNombre() << endl;
+            hayProveedores = true;
+        }
+    }
+
+    if (!hayProveedores) {
+        cout << "NO HAY PROVEEDORES REGISTRADOS" << endl;
+    }
+
+    fclose(p);
+    cout << endl;
 }
 
 void seleccionarProveedorExistente()

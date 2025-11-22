@@ -4,6 +4,7 @@
 
 void cargarCliente();
 void listarClientes();
+void listarClientesResumido();
 void buscarCliente();
 void modificarNombre();
 void modificarTipo();
@@ -94,10 +95,41 @@ void listarClientes(){
     system("cls");
     cout<<"LISTAR POR ORDEN EN EL QUE FUERON AGREGADOS."<<endl;
     cout<<"--------------------"<<endl;
-    
+
     ArchivoCliente regCliente("../../data/clientes.dat");
     regCliente.leerArchivo();
     cout<<"-------------------------"<<endl;
+}
+
+void listarClientesResumido() {
+    ArchivoCliente regCliente("../../data/clientes.dat");
+    Cliente cliente;
+    FILE *p = fopen("../../data/clientes.dat", "rb");
+
+    if (p == NULL) {
+        cout << "NO SE PUDO ABRIR EL ARCHIVO DE CLIENTES" << endl;
+        return;
+    }
+
+    cout << "CLIENTES DISPONIBLES:" << endl;
+    cout << left << setw(10) << "ID" << setw(50) << "NOMBRE/RAZON SOCIAL" << endl;
+    cout << setfill('-') << setw(60) << "-" << setfill(' ') << endl;
+
+    bool hayClientes = false;
+    while (fread(&cliente, sizeof(cliente), 1, p) == 1) {
+        if (cliente.getEstado()) {
+            cout << left << setw(10) << cliente.getId()
+                 << setw(50) << cliente.getNombre() << endl;
+            hayClientes = true;
+        }
+    }
+
+    if (!hayClientes) {
+        cout << "NO HAY CLIENTES REGISTRADOS" << endl;
+    }
+
+    fclose(p);
+    cout << endl;
 }
 
 void buscarCliente(){

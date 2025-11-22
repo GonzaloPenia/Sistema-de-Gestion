@@ -10,7 +10,12 @@ using namespace std;
     #define ARCHIVOCONTACTO_H_INCLUDED
 #endif
 
-// Obtener el proximo ID disponible para un nuevo contacto
+void listarClientesResumido();
+void listarProveedoresResumido();
+
+void listarContactosResumido(int idEntidad);
+void listarContactosPorEntidadAux(int idEntidad);
+
 int obtenerProximoIdContacto() {
     ArchivoContacto archivoContacto;
     Contacto regContacto;
@@ -30,7 +35,6 @@ int obtenerProximoIdContacto() {
     return maxId + 1;
 }
 
-// Cuenta cuantos contactos activos tiene una entidad
 int contarContactosPorEntidad(int idEntidad) {
     ArchivoContacto archivoContacto;
     Contacto regContacto;
@@ -50,7 +54,38 @@ int contarContactosPorEntidad(int idEntidad) {
     return contador;
 }
 
-// Eliminar todos los contactos de una entidad (borrado logico)
+void listarContactosResumido(int idEntidad) {
+    ArchivoContacto archivoContacto;
+    Contacto regContacto;
+    FILE *p = fopen("../../data/contactos.dat", "rb");
+
+    if (p == NULL) {
+        cout << "NO SE PUDO ABRIR EL ARCHIVO DE CONTACTOS" << endl;
+        return;
+    }
+
+    cout << "CONTACTOS DISPONIBLES:" << endl;
+    cout << left << setw(10) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << endl;
+    cout << setfill('-') << setw(60) << "-" << setfill(' ') << endl;
+
+    bool hayContactos = false;
+    while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
+        if (regContacto.getIdEntidad() == idEntidad && regContacto.getEstado()) {
+            cout << left << setw(10) << regContacto.getIdContacto()
+                 << setw(30) << regContacto.getNombreContacto()
+                 << setw(20) << regContacto.getNroTelefono() << endl;
+            hayContactos = true;
+        }
+    }
+
+    if (!hayContactos) {
+        cout << "NO HAY CONTACTOS REGISTRADOS PARA ESTA ENTIDAD" << endl;
+    }
+
+    fclose(p);
+    cout << endl;
+}
+
 void eliminarContactosDeEntidad(int idEntidad) {
     ArchivoContacto archivoContacto;
     Contacto regContacto;
@@ -74,86 +109,77 @@ void eliminarContactosDeEntidad(int idEntidad) {
     fclose(p);
 }
 
-// Listar todos los contactos activos de una entidad
 void listarContactosPorEntidad() {
-    ArchivoContacto archivoContacto;
-    Contacto regContacto;
-    ArchivoCliente ArchivoCliente;
-    ArchivoProveedor archivoProveedor;
-    int idEntidad;
-    int idAux;
+    system("cls");
 
-    cout << "DE QUE ENTIDAD QUERRIA VER LOS CONTACTOS?  (1 - Cliente, 2 - Proveedor): ";    
-    cin >> idAux;
-    
+    cout << "=======================================" << endl;
+    cout << "    VER CONTACTOS DE UNA ENTIDAD" << endl;
+    cout << "=======================================" << endl;
+    cout << endl;
 
-    FILE *p = fopen("../../data/contactos.dat", "rb");
+    cout << "SELECCIONE EL TIPO DE ENTIDAD:" << endl;
+    cout << "1 - CLIENTE" << endl;
+    cout << "2 - PROVEEDOR" << endl;
+    cout << "0 - CANCELAR" << endl;
+    cout << endl;
+    cout << "OPCION: ";
 
-    if (p == NULL) {
-        cout << "NO SE PUDO ABRIR EL ARCHIVO DE CONTACTOS" << endl;
+    int opcion;
+    cin >> opcion;
+
+    if (opcion == 0) {
+        cout << "OPERACION CANCELADA" << endl;
         return;
     }
 
-    cout << endl;
-    if(idAux==1){
-    cout << endl;
+    system("cls");
 
-    ArchivoCliente.leerArchivo();
-    system("pause");
-    cout << "Ingrese el ID del CLIENTE que quiere ver el contacto: ";
-    cin >> idEntidad;
-    cout << endl;
+    int idEntidad;
 
-    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15) << "CLIENTE" <<endl;
-    cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
+    switch(opcion) {
+        case 1: // CLIENTE
+            cout << "=======================================" << endl;
+            cout << "     CONTACTOS DE CLIENTE" << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
 
-    bool hayContactos = false;
-    while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
-        if (regContacto.getIdEntidad() == idEntidad && regContacto.getEstado()) {
-            cout << left << setw(8) << regContacto.getIdContacto()
-                 << setw(30) << regContacto.getNombreContacto()
-                 << setw(20) << regContacto.getNroTelefono()
-                 << setw(35) << regContacto.getEmail()
-                 << setw(20) << regContacto.getIdEntidad() << endl;
-            hayContactos = true;
-        }
+            listarClientesResumido();
+
+            cout << "INGRESE EL ID DEL CLIENTE: ";
+            cin >> idEntidad;
+
+            cout << endl;
+            cout << "CONTACTOS DEL CLIENTE ID " << idEntidad << ":" << endl;
+            cout << "---------------------------------------" << endl;
+            listarContactosPorEntidadAux(idEntidad);
+            break;
+
+        case 2: // PROVEEDOR
+            cout << "=======================================" << endl;
+            cout << "     CONTACTOS DE PROVEEDOR" << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarProveedoresResumido();
+
+            cout << "INGRESE EL ID DEL PROVEEDOR: ";
+            cin >> idEntidad;
+
+            cout << endl;
+            cout << "CONTACTOS DEL PROVEEDOR ID " << idEntidad << ":" << endl;
+            cout << "---------------------------------------" << endl;
+            listarContactosPorEntidadAux(idEntidad);
+            break;
+
+        default:
+            cout << "OPCION INVALIDA" << endl;
+            break;
     }
 
-    if (!hayContactos) {
-        cout << "NO HAY CONTACTOS REGISTRADOS PARA ESTA CLIENTE" << endl;
-    }
-    } else{
-    cout << endl;
-    archivoProveedor.leerArchivo();
-    system("pause");
-    cout << "Ingrese el ID del PROVEEDOR que quiere ver el contacto: ";
-    cin >> idEntidad;
-    cout << endl;
-    cout << left << setw(8) << "ID" << setw(30) << "NOMBRE" << setw(20) << "TELEFONO" << setw(35) << "EMAIL" << setw(15) << "PROVEEDOR" <<endl;
-    cout << setfill('-') << setw(110) << "-" << setfill(' ') << endl;
-
-    bool hayContactos = false;
-    while (fread(&regContacto, sizeof(regContacto), 1, p) == 1) {
-        if (regContacto.getIdEntidad() == idEntidad && regContacto.getEstado()) {
-            cout << left << setw(8) << regContacto.getIdContacto()
-                 << setw(30) << regContacto.getNombreContacto()
-                 << setw(20) << regContacto.getNroTelefono()
-                 << setw(35) << regContacto.getEmail()
-                 << setw(20) << regContacto.getIdEntidad() << endl;
-            hayContactos = true;
-        }
-    }
-
-    if (!hayContactos) {
-        cout << "NO HAY CONTACTOS REGISTRADOS PARA ESTE PROVEEDOR" << endl;
-    }
-}
-
-    fclose(p);
     cout << endl;
 }
 
-void listarContactosPorEntidad(int idEntidad) {
+void listarContactosPorEntidadAux(int idEntidad) {
     ArchivoContacto archivoContacto;
     Contacto regContacto;
 
@@ -204,21 +230,8 @@ void listarContactos(){
         }
     }
 
-    /* ArchivoContacto archivoContacto;
-    Contacto regContacto;
-    int IdAmandar;
-    FILE *p = fopen("../../data/contactos.dat", "rb");
-    cout << "Ingrese el Id " << endl;
-    cin>>IdAmandar;
-    archivoContacto.buscarContacto(IdAmandar);   
-    
-    
-    
-    */
-
 }
 
-// Agregar un nuevo contacto a una entidad ya existente
 void agregarContacto() {
     ArchivoContacto archivoContacto;
     Contacto nuevoContacto;
@@ -251,7 +264,6 @@ void agregarContacto() {
     }
 }
 
-// Agregar un nuevo contacto a una entidad durante su creacion
 void agregarContacto(int IdEntidad) {
     ArchivoContacto archivoContacto;
     Contacto Contacto;
@@ -278,25 +290,89 @@ void agregarContacto(int IdEntidad) {
     }
 }
 
+void modificarContacto() {
+    system("cls");
 
-// Modificar un contacto existente
-void modificarContacto(int idEntidad) {
-    ArchivoContacto archivoContacto;
-
-    cout << endl;
     cout << "=======================================" << endl;
     cout << "        MODIFICAR CONTACTO" << endl;
     cout << "=======================================" << endl;
     cout << endl;
 
-    // Listar contactos de la entidad
-    listarContactosPorEntidad();
+    cout << "SELECCIONE EL TIPO DE ENTIDAD:" << endl;
+    cout << "1 - CONTACTOS DE CLIENTE" << endl;
+    cout << "2 - CONTACTOS DE PROVEEDOR" << endl;
+    cout << "0 - CANCELAR" << endl;
+    cout << endl;
+    cout << "OPCION: ";
 
-    int cantidadContactos = contarContactosPorEntidad(idEntidad);
-    if (cantidadContactos == 0) {
+    int opcion;
+    cin >> opcion;
+
+    if (opcion == 0) {
+        cout << "OPERACION CANCELADA" << endl;
         return;
     }
 
+    system("cls");
+
+    int idEntidad;
+    ArchivoContacto archivoContacto;
+
+    switch(opcion) {
+        case 1: // CLIENTE
+            cout << "=======================================" << endl;
+            cout << "  MODIFICAR CONTACTO DE CLIENTE" << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarClientesResumido();
+
+            cout << "INGRESE EL ID DEL CLIENTE: ";
+            cin >> idEntidad;
+
+            system("cls");
+            cout << "=======================================" << endl;
+            cout << "  CONTACTOS DEL CLIENTE ID " << idEntidad << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarContactosResumido(idEntidad);
+
+            if (contarContactosPorEntidad(idEntidad) == 0) {
+                return;
+            }
+            break;
+
+        case 2: // PROVEEDOR
+            cout << "=======================================" << endl;
+            cout << "  MODIFICAR CONTACTO DE PROVEEDOR" << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarProveedoresResumido();
+
+            cout << "INGRESE EL ID DEL PROVEEDOR: ";
+            cin >> idEntidad;
+
+            system("cls");
+            cout << "=======================================" << endl;
+            cout << "  CONTACTOS DEL PROVEEDOR ID " << idEntidad << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarContactosResumido(idEntidad);
+
+            if (contarContactosPorEntidad(idEntidad) == 0) {
+                return;
+            }
+            break;
+
+        default:
+            cout << "OPCION INVALIDA" << endl;
+            return;
+    }
+
+    // Solicitar ID del contacto a modificar
     int idContacto;
     cout << "INGRESE EL ID DEL CONTACTO A MODIFICAR: ";
     cin >> idContacto;
@@ -329,42 +405,161 @@ void modificarContacto(int idEntidad) {
     }
 
     // Mostrar datos actuales
+    system("cls");
     cout << endl;
-    cout << "DATOS ACTUALES:" << endl;
+    cout << "DATOS ACTUALES DEL CONTACTO:" << endl;
     regContacto.Mostrar();
     cout << endl;
 
-    // Modificar datos
-    cout << "INGRESE LOS NUEVOS DATOS:" << endl;
-    regContacto.Cargar();
+    // Menu de modificacion
+    cout << "QUE DESEA MODIFICAR?" << endl;
+    cout << "1 - NOMBRE" << endl;
+    cout << "2 - TELEFONO" << endl;
+    cout << "3 - AMBOS" << endl;
+    cout << "0 - CANCELAR" << endl;
+    cout << endl;
+    cout << "OPCION: ";
+
+    int opcionMod;
+    cin >> opcionMod;
+
+    if (opcionMod == 0) {
+        cout << "OPERACION CANCELADA" << endl;
+        return;
+    }
+
+    cout << endl;
+
+    switch(opcionMod) {
+        case 1: // Solo nombre
+            cout << "INGRESE EL NUEVO NOMBRE: ";
+            char nuevoNombre[30];
+            cargarCadena(nuevoNombre, 30);
+            regContacto.setNombreContacto(nuevoNombre);
+            break;
+
+        case 2: // Solo telefono
+            cout << "INGRESE EL NUEVO TELEFONO: ";
+            char nuevoTelefono[20];
+            cargarCadena(nuevoTelefono, 20);
+            regContacto.setNroTelefono(nuevoTelefono);
+            break;
+
+        case 3: // Ambos
+            cout << "INGRESE EL NUEVO NOMBRE: ";
+            char nombre[30];
+            cargarCadena(nombre, 30);
+            regContacto.setNombreContacto(nombre);
+
+            cout << "INGRESE EL NUEVO TELEFONO: ";
+            char telefono[20];
+            cargarCadena(telefono, 20);
+            regContacto.setNroTelefono(telefono);
+            break;
+
+        default:
+            cout << "OPCION INVALIDA" << endl;
+            return;
+    }
 
     // Guardar cambios
     if (archivoContacto.modificarArchivo(pos, regContacto)) {
         cout << endl;
         cout << "CONTACTO MODIFICADO EXITOSAMENTE" << endl;
+        cout << endl;
+        cout << "DATOS ACTUALIZADOS:" << endl;
+        regContacto.Mostrar();
     } else {
         cout << "ERROR AL MODIFICAR EL CONTACTO" << endl;
     }
-}
-
-// Eliminar un contacto (borrado logico)
-void eliminarContacto(int idEntidad) {
-    ArchivoContacto archivoContacto;
 
     cout << endl;
+}
+
+// Eliminar un contacto (con menu de seleccion)
+void eliminarContacto() {
+    system("cls");
+
     cout << "=======================================" << endl;
     cout << "         ELIMINAR CONTACTO" << endl;
     cout << "=======================================" << endl;
     cout << endl;
 
-    // Listar contactos de la entidad
-    listarContactosPorEntidad();
+    cout << "SELECCIONE EL TIPO DE ENTIDAD:" << endl;
+    cout << "1 - CONTACTOS DE CLIENTE" << endl;
+    cout << "2 - CONTACTOS DE PROVEEDOR" << endl;
+    cout << "0 - CANCELAR" << endl;
+    cout << endl;
+    cout << "OPCION: ";
 
-    int cantidadContactos = contarContactosPorEntidad(idEntidad);
-    if (cantidadContactos == 0) {
+    int opcion;
+    cin >> opcion;
+
+    if (opcion == 0) {
+        cout << "OPERACION CANCELADA" << endl;
         return;
     }
 
+    system("cls");
+
+    int idEntidad;
+    ArchivoContacto archivoContacto;
+
+    switch(opcion) {
+        case 1: // CLIENTE
+            cout << "=======================================" << endl;
+            cout << "   ELIMINAR CONTACTO DE CLIENTE" << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarClientesResumido();
+
+            cout << "INGRESE EL ID DEL CLIENTE: ";
+            cin >> idEntidad;
+
+            system("cls");
+            cout << "=======================================" << endl;
+            cout << "  CONTACTOS DEL CLIENTE ID " << idEntidad << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarContactosResumido(idEntidad);
+
+            if (contarContactosPorEntidad(idEntidad) == 0) {
+                return;
+            }
+            break;
+
+        case 2: // PROVEEDOR
+            cout << "=======================================" << endl;
+            cout << "  ELIMINAR CONTACTO DE PROVEEDOR" << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarProveedoresResumido();
+
+            cout << "INGRESE EL ID DEL PROVEEDOR: ";
+            cin >> idEntidad;
+
+            system("cls");
+            cout << "=======================================" << endl;
+            cout << "  CONTACTOS DEL PROVEEDOR ID " << idEntidad << endl;
+            cout << "=======================================" << endl;
+            cout << endl;
+
+            listarContactosResumido(idEntidad);
+
+            if (contarContactosPorEntidad(idEntidad) == 0) {
+                return;
+            }
+            break;
+
+        default:
+            cout << "OPCION INVALIDA" << endl;
+            return;
+    }
+
+    // Solicitar ID del contacto a eliminar
     int idContacto;
     cout << "INGRESE EL ID DEL CONTACTO A ELIMINAR: ";
     cin >> idContacto;
@@ -396,11 +591,19 @@ void eliminarContacto(int idEntidad) {
         return;
     }
 
-    // Confirmar eliminacion
+    // Mostrar datos del contacto y confirmar eliminacion
+    system("cls");
     cout << endl;
+    cout << "ATENCION: VA A ELIMINAR EL SIGUIENTE CONTACTO:" << endl;
     regContacto.Mostrar();
     cout << endl;
-    cout << "ESTA SEGURO QUE DESEA ELIMINAR ESTE CONTACTO? (1-SI, 0-NO): ";
+    cout << "=======================================" << endl;
+    cout << "ESTA SEGURO QUE DESEA ELIMINAR ESTE CONTACTO?" << endl;
+    cout << "1 - SI, ELIMINAR" << endl;
+    cout << "0 - NO, CANCELAR" << endl;
+    cout << endl;
+    cout << "OPCION: ";
+
     int confirmacion;
     cin >> confirmacion;
 
@@ -408,16 +611,21 @@ void eliminarContacto(int idEntidad) {
         regContacto.setEstado(false);
         if (archivoContacto.modificarArchivo(pos, regContacto)) {
             cout << endl;
-            cout << "CONTACTO ELIMINADO EXITOSAMENTE" << endl;
+            cout << "=======================================" << endl;
+            cout << "  CONTACTO ELIMINADO EXITOSAMENTE" << endl;
+            cout << "=======================================" << endl;
         } else {
+            cout << endl;
             cout << "ERROR AL ELIMINAR EL CONTACTO" << endl;
         }
     } else {
-        cout << "OPERACION CANCELADA" << endl;
+        cout << endl;
+        cout << "OPERACION CANCELADA - EL CONTACTO NO FUE ELIMINADO" << endl;
     }
+
+    cout << endl;
 }
 
-// Buscar contacto por ID
 void buscarContactoPorID() {
     ArchivoContacto archivoContacto;
 

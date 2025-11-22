@@ -530,33 +530,7 @@ int main(){
                             
                             //LISTAR CONTACTO
                             case 4:
-                                subMenuListarContactos();
-                                int ListaContactos;
-                                cin >> ListaContactos;
-                                switch(ListaContactos){
-                                        //LISTADO DE CONTACTOS
-                                        case 1:{
-                                            listarContactos();
-                                            break;
-                                        }
-                                        
-                                        //LISTAR POR ENTIDAD
-                                        case 2:{
-                                            listarContactosPorEntidad();
-                                            break;
-                                        }
-
-                                        case 0: {
-                                            cout << "VOLVIENDO AL MENU DE CONTACTOS..." <<endl;
-                                            system ("pause");
-
-                                            break;
-                                        }
-
-                                        default: 
-                                        break;
-                                }
-                                
+                                listarContactosPorEntidad();
                                 system ("pause");
                                 break;
 
